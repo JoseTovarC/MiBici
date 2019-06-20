@@ -1,5 +1,6 @@
 package Bike;
 import User.*;
+import java.util.ArrayList;
 
 
 public class Estacion {
@@ -8,13 +9,12 @@ public class Estacion {
 	private boolean estado = false;
 	private static boolean estadogeneral= true;
 	private int cap_max;
-	private Bicicleta[] bicicletas = new Bicicleta[cap_max];
+	private ArrayList<Bicicleta> bicicletas = new ArrayList<>();
 	private Moderador moderadores;
 	
 	
 	
-	public Estacion(int id, String tipo, boolean estado, int cap_max, Bicicleta[] bicicletas, Moderador moderadores) {
-		super();
+	public Estacion(int id, String tipo, boolean estado, int cap_max, ArrayList<Bicicleta> bicicletas, Moderador moderadores) {
 		this.id = id;
 		this.tipo = tipo;
 		this.estado = estado;
@@ -64,12 +64,12 @@ public class Estacion {
 	}
 
 
-	public Bicicleta[] getBicicletas() {
+	public ArrayList<Bicicleta> getBicicletas() {
 		return bicicletas;
 	}
 
 
-	public void setBicicletas(Bicicleta[] bicicletas) {
+	public void setBicicletas(ArrayList<Bicicleta> bicicletas) {
 		this.bicicletas = bicicletas;
 	}
 
@@ -90,5 +90,10 @@ public class Estacion {
 	public static void abrir_estaciones() {
 		estadogeneral = true;
 	}	
-	
+	public boolean prestar(int id){
+            return true;
+        }
+        public void devolver(Bicicleta bicicleta){
+            
+        }
 }
