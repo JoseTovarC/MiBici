@@ -3,7 +3,7 @@ package User;
 public class Tarjeta {
 	private int saldo;
 	private Usuario usuario;
-	// private Multa multas
+	//private Multa multas;
 
 	public void tarjeta() {
 		// este viene desde el constructor de usuario
@@ -15,6 +15,7 @@ public class Tarjeta {
 		this.usuario = usuario;
 	}
 
+	
 	public int getSaldo() {
 		return saldo;
 	}
@@ -30,6 +31,14 @@ public class Tarjeta {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	/*public Multa getMultas() {
+		return multas;
+	}
+
+	public void setMultas(Multa multas) {
+		this.multas = multas;
+	}*/
 
 	protected void finalize() {
 		// viene desde el borrado de la persona, este método puede ser borrado

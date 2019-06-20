@@ -6,7 +6,7 @@ public class Usuario /* extends Persona */ {
 	//private Multa multa;
 	private boolean deuda = false;
 	private Bicicleta bicicleta;
-	private Tarjeta tarjeta;
+	Tarjeta tarjeta;
 
 	
 	public void usuario() {
