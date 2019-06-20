@@ -1,14 +1,15 @@
 package User;
 import Bike.*;
+import Work.*;
 
-public class Usuario extends Persona {
+public class Usuario /*extends Persona*/ {
 	private Multa multa;
 	private boolean deuda = false;
 	private Bicicleta bicicleta;
 	private Tarjeta tarjeta;
 
 	public void usuario(String nombre, byte edad, long id, String genero long clave) {
-		super(nombre, edad, id, genero, clave); 
+		//super(nombre, edad, id, genero, clave); 
 		// crear tarjeta
 	}
 
