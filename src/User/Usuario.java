@@ -1,101 +1,113 @@
 package User;
+
 import Bike.*;
 import Work.*;
+import java.util.*;
 
-public class Usuario /*extends Persona*/ {
-	private Multa multa;
-	private boolean deuda = false;
-	private Bicicleta bicicleta;
-	private Tarjeta tarjeta;
+public class Usuario extends Persona {
+    Scanner ent=new Scanner(System.in);
 
-	public void usuario(String nombre, byte edad, long id, String genero long clave) {
-		//super(nombre, edad, id, genero, clave); 
-		// crear tarjeta
-	}
+    private Multa multa;
+    private boolean deuda = false;
+    private Bicicleta bicicleta;
+    private Tarjeta tarjeta;
 
-	public Multa getMulta() {
-		return multa;
-	}
+    public Usuario(String nombre, byte edad, long id, String genero, long clave, int saldo) {
+        super(nombre, edad, id, genero, clave);
+        Tarjeta tarjeta = new Tarjeta(saldo, this);
+        this.tarjeta = tarjeta;
+        //main.usuarioh.add(id, this);
+    }
 
-	public void setMulta(Multa multa) {
-		this.multa = multa;
-	}
+    public Multa getMulta() {
+        return multa;
+    }
 
-	public boolean isDeuda() {
-		return deuda;
-	}
+    public void setMulta(Multa multa) {
+        this.multa = multa;
+    }
 
-	public void setDeuda(boolean deuda) {
-		this.deuda = deuda;
-	}
+    public boolean isDeuda() {
+        return deuda;
+    }
 
-	public Bicicleta getBicicleta() {
-		return bicicleta;
-	}
+    public void setDeuda(boolean deuda) {
+        this.deuda = deuda;
+    }
 
-	public void setBicicleta(Bicicleta bicicleta) {
-		this.bicicleta = bicicleta;
-	}
+    public Bicicleta getBicicleta() {
+        return bicicleta;
+    }
 
-	public Tarjeta getTarjeta() {
-		return tarjeta;
-	}
+    public void setBicicleta(Bicicleta bicicleta) {
+        this.bicicleta = bicicleta;
+    }
 
-	public void setTarjeta(Tarjeta tarjeta) {
-		this.tarjeta = tarjeta;
-	}
+    public Tarjeta getTarjeta() {
+        return tarjeta;
+    }
 
-	public void finalize() {
-		System.out.println("Se ha eliminado el usuario "+nombre);
-		// borrar tarjeta
-	}
+    public void setTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
+    }
 
-	public void prestar(int idB) {
-		 if (!bicicleta){
-			if (/*tarjeta.saldo>cuanto vamos a cobrar?*/ && !deuda{
-				//conectar bicicleta a la persona
-				//set estacion
-				System.out.println("Prestamo aceptado");
-			} 
-			else if(deuda){
-				System.out.println("Tiene una deuda");
-			}
-			else{
-				System.out.println("saldo insuficiente");
-			}  
-		} 
-		else{ 
-			System.out.println("ya tiene un prestamo");
-		}
-		 
-	}
+    public void finalize() {
+        System.out.println("Se ha eliminado el usuario " + nombre);
+        // borrar tarjeta
+    }
 
-	public void devolver(int idE) {
-		if (/*bicicleta.existe(?) && estacion.max<=estacion.actual+1*/){
-			 //desvincular bicicleta
-			 //set estacion
-			 //check multa por medio de bicicleta
-		} 
-		else{
-			System.out.println("Usted no tiene un prestamo actualmente");
-		}
-	}
+    public void prestar(Estacion estacion) {
+        if (bicicleta== null && !deuda) {
+            if (estacion.getBicicletas().size()>0) { 
+                if (tarjeta.getSaldo()>500) {
+                    int idB= ent.nextInt();
+                    if(estacion.prestar(idB)){
+                        System.out.println("Prestamo aceptado");
+                    }
+                    else{
+                        System.out.println("Bicicleta no encontrada");
+                    }
+                }
+                else {
+                    System.out.println("saldo insuficiente");
+                }
+            }
+            else{
+                System.out.println("Estación vacía");
+            }
+        }
+        else if (deuda) {
+            System.out.println("Tiene una deuda");
+        }
+        
+        else {
+            System.out.println("ya tiene un prestamo");
+        }
+    }
 
-	public void recargarT(int q$) {
-		tarjeta.recargar(q$);
-		System.out.println("Recarga de: $"+q$+" realizada correctamente.");
-	}
+    public void devolver(Estacion estacion, Date initialtime) {
+        if (bicicleta!=null && estacion.getBicicletas().size()<estacion.getCap_max() && estacion.isEstado()) {
+            estacion.devolver(bicicleta);
+            
+            //check multa por medio de bicicleta
+        } else {
+            System.out.println("Usted no tiene un prestamo actualmente");
+        }
+    }
 
-	public void pagarM() {
-		if(deuda && /*tarjeta.saldo>multa.costo*/){
-			tarjeta.pagarM();
-			System.out.println("Pago realizado.");
-		}
-		else if(deuda){
-			System.out.println("Saldo insuficiente.");
-		}
-		else{
-			System.out.println("Usted no tiene multas o deudas actualmente.");
-		}
-	}
+    public void recargarT(int q$) {
+        tarjeta.recargar(q$);
+        System.out.println("Recarga de: $" + q$ + " realizada correctamente.");
+    }
+
+    public void pagarM() {
+        if (deuda && /*tarjeta.saldo>multa.costo*/) {
+            tarjeta.pagarM();
+            System.out.println("Pago realizado.");
+        } else if (deuda) {
+            System.out.println("Saldo insuficiente.");
+        } else {
+            System.out.println("Usted no tiene multas o deudas actualmente.");
+        }
+    }
 }
