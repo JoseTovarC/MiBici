@@ -1,12 +1,11 @@
 package User;
-
 import Bike.*;
 
 public class Usuario /* extends Persona */ {
 	//private Multa multa;
 	private boolean deuda = false;
 	private Bicicleta bicicleta;
-	Tarjeta tarjeta;
+	private Tarjeta tarjeta;
 
 	
 	public void usuario() {
