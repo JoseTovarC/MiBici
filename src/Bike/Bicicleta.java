@@ -15,5 +15,37 @@ public class Bicicleta {
 		this.distribuidor = distribuidor;
 		this.estacion = estacion;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public boolean isDanio() {
+		return danio;
+	}
+	public void setDanio(boolean danio) {
+		this.danio = danio;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public Distribuidor getDistribuidor() {
+		return distribuidor;
+	}
+	public void setDistribuidor(Distribuidor distribuidor) {
+		this.distribuidor = distribuidor;
+	}
+	public Estacion getEstacion() {
+		return estacion;
+	}
+	public void setEstacion(Estacion estacion) {
+		this.estacion = estacion;
+	}
+	
+		
 	
 }
