@@ -8,22 +8,12 @@ public class Tarjeta {
 	private Usuario usuario;
 	private ArrayList<Multa> multas = new ArrayList<>();
 
-	public void tarjeta() {
-		// este viene desde el constructor de usuario
-	}
+	public Tarjeta() {}
 
-	public Tarjeta() {
-		
-	}
-
-	public Tarjeta(int saldo, Usuario usuario, ArrayList<Multa> multas) {
-		
+	public Tarjeta(int saldo, Usuario usuario) {
 		this.saldo = saldo;
 		this.usuario = usuario;
-		this.multas = multas;
 	}
-
-
 
 	public int getSaldo() {
 		return saldo;
