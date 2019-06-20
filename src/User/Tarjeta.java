@@ -1,20 +1,20 @@
 package User;
 
 public class Tarjeta{
-	  int saldo;
-	  Usuario usuario;
-	  //multa multas
+	  private int saldo;
+	  private Usuario usuario;
+	  //private multa multas
 
-	  void tarjeta(){
+	  public void tarjeta(){
 	    //este viene desde el constructor de usuario
 	  }
 	  protected void finalize(){
 	    //viene desde el borrado de la persona, este método puede ser borrado
 	  }
-	  void recargar(int q$){
+	  public void recargar(int q$){
 	    saldo+=q$;
 	  }
-	  boolean pagarM(){
+	  public boolean pagarM(){
 	    /*
 	    if(multa>saldo){
 	      return false
@@ -24,7 +24,7 @@ public class Tarjeta{
 	    //}
 	    
 	  }
-	  boolean pagarP(){
+	  public boolean pagarP(){
 	    //if (valor_prestamo<=saldo){
 	    return true;
 	    /*}
@@ -33,7 +33,7 @@ public class Tarjeta{
 	    }
 	    */
 	  }
-	  void recibirM(int idM){
+	  public void recibirM(int idM){
 	    //se hace la conexión de la tarjeta a la multa y se cambia el estado del usuario de deuda false a true
 	  }
 	}

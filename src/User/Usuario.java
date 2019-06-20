@@ -7,7 +7,14 @@ public class Usuario /*extends Persona*/{
   private Bicicleta bicicleta;
   private Tarjeta tarjeta;
 
-  public void usuario(){
+  
+  public Usuario(/*Aqui Van los atributoas del padre Persona*/boolean deuda, Bicicleta bicicleta, Tarjeta tarjeta) {
+	super();
+	this.deuda = deuda;
+	this.bicicleta = bicicleta;
+	this.tarjeta = tarjeta;
+}
+public void usuario(){
     //super persona;
     //crear tarjeta
   }
@@ -45,7 +52,7 @@ public class Usuario /*extends Persona*/{
     */
   }
   public void recargarT(int q$){
-    Tarjeta.recargar(q$);
+    tarjeta.recargar(q$);
   }
   public void pagarM(){
     /*
