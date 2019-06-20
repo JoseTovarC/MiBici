@@ -2,15 +2,18 @@ package User;
 import Bike.*;
 import Work.*;
 
-public class Usuario /*extends Persona*/ {
-	private Multa multa;
+public class Usuario extends Persona {
+  private Multa multa;
 	private boolean deuda = false;
 	private Bicicleta bicicleta;
 	private Tarjeta tarjeta;
 
-	public void usuario(String nombre, byte edad, long id, String genero long clave) {
-		//super(nombre, edad, id, genero, clave); 
-		// crear tarjeta
+	public void usuario(String nombre, byte edad, long id, String genero, long clave, int saldo) {
+		super(nombre, edad, id, genero, clave); 
+
+    Tarjeta tarjeta=new Tarjeta(saldo, this);
+    this.tarjeta= tarjeta;
+    usuarioh.add(id,this);
 	}
 
 	public Multa getMulta() {
@@ -50,11 +53,15 @@ public class Usuario /*extends Persona*/ {
 		// borrar tarjeta
 	}
 
-	public void prestar(int idB) {
-		 if (!bicicleta){
-			if (/*tarjeta.saldo>cuanto vamos a cobrar?*/ && !deuda{
+	public void prestar(int idB, int idE) {
+		 if (bicicleta==null && deuda){
+			 if(bicicleta.getEstacion==null){
+				 if (/*tarjeta.saldo>cuanto vamos a cobrar? &&*/ !deuda){
+				estacion= idB.getEstacion();
+				Bicicleta[] bicicletas = new Bicicleta[cap_max];
+				b=estacion.get
 				//conectar bicicleta a la persona
-				//set estacion
+				
 				System.out.println("Prestamo aceptado");
 			} 
 			else if(deuda){
@@ -72,7 +79,7 @@ public class Usuario /*extends Persona*/ {
 
 	public void devolver(int idE) {
 		if (/*bicicleta.existe(?) && estacion.max<=estacion.actual+1*/){
-			 //desvincular bicicleta
+			 bicicleta.setEstacion(idE);
 			 //set estacion
 			 //check multa por medio de bicicleta
 		} 
