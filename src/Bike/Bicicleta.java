@@ -48,6 +48,7 @@ public class Bicicleta {
 	
 	public void daniar() {
 		this.danio = true;
+		// Cuando se cree la Clase distribuidor, se le debe pedir al distribuidosr que lo repare
 		
 	}
 	
