@@ -1,5 +1,5 @@
 package Bike;
-
+import User.*;
 public class Bicicleta {
 	
 	private int id;
@@ -46,6 +46,6 @@ public class Bicicleta {
 		this.estacion = estacion;
 	}
 	
-		
+	public 	
 	
 }

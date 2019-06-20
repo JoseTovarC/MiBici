@@ -1,20 +1,21 @@
-package user;
+package User;
+import Bike.*;
 
-class usuario extends persona{
-  //multa multa
-  boolean deuda=false;
-  //bicicleta Bicicleta
-  tarjeta Tarjeta;
+public class Usuario /*extends Persona*/{
+  //private Multa multa
+  private boolean deuda = false;
+  private Bicicleta bicicleta;
+  private Tarjeta tarjeta;
 
-  void usuario(){
+  public void usuario(){
     //super persona;
     //crear tarjeta
   }
-  void finalize(){
+  public void finalize(){
     System.out.println("Se ha eliminado el usuario");
     //borrar tarjeta
   }
-  void prestar(int idB){
+  public void prestar(int idB){
     /*
     if != bicicleta{
       if chequear saldo y multas{
@@ -31,7 +32,7 @@ class usuario extends persona{
     }
     */
   }
-  void devolver(int idE){
+  public void devolver(int idE){
     /*
     if != bicicleta{
       no se puede devolver nada...
@@ -43,10 +44,10 @@ class usuario extends persona{
     }    
     */
   }
-  void recargarT(int q$){
+  public void recargarT(int q$){
     Tarjeta.recargar(q$);
   }
-  void pagarM(){
+  public void pagarM(){
     /*
     se revisa el saldo de la tarjeta y se paga la multa existente (corriendo Tarjeta.pagarM())
     si no tiene multas se retorna "Actualmente no tiene multas"
@@ -56,40 +57,4 @@ class usuario extends persona{
   }
 }
 
-class tarjeta{
-  int saldo;
-  usuario Usuario;
-  //multa multas
 
-  void tarjeta(){
-    //este viene desde el constructor de usuario
-  }
-  protected void finalize(){
-    //viene desde el borrado de la persona, este método puede ser borrado
-  }
-  void recargar(int q$){
-    saldo+=q$;
-  }
-  boolean pagarM(){
-    /*
-    if(multa>saldo){
-      return false
-    }
-    else{
-      */return true;
-    //}
-    
-  }
-  boolean pagarP(){
-    //if (valor_prestamo<=saldo){
-    return true;
-    /*}
-    else{
-      return false
-    }
-    */
-  }
-  void recibirM(int idM){
-    //se hace la conexión de la tarjeta a la multa y se cambia el estado del usuario de deuda false a true
-  }
-}
