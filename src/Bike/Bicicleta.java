@@ -7,10 +7,9 @@ public class Bicicleta {
 	private Usuario usuario;
 	//private Distribuidor distribuidor;
 	private Estacion estacion;
-	public Bicicleta(int id, boolean danio, Usuario usuario, /*Distribuidor distribuidor,*/ Estacion estacion) {
+	public Bicicleta(int id, Usuario usuario, /*Distribuidor distribuidor,*/ Estacion estacion) {
 		super();
 		this.id = id;
-		this.danio = danio;
 		this.usuario = usuario;
 		//this.distribuidor = distribuidor;
 		this.estacion = estacion;
@@ -46,6 +45,12 @@ public class Bicicleta {
 		this.estacion = estacion;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Bicicleta \n [id = " + id + "\n daño = " + danio + "\n usuario=" + usuario +  "] \n";
+	}
 	public void daniar() {
 		this.danio = true;
 		// Cuando se cree la Clase distribuidor, se le debe pedir al distribuidosr que lo repare

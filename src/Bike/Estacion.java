@@ -4,32 +4,39 @@ import java.util.ArrayList;
 
 
 public class Estacion {
-	private int id;
+	private String id;
 	private String tipo;
 	private boolean estado = false;
 	private static boolean estadogeneral= true;
 	private int cap_max;
-	private ArrayList<Bicicleta> bicicletas = new ArrayList<>();
+	private Bicicleta[] bicicletas;
 	private Moderador moderadores;
 	
 	
 	
-	public Estacion(int id, String tipo, boolean estado, int cap_max, ArrayList<Bicicleta> bicicletas, Moderador moderadores) {
+	public Estacion(String id, String tipo, boolean estado, int cap_max, Moderador moderadores) {
 		this.id = id;
 		this.tipo = tipo;
 		this.estado = estado;
 		this.cap_max = cap_max;
-		this.bicicletas = bicicletas;
+		this.bicicletas =  new Bicicleta[cap_max];
 		this.moderadores = moderadores;
 	}
 	
+	public Estacion(String id, String tipo, boolean estado, int cap_max) {
+		this.id = id;
+		this.tipo = tipo;
+		this.estado = estado;
+		this.cap_max = cap_max;
+		this.bicicletas =  new Bicicleta[cap_max];		
+	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -64,12 +71,12 @@ public class Estacion {
 	}
 
 
-	public ArrayList<Bicicleta> getBicicletas() {
+	public Bicicleta[] getBicicletas() {
 		return bicicletas;
 	}
 
 
-	public void setBicicletas(ArrayList<Bicicleta> bicicletas) {
+	public void setBicicletas(Bicicleta[] bicicletas) {
 		this.bicicletas = bicicletas;
 	}
 
@@ -90,10 +97,26 @@ public class Estacion {
 	public static void abrir_estaciones() {
 		estadogeneral = true;
 	}	
-	public boolean prestar(int id){
+	public boolean prestar(int idb, Usuario usuario){
+		if((idb-1) <0) {
+			return false;
+		}else if((idb-1)>= cap_max){
+				
+				return false;
+		
+		}else if(bicicletas[idb-1] == null) {
+			return false;
+		}else {
+			usuario.setBicicleta(bicicletas[idb-1]);
+			bicicletas[idb-1] = null;
+			for (int i = 0; i < bicicletas.length; i++) {
+				System.out.print((i+1) + ". " + bicicletas[i]);
+				System.out.println(" ");
+			}
             return true;
-        }
-        public void devolver(Bicicleta bicicleta){
+		}
+	}
+	public void devolver(Bicicleta bicicleta){
             
-        }
+	}
 }
