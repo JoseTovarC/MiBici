@@ -55,7 +55,7 @@ public class Usuario extends Persona {
         System.out.println("Se ha eliminado el usuario " + nombre);
         // borrar tarjeta
     }
-
+    
     public void prestar(Estacion estacion) {
         if (bicicleta== null && !deuda) {
             if (estacion.getBicicletas().size()>0) { 
@@ -85,6 +85,36 @@ public class Usuario extends Persona {
         }
     }
 
+    
+    /*public void prestar(Estacion estacion) {
+        if (bicicleta== null && !deuda) {
+            if (estacion.getBicicletas().size()>0) { 
+                if (tarjeta.getSaldo()>500) {
+                    int idB= ent.nextInt();
+                    if(estacion.prestar(idB)){
+                        System.out.println("Prestamo aceptado");
+                    }
+                    else{
+                        System.out.println("Bicicleta no encontrada");
+                    }
+                }
+                else {
+                    System.out.println("saldo insuficiente");
+                }
+            }
+            else{
+                System.out.println("Estación vacía");
+            }
+        }
+        else if (deuda) {
+            System.out.println("Tiene una deuda");
+        }
+        
+        else {
+            System.out.println("ya tiene un prestamo");
+        }
+    }*/
+
     public void devolver(Estacion estacion, Date initialtime) {
         if (bicicleta!=null && estacion.getBicicletas().size()<estacion.getCap_max() && estacion.isEstado()) {
             estacion.devolver(bicicleta);
@@ -101,7 +131,7 @@ public class Usuario extends Persona {
     }
 
     public void pagarM() {
-        if (deuda && /*tarjeta.saldo>multa.costo*/) {
+        if (deuda /*&& tarjeta.saldo>multa.costo*/) {
             tarjeta.pagarM();
             System.out.println("Pago realizado.");
         } else if (deuda) {

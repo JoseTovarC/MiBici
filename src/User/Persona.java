@@ -1,7 +1,7 @@
 package User;
 
 public abstract class Persona {
-	private String nombre;
+	protected String nombre;
 	private byte edad;
 	private long doc_id;
 	private String genero;
