@@ -7,12 +7,17 @@ public class Bicicleta {
 	private Usuario usuario;
 	//private Distribuidor distribuidor;
 	private Estacion estacion;
-	public Bicicleta(int id, Usuario usuario, /*Distribuidor distribuidor,*/ Estacion estacion) {
-		super();
+	public Bicicleta(int id, Estacion estacion) {
+		System.out.println("Crea nueva bicicleta");
+		this.id=id;
+		this.setEstacion(estacion);
+		estacion.addBicicleta(this);
+	}
+	public Bicicleta(int id, Usuario usuario /*,Distribuidor distribuidor,*/) {
+		System.out.println("Si");
 		this.id = id;
-		this.usuario = usuario;
+		this.setUsuario(usuario);
 		//this.distribuidor = distribuidor;
-		this.estacion = estacion;
 	}
 	public int getId() {
 		return id;

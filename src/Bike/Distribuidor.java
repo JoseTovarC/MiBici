@@ -2,7 +2,7 @@ package Bike;
 
 import java.util.ArrayList;
 
-import User.Usuario;
+//import User.Usuario;
 
 public class Distribuidor {
 	private String nombre;

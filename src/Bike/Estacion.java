@@ -1,6 +1,6 @@
 package Bike;
 import User.*;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 
 public class Estacion {
@@ -10,20 +10,20 @@ public class Estacion {
 	private static boolean estadogeneral= true;
 	private int cap_max;
 	private Bicicleta[] bicicletas;
-	private Moderador moderadores;
+	private Moderador moderador;
+	private byte cantBicis=0;
 	
-	
-	
-	public Estacion(String id, String tipo, boolean estado, int cap_max, Moderador moderadores) {
+	/*public Estacion(String id, String tipo, boolean estado, int cap_max, Moderador moderador) {
 		this.id = id;
 		this.tipo = tipo;
 		this.estado = estado;
 		this.cap_max = cap_max;
 		this.bicicletas =  new Bicicleta[cap_max];
-		this.moderadores = moderadores;
-	}
+		this.moderadores = moderador;
+	}*/
 	
 	public Estacion(String id, String tipo, boolean estado, int cap_max) {
+		
 		this.id = id;
 		this.tipo = tipo;
 		this.estado = estado;
@@ -52,9 +52,14 @@ public class Estacion {
 
 
 	public boolean isEstado() {
+		if(estadogeneral) {
+			estado=true;
+		}
+		else {
+			estado=false;
+		}
 		return estado;
 	}
-
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
@@ -79,44 +84,73 @@ public class Estacion {
 	public void setBicicletas(Bicicleta[] bicicletas) {
 		this.bicicletas = bicicletas;
 	}
-
-
-	public Moderador getModeradores() {
-		return moderadores;
+	public void addBicicleta(Bicicleta bicicleta) {
+		int i=0;
+		System.out.println(bicicletas);
+		while(i<cap_max-1) {
+			if (bicicletas[i]==null) {
+				bicicletas[i]=bicicleta;
+				cantBicis++;
+				System.out.println("Bicicleta agregada");
+				break;
+			}
+		}
 	}
 
 
-	public void setModeradores(Moderador moderadores) {
-		this.moderadores = moderadores;
+	public Moderador getModerador() {
+		return moderador;
 	}
 
+
+	public void setModerador(Moderador moderador) {
+		this.moderador = moderador;
+	}
+	
+	public byte getCantBicis() {
+		return cantBicis;
+	}
 
 	public static void cerrar_estaciones() {
 		estadogeneral = false;
 	}
 	public static void abrir_estaciones() {
 		estadogeneral = true;
-	}	
+	}
+	
 	public boolean prestar(int idb, Usuario usuario){
-		if((idb-1) <0) {
+		if((idb) <0 || (idb-1)>= cap_max || cantBicis==0 || !this.isEstado()) {
 			return false;
-		}else if((idb-1)>= cap_max){
-				
-				return false;
-		
-		}else if(bicicletas[idb-1] == null) {
+		}
+		else if(bicicletas[idb] == null) {
 			return false;
-		}else {
-			usuario.setBicicleta(bicicletas[idb-1]);
-			bicicletas[idb-1] = null;
+		}
+		else {
+			usuario.setBicicleta(bicicletas[idb]);
+			bicicletas[idb].setUsuario(usuario);
+			bicicletas[idb] = null;
 			for (int i = 0; i < bicicletas.length; i++) {
 				System.out.print((i+1) + ". " + bicicletas[i]);
 				System.out.println(" ");
 			}
+			cantBicis--;
             return true;
 		}
 	}
-	public void devolver(Bicicleta bicicleta){
-            
+	
+	public boolean recibir(Bicicleta bicicleta){
+        if(cantBicis==cap_max || !this.isEstado()) {
+        	return false;
+        }
+        else {
+        	cantBicis++;
+        	//ver nuevo método addBicicletas()
+        	return true;
+        }
+		
+	}
+	
+	public String toString() {
+		return "Estacion \n [id = " + id + "\n Tipo = " + tipo+ "\n moderador=" + moderador + "\n Bicis= "+ cantBicis+"] \n";
 	}
 }

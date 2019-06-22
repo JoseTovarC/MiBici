@@ -6,154 +6,154 @@ import java.util.*;
 
 public class Usuario extends Persona {
     Scanner ent=new Scanner(System.in);
-
-    private Multa multa;
-    private boolean deuda = false;
-    private Bicicleta bicicleta;
+    
     private Tarjeta tarjeta;
+    private Bicicleta bicicleta;
+    private boolean deuda = false;
+    private ArrayList<Multa> multas = new ArrayList<>();
 
-    public Usuario(String nombre, byte edad, long id, String genero, long clave, int saldo) {
+    //Constructores
+    public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo) {
         super(nombre, edad, id, genero, clave);
         Tarjeta tarjeta = new Tarjeta(saldo, this);
         this.tarjeta = tarjeta;
         //main.usuarioh.add(id, this);
     }
-
-    public Multa getMulta() {
-        return multa;
+    public Usuario() { //Default
+    	this("Juan", (byte)18, 1, "M", "1234", 0);
+    }
+    
+    //Getters & Setters
+    public Tarjeta getTarjeta() {return tarjeta;}
+    public void setTarjeta(Tarjeta tarjeta) {this.tarjeta = tarjeta;}
+        
+    public Bicicleta getBicicleta() {return bicicleta;}
+    public void setBicicleta(Bicicleta bicicleta) {this.bicicleta = bicicleta;}
+    
+    public boolean isDeuda() {return deuda;}
+    public void setDeuda(boolean deuda) {this.deuda = deuda;}
+    public int getDeuda() {
+    	return multas.stream().mapToInt(o -> o.getPrecio()).sum();
+    }
+    
+    public ArrayList<Multa> getMultas() {return multas;}
+    public void setMultas(ArrayList<Multa> multas) {
+    	this.multas = multas;
+    	if(multas!=null) {
+    		deuda=false;
+    	}
+    	else {
+    		deuda=true;
+    	}
+    }
+    public void addMultas(Multa multa) {
+    	this.multas.add(multa);
+    }
+    public void delMultas() {
+    	multas.clear();
+    }
+    public void delMultas(int id) {
+    	multas.remove(id);
     }
 
-    public void setMulta(Multa multa) {
-        this.multa = multa;
-    }
-
-    public boolean isDeuda() {
-        return deuda;
-    }
-
-    public void setDeuda(boolean deuda) {
-        this.deuda = deuda;
-    }
-
-    public Bicicleta getBicicleta() {
-        return bicicleta;
-    }
-
-    public void setBicicleta(Bicicleta bicicleta) {
-        this.bicicleta = bicicleta;
-    }
-
-    public Tarjeta getTarjeta() {
-        return tarjeta;
-    }
-
-    public void setTarjeta(Tarjeta tarjeta) {
-        this.tarjeta = tarjeta;
-    }
-
+    @Override
     public void finalize() {
         System.out.println("Se ha eliminado el usuario " + nombre);
         // borrar tarjeta
     }
     
-    // Esto aqui, fue lo que hice yo
-    
     public void prestar(Estacion estacion) {
-
+		StringBuffer r;
 		Bicicleta[] bicis;
-		bicis = estacion.getBicicletas();
-		int cantidadb = 0;
-		for (int i = 0; i < estacion.getCap_max(); i++) {
-			if (bicis[i] != null) {
-				cantidadb++;
-			}
-		}
-		if ((this.bicicleta == null) && !deuda) {
-
-			if (cantidadb > 0 && tarjeta.getSaldo() >= 500) {
-				for (int i = 0; i < bicis.length; i++) {
-					System.out.print((i+1) + ". " + bicis[i]);
+		if ((this.bicicleta==null) && !deuda) {
+			if (estacion.getCantBicis()>0 && tarjeta.getSaldo()>=500 && estacion.isEstado()) {
+				for (int i = 0; i < estacion.getCap_max(); i++) {
+					System.out.print((i+1) + ". " + estacion.getBicicletas()[i]);
 					System.out.println(" ");
 				}
-				int idB = ent.nextInt();
-				if(estacion.prestar(idB, this)) {
-					System.out.println("Prestamo aceptado");
-					System.out.println(super.nombre + " posee la bicicleta " + idB+ ". " + bicicleta.getId() + " de la estaciÛn " + estacion.getId());
-					tarjeta.setSaldo(tarjeta.getSaldo()-500);
-				}else {
-					System.out.println("Prestamo no aceptado");
-					System.out.println(" No Hay Bicicletas en la posiciÛn elegida o posiciÛn fuera de rango, etc.");
-					
+				int idB = ent.nextInt()-1;
+				while(idB<0 || idB>=estacion.getCantBicis()) {
+					System.out.println("Por favor ingrese un valor v·lido. Entre 1 y "+(estacion.getCantBicis())+".");
+					idB=ent.nextInt()-1;
 				}
-				
-
-			
-			}else if(tarjeta.getSaldo() < 500){
-				System.out.println("Saldo Insuficiente");
+				while(!estacion.prestar(idB, this)) {
+					System.out.println("Prestamo no aceptado.");
+					System.out.println("No Hay Bicicletas en la posiciÛn elegida, ingrese una posiciÛn v·lida.");
+					idB=ent.nextInt()-1;
+				}
+				r= new StringBuffer("Prestamo aceptado.");
+				this.setBicicleta(bicicleta);
+				r.append("\n"+super.nombre + " posee la bicicleta " + this.bicicleta.toString() /*+". Estaba en la estaciÛn " + estacion.getId()+" posiciÛn "+idB*/);
+				tarjeta.pagarP();
 			}
-		
-		}else if(this.bicicleta != null) {
-			System.out.println("Tiene un prestamo vigente");
-		}else {
-			System.out.println("Tiene una deuda pendiente");
+			else if(tarjeta.getSaldo() < 500){
+				r= new StringBuffer("Saldo Insuficiente.");
+			}
+			else if(!estacion.isEstado()) {
+				r= new StringBuffer("EstaciÛn cerrada.");
+			}
+			else {
+				r= new StringBuffer("EstaciÛn vacÌa.");
+			}
+		}
+		else if(this.bicicleta != null) {
+			r= new StringBuffer("Tiene un prestamo vigente");
+		}
+		else {
+			r= new StringBuffer("Tiene una deuda pendiente");
 		}
 
+		//return r;
+		System.out.println(r);
 	}
-    
-    // Esto aqui comentado, fue lo echo por usted.
-    
-    /*public void prestar(Estacion estacion) {
-        if (bicicleta== null && !deuda) {
-            if (estacion.getBicicletas().size()>0) { 
-                if (tarjeta.getSaldo()>500) {
-                    int idB= ent.nextInt();
-                    if(estacion.prestar(idB)){
-                        System.out.println("Prestamo aceptado");
-                    }
-                    else{
-                        System.out.println("Bicicleta no encontrada");
-                    }
-                }
-                else {
-                    System.out.println("saldo insuficiente");
-                }
+
+    public StringBuffer devolver(Estacion estacion/*, Date initialtime*/) {
+    	StringBuffer r;
+    	if(bicicleta==null) {
+    		r= new StringBuffer("Usted no tiene un prÈstamo actualmente.");
+    	}
+    	else if(!estacion.isEstado()) {
+    		r= new StringBuffer("EstaciÛn cerrada.");
+    	}
+    	else if(estacion.getCantBicis()==estacion.getCap_max()) {
+    		r= new StringBuffer("EstaciÛn llena.");
+    	}
+    	else{
+            if(estacion.recibir(bicicleta)) {
+            	r=new StringBuffer("Bicicleta devuelta.");
+            	/*
+            	 * if (initialtime-bicicleta.time()>2 horas){
+            	 * 		usuario.setMulta(tiempo);
+             	 * 		r.append(" Ha sido multado por tiempo excedido");
+             	 * }
+             	*/
             }
-            else{
-                System.out.println("Estaci√≥n vac√≠a");
+            else {
+            	r=new StringBuffer("Bicicleta no devuelta.");
             }
-        }
-        else if (deuda) {
-            System.out.println("Tiene una deuda");
-        }
-        
-        else {
-            System.out.println("ya tiene un prestamo");
-        }
+    	}
+    	return r;
     }
 
-    public void devolver(Estacion estacion, Date initialtime) {
-        if (bicicleta!=null && estacion.getBicicletas().size()<estacion.getCap_max() && estacion.isEstado()) {
-            estacion.devolver(bicicleta);
-            
-            //check multa por medio de bicicleta
-        } else {
-            System.out.println("Usted no tiene un prestamo actualmente");
-        }
-    }*/
-
-    public void recargarT(int q$) {
+    public String recargarT(int q$) {
         tarjeta.recargar(q$);
-        System.out.println("Recarga de: $" + q$ + " realizada correctamente.");
+        return "Recarga de: $" + q$ + " realizada correctamente.";
     }
 
-    public void pagarM() {
-        if (deuda /*&& tarjeta.saldo>multa.costo*/) {
-            tarjeta.pagarM();
-            System.out.println("Pago realizado.");
-        } else if (deuda) {
-            System.out.println("Saldo insuficiente.");
-        } else {
-            System.out.println("Usted no tiene multas o deudas actualmente.");
+    public String pagarM() {
+        if (deuda) {
+        	if(tarjeta.pagarM()) {
+        		return "Pago realizado.";
+        	}
+        	else {
+        		return "Saldo insuficiente";
+        	}
         }
+        else {
+            return "Usted no tiene multas o deudas actualmente.";
+        }
+    }
+    public String toString() {
+    	return "Nombre= "+super.getNombre()+". Id= "+super.getDoc_id();
     }
 }

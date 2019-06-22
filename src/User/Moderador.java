@@ -1,19 +1,22 @@
 package User;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import Bike.*;
-import Work.*;
+//import Work.*;
 
-public class Moderador /*extends Persona */{
+public class Moderador extends Persona{
 	private Estacion estacion;
 
-	public Moderador(/*String nombre, byte edad, long doc_id, String genero, long clave,*/ Estacion estacion) {
-		//super(nombre, edad, doc_id, genero, clave);
+	public Moderador(String nombre, byte edad, long doc_id, String genero, String clave, Estacion estacion) {
+		super(nombre, edad, doc_id, genero, clave);
 		this.estacion = estacion;
 	}
 
 	public void multar(Usuario usuario, String tipo) {
 		
+		
+		
+		/*
 		usuario.setDeuda(true);
 		Tarjeta a = new Tarjeta();
 		a = usuario.getTarjeta();
@@ -22,8 +25,8 @@ public class Moderador /*extends Persona */{
 		b.add(null);
 		a.setMultas(b);
 		usuario.setTarjeta(a);
-		System.out.println("Se ha multado al usuario: " /*+ usuario.getNombre()*/);
-
+		System.out.println("Se ha multado al usuario: " + usuario.getNombre());
+		*/
 	}
 
 	public void danioB(Usuario usuario, Bicicleta bicicleta/*, Distribuidor distribuidor*/) {
@@ -36,6 +39,12 @@ public class Moderador /*extends Persona */{
 
 	public Estacion getEstacion() {
 		return estacion;
+	}
+
+	@Override
+	public void finalize() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
