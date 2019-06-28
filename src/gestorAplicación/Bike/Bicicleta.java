@@ -1,11 +1,11 @@
-package Bike;
-import User.*;
+package gestorAplicación.Bike;
+import gestorAplicación.User.*;
 public class Bicicleta {
 	
 	private int id;
 	private boolean danio = false;
 	private Usuario usuario;
-	//private Distribuidor distribuidor;
+	private Distribuidor distribuidor;
 	private Estacion estacion;
 	public Bicicleta(int id, Estacion estacion) {
 		System.out.println("Crea nueva bicicleta");
@@ -13,11 +13,11 @@ public class Bicicleta {
 		this.setEstacion(estacion);
 		estacion.addBicicleta(this);
 	}
-	public Bicicleta(int id, Usuario usuario /*,Distribuidor distribuidor,*/) {
+	public Bicicleta(int id/*, Usuario usuario*/,Distribuidor distribuidor) {
 		System.out.println("Si");
 		this.id = id;
-		this.setUsuario(usuario);
-		//this.distribuidor = distribuidor;
+		//this.setUsuario(usuario);
+		this.distribuidor = distribuidor;
 	}
 	public int getId() {
 		return id;

@@ -1,7 +1,7 @@
-package User;
+package gestorAplicación.User;
 
-import Bike.*;
-import Work.*;
+import gestorAplicación.Bike.*;
+import gestorAplicación.Work.*;
 import java.util.*;
 
 public class Usuario extends Persona {
@@ -14,9 +14,11 @@ public class Usuario extends Persona {
 
     //Constructores
     public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo) {
-        super(nombre, edad, id, genero, clave);
+    	super(nombre, edad, id, genero, clave);
+    	this.nombre = nombre;
         Tarjeta tarjeta = new Tarjeta(saldo, this);
         this.tarjeta = tarjeta;
+        //Main.addUsuarios(this);
         //main.usuarioh.add(id, this);
     }
     public Usuario() { //Default
@@ -121,6 +123,7 @@ public class Usuario extends Persona {
     	else{
             if(estacion.recibir(bicicleta)) {
             	r=new StringBuffer("Bicicleta devuelta.");
+            	this.bicicleta= null;
             	/*
             	 * if (initialtime-bicicleta.time()>2 horas){
             	 * 		usuario.setMulta(tiempo);
