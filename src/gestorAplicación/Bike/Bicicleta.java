@@ -13,11 +13,17 @@ public class Bicicleta {
 		this.setEstacion(estacion);
 		estacion.addBicicleta(this);
 	}
-	public Bicicleta(int id/*, Usuario usuario*/,Distribuidor distribuidor) {
+	public Bicicleta(int id,Distribuidor distribuidor) {
 		System.out.println("Si");
 		this.id = id;
 		//this.setUsuario(usuario);
-		this.distribuidor = distribuidor;
+		this.setDistribuidor(distribuidor);
+	}
+	public Bicicleta(int id, Estacion estacion, Distribuidor distribuidor) {
+		System.out.println("Si");
+		this.id = id;
+		//this.setUsuario(usuario);
+		this.setDistribuidor(distribuidor);
 	}
 	public int getId() {
 		return id;
@@ -37,12 +43,7 @@ public class Bicicleta {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	/*public Distribuidor getDistribuidor() {
-		return distribuidor;
-	}
-	public void setDistribuidor(Distribuidor distribuidor) {
-		this.distribuidor = distribuidor;
-	}*/
+
 	public Estacion getEstacion() {
 		return estacion;
 	}
@@ -60,6 +61,12 @@ public class Bicicleta {
 		this.danio = true;
 		// Cuando se cree la Clase distribuidor, se le debe pedir al distribuidosr que lo repare
 		
+	}
+	public Distribuidor getDistribuidor() {
+		return distribuidor;
+	}
+	public void setDistribuidor(Distribuidor distribuidor) {
+		this.distribuidor = distribuidor;
 	}
 	
 }
