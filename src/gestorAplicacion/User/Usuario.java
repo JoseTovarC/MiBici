@@ -1,6 +1,7 @@
 package gestorAplicacion.User;
 
 import gestorAplicacion.Bike.*;
+import uiMain.MenuDeConsola;
 import uiMain.*;
 import gestorAplicacion.Work.*;
 import BaseDatos.*;
@@ -8,9 +9,7 @@ import BaseDatos.*;
 import java.util.*;
 
 public class Usuario extends Persona {
-    public class GuestUser {
-
-	}
+    
 	Scanner ent=new Scanner(System.in);
     
     private Tarjeta tarjeta;
@@ -22,7 +21,6 @@ public class Usuario extends Persona {
     //Constructores
     public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo) {
     	super(nombre, edad, id, genero, clave);
-    	this.nombre = nombre;
         Tarjeta tarjeta = new Tarjeta(saldo, this);
         this.tarjeta = tarjeta;
         //Main.addUsuarios(this);
@@ -32,19 +30,38 @@ public class Usuario extends Persona {
     
     public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
     	super(nombre, edad, id, genero, clave);
-    	this.nombre = nombre;
         Tarjeta tarjeta = new Tarjeta(saldo, this);
         this.tarjeta = tarjeta;
+        this.menu = menu;
         //Main.addUsuarios(this);
         //main.usuarioh.add(id, this);
         BaseDatos.Datos.hashPersona.put(id, this);
     }
+    public Usuario(MenuDeConsola menu) {		
+        super("",(byte) 0,(long) 0, "", "");
+    	this.nombre = "";
+        Tarjeta tarjeta = new Tarjeta(0, this);
+        this.tarjeta = tarjeta;
+        this.menu = menu;
+        BaseDatos.Datos.hashPersona.put((long)0, this);
+    }
+    
+    public static Usuario nuevoUsuarioInvitado(){
+		ArrayList<OpcionDeMenu> OpcionesInvitado = new ArrayList<OpcionDeMenu>();			
+                OpcionesInvitado.add(BaseDatos.Datos.operations.get("1"));
+                OpcionesInvitado.add(BaseDatos.Datos.operations.get("2"));
+                OpcionesInvitado.add(BaseDatos.Datos.operations.get("4"));
+
+		
+		MenuDeConsola InvitadoMenu = new MenuDeConsola(OpcionesInvitado);
+		return new Usuario(InvitadoMenu);
+   }
     public static String login(long id, String password){
         Usuario u = Usuario.getUsuarioPorUsername(id);
         if (u != null){
             if(u.getDoc_id() == id && u.getClave().equals(password)){
             	//Seteo el usuario
-            	Main.usuario = u;
+            	Main.user = u;
                 return "Bienvenido";
             }
         }
@@ -87,11 +104,19 @@ public class Usuario extends Persona {
     	multas.remove(id);
     }
 
+    public MenuDeConsola getMenu() {
+		return menu;
+	}
+    public void setMenu(MenuDeConsola menu) {
+		this.menu = menu;
+	}
+
     @Override
     public void finalize() {
         System.out.println("Se ha eliminado el usuario " + nombre);
         // borrar tarjeta
     }
+    
     
     public void prestar(Estacion estacion) {
 		StringBuffer r;
@@ -104,27 +129,27 @@ public class Usuario extends Persona {
 				}
 				int idB = ent.nextInt()-1;
 				while(idB<0 || idB>=estacion.getCantBicis()) {
-					System.out.println("Por favor ingrese un valor v醠ido. Entre 1 y "+(estacion.getCantBicis())+".");
+					System.out.println("Por favor ingrese un valor v谩lido. Entre 1 y "+(estacion.getCantBicis())+".");
 					idB=ent.nextInt()-1;
 				}
 				while(!estacion.prestar(idB, this)) {
 					System.out.println("Prestamo no aceptado.");
-					System.out.println("No Hay Bicicletas en la posici髇 elegida, ingrese una posici髇 v醠ida.");
+					System.out.println("No Hay Bicicletas en la posici贸n elegida, ingrese una posici贸n v谩lida.");
 					idB=ent.nextInt()-1;
 				}
 				r= new StringBuffer("Prestamo aceptado.");
 				this.setBicicleta(bicicleta);
-				r.append("\n"+super.nombre + " posee la bicicleta " + this.bicicleta.toString() /*+". Estaba en la estaci髇 " + estacion.getId()+" posici髇 "+idB*/);
+				r.append("\n"+super.nombre + " posee la bicicleta " + this.bicicleta.toString() /*+". Estaba en la estaci贸n " + estacion.getId()+" posici贸n "+idB*/);
 				tarjeta.pagarP();
 			}
 			else if(tarjeta.getSaldo() < 500){
 				r= new StringBuffer("Saldo Insuficiente.");
 			}
 			else if(!estacion.isEstado()) {
-				r= new StringBuffer("Estaci髇 cerrada.");
+				r= new StringBuffer("Estaci贸n cerrada.");
 			}
 			else {
-				r= new StringBuffer("Estaci髇 vac韆.");
+				r= new StringBuffer("Estaci贸n vac铆a.");
 			}
 		}
 		else if(this.bicicleta != null) {
@@ -141,13 +166,13 @@ public class Usuario extends Persona {
     public StringBuffer devolver(Estacion estacion/*, Date initialtime*/) {
     	StringBuffer r;
     	if(bicicleta==null) {
-    		r= new StringBuffer("Usted no tiene un pr閟tamo actualmente.");
+    		r= new StringBuffer("Usted no tiene un pr茅stamo actualmente.");
     	}
     	else if(!estacion.isEstado()) {
-    		r= new StringBuffer("Estaci髇 cerrada.");
+    		r= new StringBuffer("Estaci贸n cerrada.");
     	}
     	else if(estacion.getCantBicis()==estacion.getCap_max()) {
-    		r= new StringBuffer("Estaci髇 llena.");
+    		r= new StringBuffer("Estaci贸n llena.");
     	}
     	else{
             if(estacion.recibir(bicicleta)) {
@@ -189,8 +214,4 @@ public class Usuario extends Persona {
     	return "Nombre= "+super.getNombre()+". Id= "+super.getDoc_id();
     }
 
-	public MenuDeConsola getMenu() {
-
-		return menu;
-	}
 }

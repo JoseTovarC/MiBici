@@ -7,7 +7,7 @@ public class SignOut  extends OpcionDeMenu{
 	@Override
 	public void ejecutar() {
 		System.out.println("Adios");
-		Main.usuario = Usuario.getUsuarioPorUsername((long)-1);
+		Main.user = Usuario.getUsuarioPorUsername((long)0);
 		
 	}
 

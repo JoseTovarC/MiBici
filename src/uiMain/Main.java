@@ -6,40 +6,39 @@ import gestorAplicacion.User.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import BaseDatos.Datos;
+import BaseDatos.*;
 
-//import gestorAplicación.Work.*;
+//import gestorAplicaciÃ³n.Work.*;
 public class Main {
-		
-	public static Usuario usuario;
+	static boolean aux= true;	
+	public static Usuario user;
 	
 	public static void main(String[] args) throws IOException {
 
 		Main.config_inicio();
 		// TODO: condicion de break
-		while (true) {
-			Main.usuario.getMenu().lanzarMenu();
+               
+		while (aux) {
+			MenuDeConsola a = Main.user.getMenu();			
+                        a.lanzarMenu();                  
 		}
 
 	}
 
 	public static void config_inicio() {
 
-		Datos.cargarDatos();
+		BaseDatos.Datos.cargarDatos();
 		// Cargar las opciones del programa primero
-		Datos.operations.put("1", new Login());
-		Datos.operations.put("2", new SignUp());
-		Datos.operations.put("3", new SignOut());
-		
+		BaseDatos.Datos.operations.put("1", new Login());
+		BaseDatos.Datos.operations.put("2", new SignUp());
+		BaseDatos.Datos.operations.put("3", new SignOut());
+		BaseDatos.Datos.operations.put("4", new salir());
 		//Usuario invitado(por defecto)
-		Main.usuario = UsuarioInvitado.nuevoUsuarioInvitado();
-				
-				
+		Main.user = Usuario.nuevoUsuarioInvitado();
 
-		@SuppressWarnings("serial")
 		ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>(){
 			{
-						add(Datos.operations.get("3"));
+						add(BaseDatos.Datos.operations.get("3"));
 			}
 		};
 				

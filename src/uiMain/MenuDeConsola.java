@@ -26,7 +26,11 @@ public class MenuDeConsola {
 		
 	}
 	
-	public void añadirOpcion(OpcionDeMenu option) {
+	public void anadirOpcion(OpcionDeMenu option) {
 		options.add(option);
 	}
+                @Override
+        public String toString() {
+            return "MenuDeConsola{" + "options=" + options + '}';
+        }
 }
