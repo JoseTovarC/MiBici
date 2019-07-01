@@ -1,5 +1,5 @@
-package gestorAplicación.Bike;
-import gestorAplicación.User.*;
+package gestorAplicacion.Bike;
+import gestorAplicacion.User.*;
 //import java.util.ArrayList;
 
 

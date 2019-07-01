@@ -1,5 +1,5 @@
-package gestorAplicación.Bike;
-import gestorAplicación.User.*;
+package gestorAplicacion.Bike;
+import gestorAplicacion.User.*;
 public class Bicicleta {
 	
 	private int id;

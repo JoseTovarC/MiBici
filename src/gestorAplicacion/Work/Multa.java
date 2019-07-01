@@ -1,7 +1,7 @@
-package gestorAplicación.Work;
+package gestorAplicacion.Work;
 
-import gestorAplicación.Bike.*;
-import gestorAplicación.User.*;
+import gestorAplicacion.Bike.*;
+import gestorAplicacion.User.*;
 
 public class Multa {
 

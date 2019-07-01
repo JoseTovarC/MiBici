@@ -1,16 +1,23 @@
-package gestorAplicación.User;
+package gestorAplicacion.User;
 
-import gestorAplicación.Bike.*;
-import gestorAplicación.Work.*;
+import gestorAplicacion.Bike.*;
+import uiMain.*;
+import gestorAplicacion.Work.*;
+import BaseDatos.*;
+
 import java.util.*;
 
 public class Usuario extends Persona {
-    Scanner ent=new Scanner(System.in);
+    public class GuestUser {
+
+	}
+	Scanner ent=new Scanner(System.in);
     
     private Tarjeta tarjeta;
     private Bicicleta bicicleta;
     private boolean deuda = false;
     private ArrayList<Multa> multas = new ArrayList<>();
+    private MenuDeConsola menu;
 
     //Constructores
     public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo) {
@@ -20,9 +27,31 @@ public class Usuario extends Persona {
         this.tarjeta = tarjeta;
         //Main.addUsuarios(this);
         //main.usuarioh.add(id, this);
+        BaseDatos.Datos.hashPersona.put(id, this);
     }
-    public Usuario() { //Default
-    	this("Juan", (byte)18, 1, "M", "1234", 0);
+    
+    public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
+    	super(nombre, edad, id, genero, clave);
+    	this.nombre = nombre;
+        Tarjeta tarjeta = new Tarjeta(saldo, this);
+        this.tarjeta = tarjeta;
+        //Main.addUsuarios(this);
+        //main.usuarioh.add(id, this);
+        BaseDatos.Datos.hashPersona.put(id, this);
+    }
+    public static String login(long id, String password){
+        Usuario u = Usuario.getUsuarioPorUsername(id);
+        if (u != null){
+            if(u.getDoc_id() == id && u.getClave().equals(password)){
+            	//Seteo el usuario
+            	Main.usuario = u;
+                return "Bienvenido";
+            }
+        }
+        return "Usuario no encontrado";
+    }
+    public static Usuario getUsuarioPorUsername(long id){
+        return (Usuario) Datos.hashPersona.get(id);
     }
     
     //Getters & Setters
@@ -159,4 +188,9 @@ public class Usuario extends Persona {
     public String toString() {
     	return "Nombre= "+super.getNombre()+". Id= "+super.getDoc_id();
     }
+
+	public MenuDeConsola getMenu() {
+
+		return menu;
+	}
 }

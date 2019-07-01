@@ -1,8 +1,8 @@
-package gestorAplicación.User;
+package gestorAplicacion.User;
 //import java.util.ArrayList;
 
 //import Work.*;
-import gestorAplicación.Bike.*;
+import gestorAplicacion.Bike.*;
 
 public class Moderador extends Persona{
 	private Estacion estacion;

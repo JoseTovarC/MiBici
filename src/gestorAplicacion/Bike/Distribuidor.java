@@ -1,4 +1,4 @@
-package gestorAplicación.Bike;
+package gestorAplicacion.Bike;
 import java.util.ArrayList;
 import java.util.Scanner;
 

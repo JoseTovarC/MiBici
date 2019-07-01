@@ -1,7 +1,7 @@
-package gestorAplicación.User;
-import java.util.ArrayList;
+package gestorAplicacion.User;
 
-import gestorAplicación.Work.*;
+import java.util.ArrayList;
+import gestorAplicacion.Work.*;
 
 public class Tarjeta {
 	private int saldo;
