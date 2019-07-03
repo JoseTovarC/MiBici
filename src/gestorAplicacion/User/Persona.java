@@ -1,6 +1,6 @@
 package gestorAplicacion.User;
 
-public abstract class Persona {
+public  class Persona {
 	protected String nombre;
 	private byte edad;
 	private long doc_id;
@@ -48,5 +48,5 @@ public abstract class Persona {
 		this.clave = clave;
 	}
 
-	public abstract void finalize(); // Abstract, obliga a Usuario y moderador definir destructor
+	// Abstract, obliga a Usuario y moderador definir destructor
 }

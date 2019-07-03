@@ -1,7 +1,6 @@
 package gestorAplicacion.User;
 
 import gestorAplicacion.Bike.*;
-import uiMain.MenuDeConsola;
 import uiMain.*;
 import gestorAplicacion.Work.*;
 import BaseDatos.*;
@@ -80,8 +79,15 @@ public class Usuario extends Persona {
     
     public boolean isDeuda() {return deuda;}
     public void setDeuda(boolean deuda) {this.deuda = deuda;}
-    public int getDeuda() {
-    	return multas.stream().mapToInt(o -> o.getPrecio()).sum();
+    public long getDeuda() {
+    		long deuda = 0;
+    		for (Multa m : multas) {
+			
+    			deuda += m.getPrecio();
+			
+    		}
+    		
+    	return deuda;
     }
     
     public ArrayList<Multa> getMultas() {return multas;}

@@ -54,4 +54,10 @@ public class Tarjeta {
 		// se hace la conexión de la tarjeta a la multa y se cambia el estado del
 		// usuario de deuda false a true
 	}
+	@Override
+	public String toString() {
+		return "Tarjeta de "+ usuario.getNombre() + " con un saldo de :" + saldo ;
+	}
+	
+	
 }

@@ -19,7 +19,7 @@ public class SignUp extends OpcionDeMenu {
 				String aux = esc.next();
 				String nombre = "";
 				while(!(aux.equals("*"))) {
-					nombre += aux;
+					nombre += aux + " ";
 					aux = esc.next();
 				}		
 				System.out.println("Ingrese su edad:");
@@ -36,7 +36,15 @@ public class SignUp extends OpcionDeMenu {
 				System.out.print("Inserte la contraseña que desee:");
 				String contra = esc.next();
 				if(Usuario.getUsuarioPorUsername(id) == null) {
-					new Usuario(nombre, edad, id, genero, contra, 0, Main.userMenu);
+					ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>(){
+						{
+							add(BaseDatos.Datos.operations.get("5"));		
+							add(BaseDatos.Datos.operations.get("3"));
+						}
+					};
+							
+					MenuDeConsola userMenu = new MenuDeConsola(userOptions);
+					new Usuario(nombre, edad, id, genero, contra, 0, userMenu);
 					System.out.println("Registro realizado exitosamente");					
 				}else {
 					System.out.println("No se pudo realizar el registro, el usuario ya existe");
