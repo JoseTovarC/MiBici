@@ -12,7 +12,7 @@ import BaseDatos.*;
 public class Main {
 	static boolean aux= true;	
 	public static Usuario user;
-	
+	public static MenuDeConsola userMenu;
 	public static void main(String[] args) throws IOException {
 
 		Main.config_inicio();
@@ -33,6 +33,7 @@ public class Main {
 		BaseDatos.Datos.operations.put("2", new SignUp());
 		BaseDatos.Datos.operations.put("3", new SignOut());
 		BaseDatos.Datos.operations.put("4", new salir());
+		
 		//Usuario invitado(por defecto)
 		Main.user = Usuario.nuevoUsuarioInvitado();
 
@@ -42,7 +43,8 @@ public class Main {
 			}
 		};
 				
-		MenuDeConsola userMenu = new MenuDeConsola(userOptions);
+		userMenu = new MenuDeConsola(userOptions);
+		
 		new Usuario("Jose", (byte) 18, (long) 1193126480, "Masculino", "7201", 50000, userMenu);
 
 	}
