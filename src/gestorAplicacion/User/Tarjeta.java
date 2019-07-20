@@ -5,7 +5,7 @@ import gestorAplicacion.Work.*;
 
 public class Tarjeta {
 	private int saldo;
-	private Usuario usuario;
+	private final Usuario usuario;
 	private ArrayList<Multa> multas = new ArrayList<>();
 
 	//Constructores
@@ -22,7 +22,6 @@ public class Tarjeta {
 	public void setSaldo(int saldo) {this.saldo = saldo;}
 
 	public Usuario getUsuario() {return usuario;}
-	public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 
 	public ArrayList<Multa> getMultas() {return multas;}
 	public void setMultas(ArrayList<Multa> multas) {this.multas = multas;}
@@ -33,9 +32,26 @@ public class Tarjeta {
 		saldo += q$;
 	}
 
-	public boolean pagarM() {
+	public boolean pagarM() { //se pagan todas las multas
 		if(usuario.isDeuda()) {
 			if(usuario.getDeuda() <= saldo) {
+				saldo -= usuario.getDeuda();
+				usuario.delMultas();
+				usuario.setDeuda(false);
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean pagarM(int id) { //se paga una sola multa
+		if(usuario.isDeuda()) {
+			Multa a=usuario.getMulta(id);
+			if( a!=null && saldo>a.getPrecio()) {
+				saldo -= a.getPrecio();
+				usuario.delMulta(id);
+				if (usuario.getDeuda()==0) {
+					usuario.setDeuda(false);
+				}
 				return true;
 			}
 		}
@@ -48,11 +64,6 @@ public class Tarjeta {
 			return true;
 		}
 		return false;
-	}
-
-	public void recibirM(int idM) {
-		// se hace la conexión de la tarjeta a la multa y se cambia el estado del
-		// usuario de deuda false a true
 	}
 	@Override
 	public String toString() {

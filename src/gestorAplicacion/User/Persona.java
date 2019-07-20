@@ -1,16 +1,16 @@
 package gestorAplicacion.User;
 
-public  class Persona {
+public abstract class Persona {
 	protected String nombre;
 	private byte edad;
-	private long doc_id;
+	private long id;
 	private String genero;
 	private String clave;
 
 	public Persona(String nombre, byte edad, long id, String genero, String clave) {
 		this.nombre = nombre;
 		this.setEdad(edad);
-		setDoc_id(id);
+		this.setId(id);
 		this.setGenero(genero);
 		this.setClave(clave);
 	}
@@ -27,11 +27,11 @@ public  class Persona {
 		this.edad = edad;
 	}
 
-	public long getDoc_id() {
-		return doc_id;
+	public long getId() {
+		return id;
 	}
-	public void setDoc_id(long doc_id) {
-		this.doc_id = doc_id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getGenero() { 
@@ -47,6 +47,6 @@ public  class Persona {
 	public void setClave(String clave) { //cambiar contraseña
 		this.clave = clave;
 	}
-
+	public abstract void finalize();
 	// Abstract, obliga a Usuario y moderador definir destructor
 }
