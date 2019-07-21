@@ -15,13 +15,20 @@ public class Usuario extends Persona {
 	private Bicicleta bicicleta;
 	private boolean deuda = false;
 	private ArrayList<Multa> multas = new ArrayList<>();
-	private MenuDeConsola menu;
 
 	// Constructores
 	public Usuario() {
 		super();
 	}
 	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo) {
+		super(nombre, edad, id, genero, clave);
+		this.tarjeta= new Tarjeta(saldo, this);
+		// Main.addUsuarios(this);
+		// main.usuarioh.add(id, this);
+		BaseDatos.Datos.hashPersona.put(id, this);
+		BaseDatos.Datos.hashUsuario.put(id, this);
+	}
+	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo,String def) {
 		super(nombre, edad, id, genero, clave);
 		this.tarjeta= new Tarjeta(saldo, this);
 		// Main.addUsuarios(this);
@@ -35,24 +42,55 @@ public class Usuario extends Persona {
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
 		BaseDatos.Datos.hashPersona.put(id, this);
+		BaseDatos.Datos.hashUsuario.put(id, this);
 	}
-	
-	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
-		super(nombre, edad, id, genero, clave);
+	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal, ArrayList<Multa> multas) {
+		super(nombre, edad, iden, genero, clave);
+		int saldo = Integer.parseInt(sal);
 		this.tarjeta= new Tarjeta(saldo, this);
-		this.menu = menu;
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
+		long id = (long)Integer.parseInt(iden);
+		this.multas = multas;
+		BaseDatos.Datos.hashPersona.put(id, this);
+		BaseDatos.Datos.hashUsuario.put(id, this);
+	}
+	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal, ArrayList<Multa> multas, String ref) {
+		super(nombre, edad, iden, genero, clave);
+		int saldo = Integer.parseInt(sal);
+		this.tarjeta= new Tarjeta(saldo, this);
+		// Main.addUsuarios(this);
+		// main.usuarioh.add(id, this);
+		long id = (long)Integer.parseInt(iden);
+		this.multas = multas;
 		BaseDatos.Datos.hashPersona.put(id, this);
 	}
+	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
+		super(nombre, edad, id, genero, clave, menu);
+		this.tarjeta= new Tarjeta(saldo, this);
+		menu.setUser(this);
+		BaseDatos.Datos.menus.put(id, menu);
+		BaseDatos.Datos.hashPersona.put(id, this);
+		BaseDatos.Datos.hashUsuario.put(id, this);
+		
+	}
 
+	public Usuario(String nombre, String edad, String iden, String genero, String clave) {
+		super(nombre, edad, iden, genero, clave);
+
+		long id = (long)Integer.parseInt(iden);
+		BaseDatos.Datos.hashPersona.put(id, this);
+		BaseDatos.Datos.hashUsuario.put(id, this);
+	}
 	public Usuario(MenuDeConsola menu) {
-		super("", (byte) 0, (long) 0, "", "");
+		super("Invitado", (byte) 0, (long) 0, "", "", menu);
 		this.nombre = "";
 		this.tarjeta= new Tarjeta(this);
-		this.menu = menu;
+		menu.setUser(this);
+		BaseDatos.Datos.menus.put((long)0, menu);
 		BaseDatos.Datos.hashPersona.put((long) 0, this);
-	}
+		BaseDatos.Datos.hashUsuario.put((long)0, this);
+	}	
 
 	public static Usuario nuevoUsuarioInvitado() {
 		ArrayList<OpcionDeMenu> OpcionesInvitado = new ArrayList<OpcionDeMenu>();
@@ -107,6 +145,7 @@ public class Usuario extends Persona {
 		}
 	public void setMultas(ArrayList<Multa> multas) { //cambiar todas las multas
 		this.multas = multas;
+		this.tarjeta.setMultas(multas);
 		if (multas != null) {
 			deuda = false;
 		} else {
@@ -121,12 +160,6 @@ public class Usuario extends Persona {
 	public void delMultas() {multas.clear();}//borrar todas las multas
 	public void delMulta(int id) {multas.remove(id);}//borrar una sola multa
 
-	public MenuDeConsola getMenu() {
-		return menu;
-	}
-	public void setMenu(MenuDeConsola menu) {
-		this.menu = menu;
-	}
 
 	
 

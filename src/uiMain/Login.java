@@ -6,6 +6,9 @@ import gestorAplicacion.User.Usuario;
 
 public class Login extends OpcionDeMenu{
 
+	public Login(String key){
+		super(key);
+	}
 	@Override
 	public void ejecutar() {
 		Scanner esc = new Scanner(System.in);

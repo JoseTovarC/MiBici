@@ -4,6 +4,10 @@ import gestorAplicacion.User.*;
 
 public class SignOut  extends OpcionDeMenu{
 
+	public SignOut(String key){
+		super(key);
+	}
+	
 	@Override
 	public void ejecutar() {
 		System.out.println("Adios");

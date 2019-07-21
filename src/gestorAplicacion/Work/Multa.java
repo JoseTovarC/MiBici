@@ -6,13 +6,14 @@ import gestorAplicacion.User.*;
 public class Multa {
 
 	private final String id;
-	private final int precio;
-	private Tarjeta tarjeta;
+	private final String descripcion;
+	private int precio;
 
-	public Multa(String id, int precio, Tarjeta tarjeta) {
+	public Multa(String id, String descripcion, int precio) {
 		this.id = id;
 		this.precio = precio;
-		this.tarjeta = tarjeta;
+		this.descripcion = descripcion;
+
 	}
 
 	public String getId() {
@@ -23,7 +24,7 @@ public class Multa {
 		return precio;
 	}
 
-	public Tarjeta getTarjeta() {
-		return tarjeta;
+	public String getDescripcion() {
+		return descripcion;
 	}
 }

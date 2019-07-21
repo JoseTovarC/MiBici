@@ -3,13 +3,16 @@ package gestorAplicacion.User;
 
 //import Work.*;
 import gestorAplicacion.Bike.*;
+import uiMain.MenuDeConsola;
 
-public class Moderador extends Persona{
+public class Moderador extends Usuario{
 	private Estacion estacion;
 
-	public Moderador(String nombre, byte edad, long doc_id, String genero, String clave, Estacion estacion) {
-		super(nombre, edad, doc_id, genero, clave);
+
+	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo, Estacion estacion) {
+		super(nombre, edad, id, genero, clave, saldo, "No Agregar a la hash de Usuarios");
 		this.estacion = estacion;
+		BaseDatos.Datos.hashModerador.put(id,this);
 	}
 
 	public void multar(Usuario usuario, String tipo) {
@@ -46,5 +49,7 @@ public class Moderador extends Persona{
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

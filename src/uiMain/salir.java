@@ -4,7 +4,10 @@ package uiMain;
 
 
 public class salir extends OpcionDeMenu {
-
+	
+	public salir(String key){
+		super(key);
+	}
     public salir() {
     }
     

@@ -1,15 +1,41 @@
 package gestorAplicacion.User;
 
+import uiMain.MenuDeConsola;
+
 public abstract class Persona {
 	protected String nombre;
 	private byte edad;
 	private long id;
 	private String genero;
 	private String clave;
+	private MenuDeConsola menu;
 	public Persona() {
 		
 	}
+	
+	public Persona(String nombre, byte edad, long id, String genero, String clave, MenuDeConsola menu) {
+		this.nombre = nombre;
+		this.setEdad(edad);
+		this.setId(id);
+		this.setGenero(genero);
+		this.setClave(clave);
+		this.menu = menu;
+
+	}
+	
 	public Persona(String nombre, byte edad, long id, String genero, String clave) {
+		this.nombre = nombre;
+		this.setEdad(edad);
+		this.setId(id);
+		this.setGenero(genero);
+		this.setClave(clave);
+
+	}
+	
+	public Persona(String nombre, String ed, String iden, String genero, String clave) {
+		
+		long id = (long)Integer.parseInt(iden);
+		byte edad = (byte)Integer.parseInt(iden);
 		this.nombre = nombre;
 		this.setEdad(edad);
 		this.setId(id);
@@ -51,4 +77,10 @@ public abstract class Persona {
 	}
 	public abstract void finalize();
 	// Abstract, obliga a Usuario y moderador definir destructor
+	public void setMenu(MenuDeConsola menu){
+		this.menu = menu;
+	}
+	public MenuDeConsola getMenu(){
+		return menu;
+	}
 }

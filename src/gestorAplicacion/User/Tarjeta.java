@@ -9,6 +9,7 @@ public class Tarjeta {
 	private ArrayList<Multa> multas = new ArrayList<>();
 
 	//Constructores
+	
 	public Tarjeta(int saldo, Usuario usuario) {
 		this.saldo = saldo;
 		this.usuario = usuario;
@@ -31,7 +32,9 @@ public class Tarjeta {
 	public void recargar(int q$) {
 		saldo += q$;
 	}
-
+	public long getId() {
+		return usuario.getId();
+	}
 	public boolean pagarM() { //se pagan todas las multas
 		if(usuario.isDeuda()) {
 			if(usuario.getDeuda() <= saldo) {

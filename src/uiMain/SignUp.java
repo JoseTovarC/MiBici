@@ -5,6 +5,9 @@ import gestorAplicacion.User.Usuario;
 
 public class SignUp extends OpcionDeMenu {
 
+	public SignUp(String key){
+		super(key);
+	}
 	@Override
 	public void ejecutar() {
 		Scanner esc = new Scanner(System.in);
@@ -21,7 +24,8 @@ public class SignUp extends OpcionDeMenu {
 				while(!(aux.equals("*"))) {
 					nombre += aux + " ";
 					aux = esc.next();
-				}		
+				}
+				nombre = nombre.substring(0,nombre.length()-1);
 				System.out.println("Ingrese su edad:");
 				byte edad = esc.nextByte();
 				if(edad<18) {
@@ -39,7 +43,10 @@ public class SignUp extends OpcionDeMenu {
 					ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>(){
 						{
 							add(BaseDatos.Datos.operations.get("5"));		
+							add(BaseDatos.Datos.operations.get("9"));	
+							add(BaseDatos.Datos.operations.get("10"));
 							add(BaseDatos.Datos.operations.get("3"));
+
 						}
 					};
 							

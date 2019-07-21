@@ -5,6 +5,11 @@ import BaseDatos.Datos;
 
 public class Consultas extends OpcionDeMenu {
 
+	public Consultas(String key){
+		super(key);
+	}
+	
+	
 	private static ArrayList<OpcionDeMenu> consultOptionsDefault = new ArrayList<OpcionDeMenu>() {
 		{
 			add(BaseDatos.Datos.operations.get("6"));

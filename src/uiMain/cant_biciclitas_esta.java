@@ -5,11 +5,14 @@ import BaseDatos.Datos.*;
 
 public class cant_biciclitas_esta extends OpcionDeMenu {
 
+	public cant_biciclitas_esta(String key){
+		super(key);
+	}
 	@Override
 	public void ejecutar() {
 		System.out.println("Estación:  Cant_bicicletas:");
 		
-		for (Entry<Integer, Estacion> entry : BaseDatos.Datos.hashEstacion.entrySet()) {
+		for (Entry<String, Estacion> entry : BaseDatos.Datos.hashEstacion.entrySet()) {
 		    Estacion esta = entry.getValue();
 			System.out.println(esta.getTipo()+ "   " + esta.getCantBicis());
 		}
