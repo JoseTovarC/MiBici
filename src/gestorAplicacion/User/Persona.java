@@ -6,7 +6,9 @@ public abstract class Persona {
 	private long id;
 	private String genero;
 	private String clave;
-
+	public Persona() {
+		
+	}
 	public Persona(String nombre, byte edad, long id, String genero, String clave) {
 		this.nombre = nombre;
 		this.setEdad(edad);

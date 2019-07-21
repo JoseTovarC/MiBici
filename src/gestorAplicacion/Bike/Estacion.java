@@ -6,21 +6,21 @@ import gestorAplicacion.User.*;
 public class Estacion {
 	private String id;
 	private String tipo;
-	private boolean estado = false;
+	private boolean estado = true;
 	private static boolean estadogeneral= true;
 	private int cap_max;
 	private Bicicleta[] bicicletas;
 	private Moderador moderador;
 	private byte cantBicis=0;
 	
-	/*public Estacion(String id, String tipo, boolean estado, int cap_max, Moderador moderador) {
+	public Estacion(String id, String tipo, boolean estado, int cap_max, Moderador moderador) {
 		this.id = id;
 		this.tipo = tipo;
 		this.estado = estado;
 		this.cap_max = cap_max;
 		this.bicicletas =  new Bicicleta[cap_max];
-		this.moderadores = moderador;
-	}*/
+		this.moderador = moderador;
+	}
 	
 	public Estacion(String id, String tipo, boolean estado, int cap_max) {
 		
@@ -139,7 +139,7 @@ public class Estacion {
 	}
 	
 	public boolean recibir(Bicicleta bicicleta){
-        if(cantBicis==cap_max || !this.isEstado()) {
+        if((tipo. equals("Automatica") && cantBicis==cap_max) || !this.isEstado()) {
         	return false;
         }
         else {

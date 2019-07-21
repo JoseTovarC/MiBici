@@ -9,6 +9,7 @@ public class Consultas extends OpcionDeMenu {
 		{
 			add(BaseDatos.Datos.operations.get("6"));
 			add(BaseDatos.Datos.operations.get("7"));
+			add(BaseDatos.Datos.operations.get("8"));
 		}
 	};
 	
@@ -19,6 +20,7 @@ public class Consultas extends OpcionDeMenu {
 			{
 				add(BaseDatos.Datos.operations.get("6"));
 				add(BaseDatos.Datos.operations.get("7"));
+				add(BaseDatos.Datos.operations.get("8"));
 			}
 		};
 

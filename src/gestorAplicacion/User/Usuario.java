@@ -11,13 +11,16 @@ public class Usuario extends Persona {
 
 	Scanner ent = new Scanner(System.in);
 
-	private final Tarjeta tarjeta;
+	private Tarjeta tarjeta;
 	private Bicicleta bicicleta;
 	private boolean deuda = false;
 	private ArrayList<Multa> multas = new ArrayList<>();
 	private MenuDeConsola menu;
 
 	// Constructores
+	public Usuario() {
+		super();
+	}
 	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo) {
 		super(nombre, edad, id, genero, clave);
 		this.tarjeta= new Tarjeta(saldo, this);

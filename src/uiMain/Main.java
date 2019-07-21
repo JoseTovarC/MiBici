@@ -35,6 +35,7 @@ public class Main {
 		BaseDatos.Datos.operations.put("5", new Consultas());
 		BaseDatos.Datos.operations.put("6", new PerfilTarjeta());
 		BaseDatos.Datos.operations.put("7", new Deuda());
+		BaseDatos.Datos.operations.put("8", new cant_biciclitas_esta());
 		
 		//Usuario invitado(por defecto)
 		Main.user = Usuario.nuevoUsuarioInvitado();
