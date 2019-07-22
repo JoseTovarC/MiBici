@@ -27,6 +27,7 @@ public class Usuario extends Persona {
 		// main.usuarioh.add(id, this);
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsuario.put(id, this);
+		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
 	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo,String def) {
 		super(nombre, edad, id, genero, clave);
@@ -34,6 +35,7 @@ public class Usuario extends Persona {
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
 		BaseDatos.Datos.hashPersona.put(id, this);
+		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
 	
 	public Usuario(String nombre, byte edad, long id, String genero, String clave) {
@@ -43,6 +45,7 @@ public class Usuario extends Persona {
 		// main.usuarioh.add(id, this);
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsuario.put(id, this);
+		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
 	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal, ArrayList<Multa> multas) {
 		super(nombre, edad, iden, genero, clave);
@@ -54,6 +57,7 @@ public class Usuario extends Persona {
 		this.multas = multas;
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsuario.put(id, this);
+		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
 	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal, ArrayList<Multa> multas, String ref) {
 		super(nombre, edad, iden, genero, clave);
@@ -64,6 +68,7 @@ public class Usuario extends Persona {
 		long id = (long)Integer.parseInt(iden);
 		this.multas = multas;
 		BaseDatos.Datos.hashPersona.put(id, this);
+		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
 	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
 		super(nombre, edad, id, genero, clave, menu);
@@ -72,6 +77,7 @@ public class Usuario extends Persona {
 		BaseDatos.Datos.menus.put(id, menu);
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsuario.put(id, this);
+		BaseDatos.Datos.hashUsoP.put(id, 0);
 		
 	}
 
@@ -81,6 +87,7 @@ public class Usuario extends Persona {
 		long id = (long)Integer.parseInt(iden);
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsuario.put(id, this);
+		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
 	public Usuario(MenuDeConsola menu) {
 		super("Invitado", (byte) 0, (long) 0, "", "", menu);
@@ -90,6 +97,7 @@ public class Usuario extends Persona {
 		BaseDatos.Datos.menus.put((long)0, menu);
 		BaseDatos.Datos.hashPersona.put((long) 0, this);
 		BaseDatos.Datos.hashUsuario.put((long)0, this);
+		BaseDatos.Datos.hashUsoP.put(this.getId(), 0);
 	}	
 
 	public static Usuario nuevoUsuarioInvitado() {
@@ -153,6 +161,12 @@ public class Usuario extends Persona {
 		}
 	}
 	public void addMulta(Multa multa) {//agregar una multa
+		if (BaseDatos.Datos.hashCantM.containsKey(this.getId())) {
+			BaseDatos.Datos.hashCantM.put(this.getId(),BaseDatos.Datos.hashCantM.get(this.getId())+1);
+		}
+		else {
+			BaseDatos.Datos.hashCantM.put(this.getId(), 1);
+		}
 		this.multas.add(multa);
 		if(multa!=null) {
 		deuda=true;}
@@ -183,7 +197,10 @@ public class Usuario extends Persona {
 					idB = ent.nextInt() - 1;
 				}
 				r = new StringBuffer("Prestamo aceptado.");
+				BaseDatos.Datos.hashUsoP.put(this.getId(), BaseDatos.Datos.hashUsoP.get(this.getId())+1);
 				this.setBicicleta(bicicleta);
+				BaseDatos.Datos.hashUsoB.put(bicicleta.getId(), BaseDatos.Datos.hashUsoB.get(bicicleta.getId())+1);
+				BaseDatos.Datos.hashUsoE.put(estacion.getId(), BaseDatos.Datos.hashUsoE.get(estacion.getId())+1);
 				r.append("\n" + super.nombre + " posee la bicicleta " + this.bicicleta.toString() /* +". Estaba en la estacion " + estacion.getId()+" posicion "+idB */);
 				tarjeta.pagarP();
 			} else if (tarjeta.getSaldo() < 500) {

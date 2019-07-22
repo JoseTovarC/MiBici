@@ -20,6 +20,7 @@ public class Estacion {
 		this.cap_max = cap_max;
 		this.bicicletas =  new Bicicleta[cap_max];
 		this.moderador = moderador;
+		BaseDatos.Datos.hashUsoE.put(id, 0);
 	}
 	
 	public Estacion(String id, String tipo, boolean estado, int cap_max) {
@@ -28,7 +29,8 @@ public class Estacion {
 		this.tipo = tipo;
 		this.estado = estado;
 		this.cap_max = cap_max;
-		this.bicicletas =  new Bicicleta[cap_max];		
+		this.bicicletas =  new Bicicleta[cap_max];
+		BaseDatos.Datos.hashUsoE.put(id, 0);
 	}
 	
 	public String getId() {

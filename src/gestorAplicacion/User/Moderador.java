@@ -14,6 +14,10 @@ public class Moderador extends Usuario{
 		this.estacion = estacion;
 		BaseDatos.Datos.hashModerador.put(id,this);
 	}
+	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo) {
+		super(nombre, edad, id, genero, clave, saldo, "No Agregar a la hash de Usuarios");
+		BaseDatos.Datos.hashModerador.put(id,this);
+	}
 
 	public void multar(Usuario usuario, String tipo) {
 		
@@ -42,6 +46,9 @@ public class Moderador extends Usuario{
 
 	public Estacion getEstacion() {
 		return estacion;
+	}
+	public void setEstacion(Estacion estacion) {
+		this.estacion = estacion;
 	}
 
 	@Override

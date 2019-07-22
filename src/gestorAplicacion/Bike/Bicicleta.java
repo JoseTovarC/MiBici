@@ -12,18 +12,21 @@ public class Bicicleta {
 		this.id=id;
 		this.setEstacion(estacion);
 		estacion.addBicicleta(this);
+		BaseDatos.Datos.hashUsoB.put(id, 0);
 	}
 	public Bicicleta(int id,Distribuidor distribuidor) {
 		System.out.println("Si");
 		this.id = id;
 		//this.setUsuario(usuario);
 		this.setDistribuidor(distribuidor);
+		BaseDatos.Datos.hashUsoB.put(id, 0);
 	}
 	public Bicicleta(int id, Estacion estacion, Distribuidor distribuidor) {
 		System.out.println("Si");
 		this.id = id;
 		//this.setUsuario(usuario);
 		this.setDistribuidor(distribuidor);
+		BaseDatos.Datos.hashUsoB.put(id, 0);
 	}
 	public int getId() {
 		return id;

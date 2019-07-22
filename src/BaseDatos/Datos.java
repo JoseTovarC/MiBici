@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -29,6 +31,10 @@ public class Datos {
 	public static HashMap<Long, MenuDeConsola> menus = new HashMap<>();
 	public static HashMap<String, OpcionDeMenu> operations = new HashMap<String, OpcionDeMenu>();
 	
+	public static HashMap<Long,Integer> hashUsoP = new HashMap<>();
+	public static HashMap<Integer,Integer> hashUsoB = new HashMap<>();
+	public static HashMap<String,Integer> hashUsoE = new HashMap<>();
+	public static HashMap<Long,Integer> hashCantM = new HashMap<>();
 	
 	
 	public static void cargarDatos() {
@@ -193,5 +199,218 @@ public class Datos {
 			//Ocurrio algo al crear las carpetas y los archivos
 		}
 	}
+	
+	//   METODOS FUNCIONALES     //
+	public static StringBuffer getMayorUsoP() {
+		StringBuffer r;
+		Deque<Long> cola=new LinkedList<>();
+		int max=0;
+		for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
+			if (entry.getValue()>max) {
+				cola.clear();
+				cola.add(entry.getKey());
+				max=entry.getValue();
+			}
+			else if (entry.getValue()==max) {
+				cola.add(entry.getKey());
+			}
+		}
+		if(cola.isEmpty()) {
+			r= new StringBuffer("No se han registrado usos");
+		}
+		else if (cola.size()==1) {
+			if (max==1) {
+				r= new StringBuffer("El usuario que mas usos realizo (1 uso), fue: ");
+			}
+			else {
+				r= new StringBuffer("El usuario que mas usos realizo ("+ max +" usos), fue: ");
+			}
+		}
+		else {
+			if (max==1) {
+				r= new StringBuffer("Los usuarios que mas usos realizaron (1 uso), fueron: ");
+			}
+			else {
+				r= new StringBuffer("Los usuarios que mas usos realizaron ("+ max +" usos), fueron: ");
+			}
+		}
+		while (true){
+			if (cola.size()>0) {
+				r.append(cola.poll()+" ");
+			}
+			else {
+				break;
+			}
+		}
+		return r;
+	}
+	public static StringBuffer getMayorUsoB() {
+		StringBuffer r;
+		Deque<Integer> cola=new LinkedList<>();
+		int max=0;
+		for (Map.Entry<Integer, Integer> entry : hashUsoB.entrySet()) {
+			if (entry.getValue()>max) {
+				cola.clear();
+				cola.add(entry.getKey());
+				max=entry.getValue();
+			}
+			else if (entry.getValue()==max) {
+				cola.add(entry.getKey());
+			}
+		}
+		if(cola.isEmpty()) {
+			r = new StringBuffer("No se han registrado usos");
+		}
+		else if (cola.size()==1) {
+			if (max==1) {
+				r = new StringBuffer("La bicicleta mas usada (1 uso), fue: ");
+			}
+			else {
+				r = new StringBuffer("La bicicleta mas usada ("+ max +" usos), fue: ");
+			}
+		}
+		else {
+			if (max==1) {
+				r = new StringBuffer("Las bicicletas mas usada (1 uso), fueron: ");
+			}
+			else {
+				r = new StringBuffer("Las bicicletas mas usada ("+ max +" usos), fueron: ");
+			}
+		}
+		while (true){
+			if (cola.size()>0) {
+				r.append(cola.poll()+" ");
+			}
+			else {
+				break;
+			}
+		}
+		return r;
+	}
+	public static StringBuffer getMayorCantM() {
+		StringBuffer r;
+		Deque<Long> cola=new LinkedList<>();
+		int max=0;
+		for (Map.Entry<Long, Integer> entry : hashCantM.entrySet()) {
+			if (entry.getValue()>max) {
+				cola.clear();
+				cola.add(entry.getKey());
+				max=entry.getValue();
+			}
+			else if (entry.getValue()==max) {
+				cola.add(entry.getKey());
+			}
+		}
+		if(cola.isEmpty()) {
+			r = new StringBuffer("No se han registrado multas");
+		}
+		else if (cola.size()==1) {
+			if (max==1) {
+				r = new StringBuffer("El usuario con mayor cantidad de multas (fue multado 1 vez), fue: ");
+			}
+			else {
+				r = new StringBuffer("El usuario con mayor cantidad de multas (fue multado "+ max +" veces), fue: ");
+			}
+		}
+		else {
+			if (max==1) {
+				r = new StringBuffer("Los usuarios con mayor cantidad de multas (fueron multados 1 vez), fueron: ");
+			}
+			else {
+				r = new StringBuffer("Los usuarios con mayor cantidad de multas (fueron multados "+ max +" veces), fueron: ");
+			}
+		}
+		while (true){
+			if (cola.size()>0) {
+				r.append(cola.poll()+" ");
+			}
+			else {
+				break;
+			}
+		}
+		return r;
+	}
+	public static StringBuffer getMayorEdad() {
+		StringBuffer r;
+		Deque<Long> cola=new LinkedList<>();
+		int max=0;
+		for (Map.Entry<Long, Persona> entry : hashPersona.entrySet()) {
+			if (entry.getValue().getEdad()>max) {
+				cola.clear();
+				cola.add(entry.getKey());
+				max=entry.getValue().getEdad();
+			}
+			else if (entry.getValue().getEdad()==max) {
+				cola.add(entry.getKey());
+			}
+		}
+		if(cola.isEmpty()) {
+			r = new StringBuffer("No se han registrado datos");
+		}
+		else if (cola.size()==1) {
+			r = new StringBuffer("El usuario de mayor edad ("+ max +" años), fue: ");
+		}
+		else {
+			r = new StringBuffer("Los usuarios de mayor edad ("+ max +" años), fueron: ");
+		}
+		while (true){
+			if (cola.size()>0) {
+				r.append(cola.poll()+" ");
+			}
+			else {
+				break;
+			}
+		}
+		return r;
+	}
+	public static StringBuffer getMenorEdad() {
+		StringBuffer r;
+		Deque<Long> cola=new LinkedList<>();
+		int min=200;
+		for (Map.Entry<Long, Persona> entry : hashPersona.entrySet()) {
+			if (entry.getValue().getEdad()<min) {
+				cola=new LinkedList<>();
+				cola.add(entry.getKey());
+				min=entry.getValue().getEdad();
+			}
+			else if (entry.getValue().getEdad()==min) {
+				cola.add(entry.getKey());
+			}
+		}
+		if(cola.isEmpty()) {
+			r = new StringBuffer("No se han registrado datos");
+		}
+		else if (cola.size()==1) {
+			r = new StringBuffer("El usuario de menor edad ("+ min +" años), fue: ");
+		}
+		else {
+			r = new StringBuffer("Los usuarios de menor edad ("+ min +" años), fueron: ");
+		}
+		while (true){
+			if (cola.size()>0) {
+				System.out.print(cola.poll()+" ");
+			}
+			else {
+				break;
+			}
+		}
+		return r;
+	}
+	static public StringBuffer getPromEdad() {
+		StringBuffer r;
+		int prom=0;
+		int q=0;
+		for (Map.Entry<Long, Persona> entry : hashPersona.entrySet()) {
+			prom+= entry.getValue().getEdad();
+			q+=1;
+		}
+		prom/=q;
+		r= new StringBuffer("El promedio de edad de todos los usuarios registrados es de: "+ prom +" años");
+		return r;
+	}
+	
+	
+	
+	
 
 }
