@@ -45,6 +45,8 @@ public class SignUp extends OpcionDeMenu {
 							add(BaseDatos.Datos.operations.get("5"));		
 							add(BaseDatos.Datos.operations.get("9"));	
 							add(BaseDatos.Datos.operations.get("10"));
+							add(BaseDatos.Datos.operations.get("11"));
+							add(BaseDatos.Datos.operations.get("12"));
 							add(BaseDatos.Datos.operations.get("3"));
 
 						}

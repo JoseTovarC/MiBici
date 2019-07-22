@@ -46,20 +46,7 @@ public class Tarjeta {
 		}
 		return false;
 	}
-	public boolean pagarM(int id) { //se paga una sola multa
-		if(usuario.isDeuda()) {
-			Multa a=usuario.getMulta(id);
-			if( a!=null && saldo>a.getPrecio()) {
-				saldo -= a.getPrecio();
-				usuario.delMulta(id);
-				if (usuario.getDeuda()==0) {
-					usuario.setDeuda(false);
-				}
-				return true;
-			}
-		}
-		return false;
-	}
+
 
 	public boolean pagarP() {
 		if (500<=saldo){
@@ -70,7 +57,14 @@ public class Tarjeta {
 	}
 	@Override
 	public String toString() {
-		return "Tarjeta de "+ usuario.getNombre() + " con un saldo de :" + saldo ;
+		if(usuario instanceof Moderador) {
+			return "Tarjeta de "+ usuario.getNombre() + " con un saldo de : $" + saldo + "\nModerador"  ;
+
+		}else {
+			return "Tarjeta de "+ usuario.getNombre() + " con un saldo de : $" + saldo + "\nUsuario"  ;
+
+		}
+		
 	}
 	
 	

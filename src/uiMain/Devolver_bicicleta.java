@@ -25,7 +25,7 @@ public class Devolver_bicicleta extends OpcionDeMenu {
 			for (Entry<String, Estacion> estacion : BaseDatos.Datos.hashEstacion.entrySet()) {
 				Estacion est = estacion.getValue();
 				estaciones.add(est);
-				System.out.println((i++) + ". " + est.getId());
+				System.out.println((i++) + ". " + est.getIde());
 
 			}
 			

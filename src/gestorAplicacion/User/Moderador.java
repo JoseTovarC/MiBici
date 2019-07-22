@@ -6,18 +6,27 @@ import gestorAplicacion.Bike.*;
 import uiMain.MenuDeConsola;
 
 public class Moderador extends Usuario{
-	private Estacion estacion;
+	private Estacion estacionM;
 
 
-	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo, Estacion estacion) {
-		super(nombre, edad, id, genero, clave, saldo, "No Agregar a la hash de Usuarios");
-		this.estacion = estacion;
+	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu, Estacion estacion) {
+		super(nombre, edad, id, genero, clave, saldo, menu, "No Agregar a la hash de Usuarios");
+		this.estacionM = estacion;
+		BaseDatos.Datos.hashModerador.put(id,this);
+		
+	}
+	
+	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
+		super(nombre, edad, id, genero, clave, saldo, menu, "No Agregar a la hash de Usuarios");
+		BaseDatos.Datos.hashModerador.put(id,this);
+		
+	}
+	public Moderador(String nombre, String edad, String iden, String genero, String clave, String saldo) {
+		super(nombre, edad, iden, genero, clave, saldo, "No Agregar a la hash de Usuarios");
+		long id = (long)Integer.parseInt(iden);
 		BaseDatos.Datos.hashModerador.put(id,this);
 	}
-	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo) {
-		super(nombre, edad, id, genero, clave, saldo, "No Agregar a la hash de Usuarios");
-		BaseDatos.Datos.hashModerador.put(id,this);
-	}
+	
 
 	public void multar(Usuario usuario, String tipo) {
 		
@@ -45,10 +54,50 @@ public class Moderador extends Usuario{
 	}
 
 	public Estacion getEstacion() {
-		return estacion;
+		return estacionM;
 	}
 	public void setEstacion(Estacion estacion) {
-		this.estacion = estacion;
+		this.estacionM = estacion;
+		estacion.setModerador(this);
+	}
+	public void prestar(Estacion estacion) {
+		StringBuffer r;
+		if ((this.getBicicleta() == null)) {
+			if (estacion.getCantBicis() > 0  && estacion.isEstado()) {
+				for (int i = 0; i < estacion.getCap_max(); i++) {
+					System.out.print((i + 1) + ". " + estacion.getBicicletas()[i]);
+					System.out.println(" ");
+				}
+				int idB = ent.nextInt() - 1;
+				while (idB < 0 || idB >= estacion.getCantBicis()) {
+					System.out.println(
+							"Por favor ingrese un valor valido. Entre 1 y " + (estacion.getCantBicis()) + ".");
+					idB = ent.nextInt() - 1;
+				}
+				while (!estacion.prestar(idB, this)) {
+					System.out.println("Prestamo no aceptado.");
+					System.out.println("No Hay Bicicletas en la posicion elegida, ingrese una posicion valida.");
+					idB = ent.nextInt() - 1;
+				}
+				r = new StringBuffer("Prestamo aceptado.");
+				BaseDatos.Datos.hashUsoP.put(this.getId(), BaseDatos.Datos.hashUsoP.get(this.getId())+1);
+				BaseDatos.Datos.hashUsoB.put(this.getBicicleta().getId(), BaseDatos.Datos.hashUsoB.get(this.getBicicleta().getId())+1);
+				BaseDatos.Datos.hashUsoE.put(estacion.getIde(), BaseDatos.Datos.hashUsoE.get(estacion.getIde())+1);
+				r.append("\n" + super.nombre + " posee la bicicleta " + this.getBicicleta().toString() /* +". Estaba en la estacion " + estacion.getId()+" posicion "+idB */);
+				
+			}  else if (!estacion.isEstado()) {
+				r = new StringBuffer("Estacion cerrada.");
+			} else {
+				r = new StringBuffer("Estacion vacia.");
+			}
+		} else if (this.getBicicleta() != null) {
+			r = new StringBuffer("Tiene un prestamo vigente");
+		} else {
+			r = new StringBuffer("Tiene una deuda pendiente");
+		}
+
+		// return r;
+		System.out.println(r);
 	}
 
 	@Override
