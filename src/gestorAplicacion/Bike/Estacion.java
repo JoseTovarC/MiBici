@@ -21,6 +21,7 @@ public class Estacion {
 		this.bicicletas =  new Bicicleta[cap_max];
 		this.moderador = moderador;
 		BaseDatos.Datos.hashUsoE.put(id, 0);
+		BaseDatos.Datos.hashEstacion.put(id, this);
 	}
 	
 	public Estacion(String id, String tipo, boolean estado, int cap_max) {
@@ -31,9 +32,27 @@ public class Estacion {
 		this.cap_max = cap_max;
 		this.bicicletas =  new Bicicleta[cap_max];
 		BaseDatos.Datos.hashUsoE.put(id, 0);
+		BaseDatos.Datos.hashEstacion.put(id, this);
 	}
 	
-	public String getId() {
+	public Estacion(String id, String tipo, String esta, String cap_max) {
+		this.id = id;
+		this.tipo = tipo;
+		boolean estado = Boolean.parseBoolean(esta);
+		this.estado = estado;
+		int aux = Integer.parseInt(cap_max);
+		this.cap_max = aux;		
+		this.bicicletas =  new Bicicleta[aux];
+		BaseDatos.Datos.hashUsoE.put(id, 0);
+		BaseDatos.Datos.hashEstacion.put(id, this);
+	}
+	
+	public static Estacion getEstacionporId(String id) {
+		
+		return BaseDatos.Datos.hashEstacion.get(id);
+	}
+	
+	public String getIde() {
 		return id;
 	}
 
@@ -131,10 +150,7 @@ public class Estacion {
 			usuario.setBicicleta(bicicletas[idb]);
 			bicicletas[idb].setUsuario(usuario);
 			bicicletas[idb] = null;
-			for (int i = 0; i < bicicletas.length; i++) {
-				System.out.print((i+1) + ". " + bicicletas[i]);
-				System.out.println(" ");
-			}
+			
 			cantBicis--;
             return true;
 		}
@@ -145,8 +161,8 @@ public class Estacion {
         	return false;
         }
         else {
-        	cantBicis++;
-        	//ver nuevo método addBicicletas()
+        	this.addBicicleta(bicicleta);
+        	bicicleta.setUsuario((Usuario)Persona.getUsuarioPorUsername(0));
         	return true;
         }
 		

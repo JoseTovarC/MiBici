@@ -1,0 +1,2 @@
+0;Libre;true;0
+1;Automatica;true;4

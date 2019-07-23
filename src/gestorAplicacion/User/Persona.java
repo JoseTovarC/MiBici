@@ -1,5 +1,7 @@
 package gestorAplicacion.User;
 
+import BaseDatos.Datos;
+import uiMain.Main;
 import uiMain.MenuDeConsola;
 
 public abstract class Persona {
@@ -35,7 +37,7 @@ public abstract class Persona {
 	public Persona(String nombre, String ed, String iden, String genero, String clave) {
 		
 		long id = (long)Integer.parseInt(iden);
-		byte edad = (byte)Integer.parseInt(iden);
+		byte edad = (byte)Integer.parseInt(ed);
 		this.nombre = nombre;
 		this.setEdad(edad);
 		this.setId(id);
@@ -82,5 +84,28 @@ public abstract class Persona {
 	}
 	public MenuDeConsola getMenu(){
 		return menu;
+	}
+	public static String login(long id, String password) {
+	Persona u = Usuario.getUsuarioPorUsername(id);
+		if (u != null) {
+			if (u.getId() == id && u.getClave().equals(password)) {
+				// Seteo el usuario
+				Main.user = u;
+				if(u instanceof Moderador) {
+					return "Bienvenido,\nModerador: " + u.getNombre();
+				}else if(u instanceof Admin) {
+					return "Bienvenido,\nAdministrador: " + u.getNombre();
+				}else {
+					return "Bienvenido,\nUsuario: " + u.getNombre();
+				}
+				
+				
+			}
+		}
+		return "Usuario no encontrado";
+	}
+
+	public static Persona getUsuarioPorUsername(long id) {
+		return Datos.hashPersona.get(id);
 	}
 }

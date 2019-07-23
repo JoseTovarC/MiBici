@@ -13,19 +13,42 @@ public class Bicicleta {
 		this.setEstacion(estacion);
 		estacion.addBicicleta(this);
 		BaseDatos.Datos.hashUsoB.put(id, 0);
+		this.usuario = (Usuario)Persona.getUsuarioPorUsername(0);
+		BaseDatos.Datos.hashBicicleta.put(id,this);
 	}
 	public Bicicleta(int id,Distribuidor distribuidor) {
-		System.out.println("Si");
+		
 		this.id = id;
 		//this.setUsuario(usuario);
 		this.setDistribuidor(distribuidor);
 		BaseDatos.Datos.hashUsoB.put(id, 0);
+		this.usuario = (Usuario)Persona.getUsuarioPorUsername(0);
+		BaseDatos.Datos.hashBicicleta.put(id,this);
+		this.estacion = Estacion.getEstacionporId("0");
 	}
 	public Bicicleta(int id, Estacion estacion, Distribuidor distribuidor) {
-		System.out.println("Si");
+		
 		this.id = id;
 		//this.setUsuario(usuario);
 		this.setDistribuidor(distribuidor);
+		this.estacion = estacion;
+		BaseDatos.Datos.hashUsoB.put(id, 0);
+		this.usuario = (Usuario)Persona.getUsuarioPorUsername(0);
+		BaseDatos.Datos.hashBicicleta.put(id,this);
+	}
+	public Bicicleta(String ide, String danio, String IdUsuario, String Iddistribuidor, String Idestacion) {
+		System.out.println("Crea nueva bicicleta");
+		int id = Integer.parseInt(ide);
+		boolean dan = Boolean.parseBoolean(danio);
+		long idu = (long) Integer.parseInt(IdUsuario);
+		this.id = id;
+		this.danio = dan;
+		this.estacion = BaseDatos.Datos.hashEstacion.get(Idestacion);
+		this.distribuidor = BaseDatos.Datos.hashDistribuidor.get(Iddistribuidor);
+		this.usuario = (Usuario) Usuario.getUsuarioPorUsername(idu);
+		estacion.addBicicleta(this);
+		distribuidor.addBicicleta(this);
+		BaseDatos.Datos.hashBicicleta.put(id,this);
 		BaseDatos.Datos.hashUsoB.put(id, 0);
 	}
 	public int getId() {

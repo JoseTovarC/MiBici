@@ -11,14 +11,26 @@ public class Distribuidor {
 	private ArrayList<Bicicleta> bicicletas = new ArrayList<>();
 	Scanner entrada = new Scanner(System.in);
 	
-	public Distribuidor(String nombre, String id, int numero_bicis){
+	public Distribuidor(String nombre, String id){
 		this.nombre = nombre;
 		this.id = id;
-		this.numero_bicis = numero_bicis;
+		numero_bicis = bicicletas.size();
+		BaseDatos.Datos.hashDistribuidor.put(id,this);
+	}
+	public Distribuidor(String nombre, String id, int num_bicis){
+		this.nombre = nombre;
+		this.id = id;
+		this.numero_bicis = num_bicis;
+		BaseDatos.Datos.hashDistribuidor.put(id,this);
 	}
 	public void finalize() {
 		
 	}
+	
+	public void addBicicleta(Bicicleta bici) {
+		this.bicicletas.add(bici);
+	}
+	
 	
 	public String getNombre() {
 		return nombre;

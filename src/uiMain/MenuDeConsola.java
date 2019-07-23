@@ -29,7 +29,7 @@ public class MenuDeConsola {
 		return user;
 	}
 
-	public void setUser(Usuario user) {
+	public void setUser(Persona user) {
 		this.user = user;
 	}
 	

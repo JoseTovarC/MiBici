@@ -29,11 +29,13 @@ public class Usuario extends Persona {
 		BaseDatos.Datos.hashUsuario.put(id, this);
 		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
-	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo,String def) {
+	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu, String def) {
 		super(nombre, edad, id, genero, clave);
 		this.tarjeta= new Tarjeta(saldo, this);
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
+		menu.setUser(this);
+		BaseDatos.Datos.menus.put(id, menu);
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
@@ -47,26 +49,24 @@ public class Usuario extends Persona {
 		BaseDatos.Datos.hashUsuario.put(id, this);
 		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
-	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal, ArrayList<Multa> multas) {
+	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal) {
 		super(nombre, edad, iden, genero, clave);
 		int saldo = Integer.parseInt(sal);
 		this.tarjeta= new Tarjeta(saldo, this);
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
 		long id = (long)Integer.parseInt(iden);
-		this.multas = multas;
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsuario.put(id, this);
 		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
-	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal, ArrayList<Multa> multas, String ref) {
+	public Usuario(String nombre, String edad, String iden, String genero, String clave, String sal, String ref) {
 		super(nombre, edad, iden, genero, clave);
 		int saldo = Integer.parseInt(sal);
 		this.tarjeta= new Tarjeta(saldo, this);
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
 		long id = (long)Integer.parseInt(iden);
-		this.multas = multas;
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}
@@ -81,14 +81,7 @@ public class Usuario extends Persona {
 		
 	}
 
-	public Usuario(String nombre, String edad, String iden, String genero, String clave) {
-		super(nombre, edad, iden, genero, clave);
-
-		long id = (long)Integer.parseInt(iden);
-		BaseDatos.Datos.hashPersona.put(id, this);
-		BaseDatos.Datos.hashUsuario.put(id, this);
-		BaseDatos.Datos.hashUsoP.put(id, 0);
-	}
+	
 	public Usuario(MenuDeConsola menu) {
 		super("Invitado", (byte) 0, (long) 0, "", "", menu);
 		this.nombre = "";
@@ -110,21 +103,7 @@ public class Usuario extends Persona {
 		return new Usuario(InvitadoMenu);
 	}
 
-	public static String login(long id, String password) {
-		Usuario u = Usuario.getUsuarioPorUsername(id);
-		if (u != null) {
-			if (u.getId() == id && u.getClave().equals(password)) {
-				// Seteo el usuario
-				Main.user = u;
-				return "Bienvenido";
-			}
-		}
-		return "Usuario no encontrado";
-	}
-
-	public static Usuario getUsuarioPorUsername(long id) {
-		return (Usuario) Datos.hashPersona.get(id);
-	}
+	
 
 	// Getters & Setters
 	public Tarjeta getTarjeta() {return tarjeta;}
@@ -132,12 +111,24 @@ public class Usuario extends Persona {
 	public Bicicleta getBicicleta() {return bicicleta;}
 	public void setBicicleta(Bicicleta bicicleta) {this.bicicleta = bicicleta;}
 
-	public boolean isDeuda() {return deuda;}
+	public boolean isDeuda() {
+		if(multas.size() == 0) {
+			this.deuda = false;
+		}else {
+			this.deuda = true;
+		}
+		return deuda;
+	}
 	public void setDeuda(boolean deuda) {this.deuda = deuda;}
 	public long getDeuda() { //se devuelve el precio de la deuda actual (todas las multas sumadas)
 		long deuda = 0;
 		for (Multa m : multas) {
 			deuda += m.getPrecio();
+		}
+		if (multas == null) {
+			this.deuda = false;
+		} else {
+			this.deuda = true;
 		}
 		return deuda;
 	}
@@ -154,7 +145,7 @@ public class Usuario extends Persona {
 	public void setMultas(ArrayList<Multa> multas) { //cambiar todas las multas
 		this.multas = multas;
 		this.tarjeta.setMultas(multas);
-		if (multas != null) {
+		if (multas == null) {
 			deuda = false;
 		} else {
 			deuda = true;
@@ -168,11 +159,28 @@ public class Usuario extends Persona {
 			BaseDatos.Datos.hashCantM.put(this.getId(), 1);
 		}
 		this.multas.add(multa);
-		if(multa!=null) {
-		deuda=true;}
+		if (multas == null) {
+			deuda = false;
+		} else {
+			deuda = true;
 		}
-	public void delMultas() {multas.clear();}//borrar todas las multas
-	public void delMulta(int id) {multas.remove(id);}//borrar una sola multa
+	}
+	public void delMultas() {
+		multas.clear();
+		if (multas == null) {
+			deuda = false;
+		} else {
+			deuda = true;
+		}
+	}//borrar todas las multas
+	public void delMulta(int id) {
+		multas.remove(id);
+		if (multas == null) {
+			deuda = false;
+		} else {
+			deuda = true;
+		}
+	}//borrar una sola multa
 
 
 	
@@ -200,7 +208,7 @@ public class Usuario extends Persona {
 				BaseDatos.Datos.hashUsoP.put(this.getId(), BaseDatos.Datos.hashUsoP.get(this.getId())+1);
 				this.setBicicleta(bicicleta);
 				BaseDatos.Datos.hashUsoB.put(bicicleta.getId(), BaseDatos.Datos.hashUsoB.get(bicicleta.getId())+1);
-				BaseDatos.Datos.hashUsoE.put(estacion.getId(), BaseDatos.Datos.hashUsoE.get(estacion.getId())+1);
+				BaseDatos.Datos.hashUsoE.put(estacion.getIde(), BaseDatos.Datos.hashUsoE.get(estacion.getIde())+1);
 				r.append("\n" + super.nombre + " posee la bicicleta " + this.bicicleta.toString() /* +". Estaba en la estacion " + estacion.getId()+" posicion "+idB */);
 				tarjeta.pagarP();
 			} else if (tarjeta.getSaldo() < 500) {
@@ -232,6 +240,7 @@ public class Usuario extends Persona {
 			if (estacion.recibir(bicicleta)) {
 				r = new StringBuffer("Bicicleta devuelta.");
 				this.bicicleta = null;
+				
 				/*
 				 * if (initialtime-bicicleta.time()>2 horas){ usuario.setMulta(tiempo);
 				 * r.append(" Ha sido multado por tiempo excedido"); }
@@ -259,19 +268,8 @@ public class Usuario extends Persona {
 			return "Usted no tiene multas o deudas actualmente.";
 		}
 	}
-	public String pagarM(int id) {
-		if (deuda){
-			if (tarjeta.pagarM(id)) {
-				return "Se ha pagado la multa";
-			}
-			else {
-				return "Saldo insuficiente";
-			}
-		}
-		else {
-			return "Usted no tiene multas o deudas actualmente";
-		}
-	}
+	
+	
 
 	public String toString() {
 		return "Nombre= " + super.getNombre() + ". Id= " + super.getId();
