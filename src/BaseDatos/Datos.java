@@ -287,6 +287,49 @@ public class Datos {
 		}
 		return r;
 	}
+	public static StringBuffer getMayorUsoE() {
+		StringBuffer r;
+		Deque<String> cola=new LinkedList<>();
+		int max=0;
+		for (Map.Entry<String, Integer> entry : hashUsoE.entrySet()) {
+			if (entry.getValue()>max) {
+				cola.clear();
+				cola.add(entry.getKey());
+				max=entry.getValue();
+			}
+			else if (entry.getValue()==max) {
+				cola.add(entry.getKey());
+			}
+		}
+		if(cola.isEmpty()) {
+			r = new StringBuffer("No se han registrado usos");
+		}
+		else if (cola.size()==1) {
+			if (max==1) {
+				r = new StringBuffer("La estacion mas usada (1 uso), fue: ");
+			}
+			else {
+				r = new StringBuffer("La estacion mas usada ("+ max +" usos), fue: ");
+			}
+		}
+		else {
+			if (max==1) {
+				r = new StringBuffer("Las estaciones mas usada (1 uso), fueron: ");
+			}
+			else {
+				r = new StringBuffer("Las estaciones mas usada ("+ max +" usos), fueron: ");
+			}
+		}
+		while (true){
+			if (cola.size()>0) {
+				r.append(cola.poll()+" ");
+			}
+			else {
+				break;
+			}
+		}
+		return r;
+	}
 	public static StringBuffer getMayorCantM() {
 		StringBuffer r;
 		Deque<Long> cola=new LinkedList<>();
@@ -408,6 +451,47 @@ public class Datos {
 		r= new StringBuffer("El promedio de edad de todos los usuarios registrados es de: "+ prom +" años");
 		return r;
 	}
+	static public StringBuffer getPromCantB() {
+		StringBuffer r;
+		int prom=0;
+		int q=0;
+		for (Map.Entry<String, Estacion> entry : hashEstacion.entrySet()) {
+			prom+= entry.getValue().getCantBicis();
+			q+=1;
+		}
+		prom/=q;
+		r= new StringBuffer("El promedio de la cantidad bicicletas en todas las estaciones es de: "+ prom +" bicicletas");
+		return r;
+	}
+	static public StringBuffer getPorcGen() {
+		StringBuffer r;
+		int q=0;
+		int qh=0;
+		for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
+			q+= 1;
+			if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
+				qh+= 1;
+			}
+		}
+		r=new StringBuffer("El porcentaje de hombres es de: "+(qh*100/q)+"%.");
+		r.append("El porcentaje de mujeres es de: "+(100-(qh*100/q))+"%.");
+		return r;
+	}
+	static public StringBuffer getPorcUsoGen() {
+		StringBuffer r;
+		int q=0;
+		int qh=0;
+		for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
+			q+= entry.getValue();
+			if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
+				qh+= entry.getValue();
+			}
+		}
+		r=new StringBuffer("El porcentaje de uso realizado por hombres es de: "+(qh*100/q)+"%.");
+		r.append("El porcentaje de uso realizado por mujeres es de: "+(100-(qh*100/q))+"%.");
+		return r;
+	}
+	
 	
 	
 	
