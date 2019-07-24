@@ -60,7 +60,7 @@ public class Moderador extends Usuario{
 		this.estacionM = estacion;
 		estacion.setModerador(this);
 	}
-	public void prestar(Estacion estacion) {
+	public StringBuffer prestar(Estacion estacion) {
 		StringBuffer r;
 		if ((this.getBicicleta() == null)) {
 			if (estacion.getCantBicis() > 0  && estacion.isEstado()) {
@@ -102,8 +102,8 @@ public class Moderador extends Usuario{
 			r = new StringBuffer("Tiene una deuda pendiente");
 		}
 
-		// return r;
-		System.out.println(r);
+		return r;
+		
 	}
 
 	@Override

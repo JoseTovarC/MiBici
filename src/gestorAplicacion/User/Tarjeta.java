@@ -47,6 +47,17 @@ public class Tarjeta {
 		return false;
 	}
 
+	public boolean pagarM(String id) { //se pagan todas las multas
+		if(usuario.isDeuda()) {
+			if(usuario.getDeuda() <= saldo) {
+				saldo -= usuario.getDeuda();
+				usuario.delMultas();
+				usuario.setDeuda(false);
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public boolean pagarP() {
 		if (500<=saldo){

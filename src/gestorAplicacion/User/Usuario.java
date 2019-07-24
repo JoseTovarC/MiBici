@@ -226,7 +226,7 @@ public class Usuario extends Persona {
 		} else {
 			r.append("\n Tiene una deuda pendiente");
 		}
-		return r
+		return r;
 	}
 
 	public StringBuffer devolver(Estacion estacion/* , Date initialtime */) {
@@ -272,7 +272,7 @@ public class Usuario extends Persona {
 		}
 	}
 	
-	public String pagarM(int id){ //El usuario paga una multa, se revisa si tiene saldo suficiente en su tarjeta y se devuelve el correspondiente mensaje
+	public String pagarM(String id){ //El usuario paga una multa, se revisa si tiene saldo suficiente en su tarjeta y se devuelve el correspondiente mensaje
 		if (this.isDeuda()) {
 			if (tarjeta.pagarM(id)) {
 				return "Pago realizado.";
