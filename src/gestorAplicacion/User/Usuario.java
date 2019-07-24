@@ -195,16 +195,22 @@ public class Usuario extends Persona {
 					System.out.print((i + 1) + ". " + estacion.getBicicletas()[i]);
 					System.out.println(" ");
 				}
+				System.out.print("Elija una posición valida en la que halla una bicicleta: ");
 				int idB = ent.nextInt() - 1;
-				while (idB < 0 || idB >= estacion.getCantBicis()) {
+				while (idB < 0 || idB > estacion.getCap_max()) {
 					System.out.println(
-							"Por favor ingrese un valor valido. Entre 1 y " + (estacion.getCantBicis()) + ".");
+							"Por favor ingrese un valor valido. Entre 1 y " + (estacion.getCap_max()) + ".");
 					idB = ent.nextInt() - 1;
 				}
 				while (!estacion.prestar(idB, this)) {
 					System.out.println("Prestamo no aceptado.");
 					System.out.println("No Hay Bicicletas en la posicion elegida, ingrese una posicion valida.");
 					idB = ent.nextInt() - 1;
+					while (idB < 0 || idB > estacion.getCap_max()) {
+						System.out.println(
+								"Por favor ingrese un valor valido. Entre 1 y " + (estacion.getCap_max()) + ".");
+						idB = ent.nextInt() - 1;
+					}
 				}
 				r = new StringBuffer("Prestamo aceptado.");
 				BaseDatos.Datos.hashUsoP.put(this.getId(), BaseDatos.Datos.hashUsoP.get(this.getId())+1);
@@ -241,7 +247,9 @@ public class Usuario extends Persona {
 		} else {
 			if (estacion.recibir(bicicleta)) {
 				r = new StringBuffer("Bicicleta devuelta.");
+				this.bicicleta.setUsuario(null);
 				this.bicicleta = null;
+				
 				
 				/*
 				 * if (initialtime-bicicleta.time()>2 horas){ usuario.setMulta(tiempo);

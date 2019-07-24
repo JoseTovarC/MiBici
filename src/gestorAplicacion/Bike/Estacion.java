@@ -111,7 +111,7 @@ public class Estacion {
 				if (bicicletas[i]==null) {
 					bicicletas[i]=bicicleta;
 					cantBicis++;
-					System.out.println("Bicicleta agregada");
+					
 					break;
 				}
 				i++;
@@ -161,6 +161,7 @@ public class Estacion {
 		else {
 			usuario.setBicicleta(bicicletas[idb]);
 			bicicletas[idb].setUsuario(usuario);
+			bicicletas[idb].setEstacion(null);
 			bicicletas[idb] = null;
 			
 			cantBicis--;
@@ -169,12 +170,13 @@ public class Estacion {
 	}
 	
 	public boolean recibir(Bicicleta bicicleta){
-        if((tipo. equals("Automatica") && cantBicis==cap_max) || !this.isEstado()) {
+        if((this.getCantBicis()==cap_max) || !this.isEstado()) {
         	return false;
         }
         else {
         	this.addBicicleta(bicicleta);
-        	bicicleta.setUsuario((Usuario)Persona.getUsuarioPorUsername(0));
+        	
+        	System.out.println("Bicicleta agregada");
         	return true;
         }
 		

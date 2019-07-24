@@ -219,7 +219,7 @@ public class Datos {
 
 	public static void guardarDatos() {
 		crearFilesYDirecciones();
-		String ruta = System.getProperty("user.dir") + "\\src\\BaseDatos\\";
+		String ruta = System.getProperty("user.dir") + "\\src\\temp\\";
 		guardarEstaciones(ruta);
 		guardarUsuarios(ruta);
 		guardarMenus(ruta);
@@ -385,7 +385,7 @@ public class Datos {
 
 	private static void crearFilesYDirecciones() {
 		try {
-			String ruta = System.getProperty("user.dir") + "\\src\\BaseDatos\\";
+			String ruta = System.getProperty("user.dir") + "\\src\\temp\\";
 			File directory = new File(ruta);
 			if (!directory.exists()) {
 				directory.mkdir();
