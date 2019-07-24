@@ -273,6 +273,8 @@ public class Datos {
 					line += ((Usuario) userObj).getTarjeta().getSaldo() + ";";
 					if (((Moderador) userObj).getEstacion() != null) {
 						line += ((Moderador) userObj).getEstacion().getIde();
+					}else {
+						line+= "0";
 					}
 
 					pwModerador.println(line);

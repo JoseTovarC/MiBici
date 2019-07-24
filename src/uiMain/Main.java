@@ -52,11 +52,13 @@ public class Main {
 		BaseDatos.Datos.operations.put("11", new Recargar_tarjeta("11"));
 		BaseDatos.Datos.operations.put("12", new Pagar_multas("12"));
 		BaseDatos.Datos.operations.put("13", new ConsultasM("13"));
+		BaseDatos.Datos.operations.put("14", new Creacion("14"));
+		
 		
 		BaseDatos.Datos.hashMulta.put("1", new Multa("1", "Se sobrepaso el limite de Velocidad", 50000));
 		BaseDatos.Datos.hashMulta.put("2", new Multa("2", "Ocasiono un danio voluntario a la bicicleta", 100000));
 		BaseDatos.Datos.hashMulta.put("3", new Multa("3", "Se sobrepaso el tiempo limite", 30000));
-		
+		BaseDatos.Datos.hashMulta.put("4", new Multa("4", "Inventado para que chamorro sepa", 1000000));
 		/*;0;;0;;0
 		Jos;18;M;1193;1193;50000;3;1*/
 		//estacion(por defecto)
@@ -75,6 +77,7 @@ public class Main {
 						add(BaseDatos.Datos.operations.get("13"));
 						add(BaseDatos.Datos.operations.get("9"));
 						add(BaseDatos.Datos.operations.get("10"));
+						add(BaseDatos.Datos.operations.get("14"));
 						add(BaseDatos.Datos.operations.get("3"));						
 			}
 		};
