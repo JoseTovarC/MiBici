@@ -37,6 +37,7 @@ public class Devolver_bicicleta extends OpcionDeMenu {
 			i = esc.nextInt();
 			if(i >= 1 && i<= estaciones.size() ) {
 				Usuario aux = (Usuario) Datos.hashPersona.get(Main.user.getId());
+				estaciones.get(i-1).getCantBicis();
 				aux.devolver(estaciones.get(i-1));
 				break;
 			}else {

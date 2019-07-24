@@ -212,6 +212,7 @@ public class Usuario extends Persona {
 				r = new StringBuffer("Prestamo aceptado. ");
 				BaseDatos.Datos.hashUsoP.put(this.getId(), BaseDatos.Datos.hashUsoP.get(this.getId())+1);
 				this.setBicicleta(bicicleta);
+				bicicleta.setEstacion(null);
 				BaseDatos.Datos.hashUsoB.put(bicicleta.getId(), BaseDatos.Datos.hashUsoB.get(bicicleta.getId())+1);
 				BaseDatos.Datos.hashUsoE.put(estacion.getIde(), BaseDatos.Datos.hashUsoE.get(estacion.getIde())+1);
 				r.append("\n" + super.nombre + " posee la bicicleta " + this.bicicleta.toString() /* +". Estaba en la estacion " + estacion.getId()+" posicion "+idB */);
@@ -231,7 +232,7 @@ public class Usuario extends Persona {
 		System.out.println(r);
 	}
 
-	public StringBuffer devolver(Estacion estacion/* , Date initialtime */) {
+	public void devolver(Estacion estacion/* , Date initialtime */) {
 //Se devuelve la bicicleta anexada del usuario a la estacion que se ha ingresado.
 //Se revisa si si se tiene un prestamo, si la estacion esta abierta y tiene cupos disponibles. De lo contrario le comenta al usuario si no se puede devolver la bicicleta y dice por que.
 //En caso contrario, si todo esta en orden se le notifica al usuario, se hace la devolucion a la estacion y se desconecta del usuario. 
@@ -247,6 +248,7 @@ public class Usuario extends Persona {
 			if (estacion.recibir(bicicleta)) {
 				r = new StringBuffer("Bicicleta devuelta.");
 				this.bicicleta.setUsuario(null);
+				this.bicicleta.setEstacion(estacion);
 				this.bicicleta = null;
 
 			}
@@ -254,7 +256,7 @@ public class Usuario extends Persona {
 				r.append("\n Error desconocido");			
 			}
 		}
-		return r;
+		System.out.println(r);
 	}
 
 	public String recargarT(int q$) { //Se recarga la tarjeta del usuario con el saldo que se le indique
