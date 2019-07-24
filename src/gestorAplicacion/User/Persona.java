@@ -77,6 +77,7 @@ public abstract class Persona {
 	public void setClave(String clave) { //cambiar contraseña
 		this.clave = clave;
 	}
+	public abstract String toString();
 	public abstract void finalize();
 	// Abstract, obliga a Usuario y moderador definir destructor
 	public void setMenu(MenuDeConsola menu){

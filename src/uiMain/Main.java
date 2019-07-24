@@ -53,6 +53,17 @@ public class Main {
 		BaseDatos.Datos.operations.put("12", new Pagar_multas("12"));
 		BaseDatos.Datos.operations.put("13", new ConsultasM("13"));
 		BaseDatos.Datos.operations.put("14", new Creacion("14"));
+		BaseDatos.Datos.operations.put("18", new Funcionalidades("18"));
+		BaseDatos.Datos.operations.put("19", new MayorUsoP("19"));
+		BaseDatos.Datos.operations.put("20", new MayorEdad("20"));
+		BaseDatos.Datos.operations.put("21", new MenorEdad("21"));
+		BaseDatos.Datos.operations.put("22", new PromEdad("22"));
+		BaseDatos.Datos.operations.put("23", new PorcGen("23"));
+		BaseDatos.Datos.operations.put("24", new PorcUsoGen("24"));
+		BaseDatos.Datos.operations.put("25", new MayorCantM("25"));
+		BaseDatos.Datos.operations.put("26", new MayorUsoB("26"));
+		BaseDatos.Datos.operations.put("27", new MayorUsoE("27"));
+		BaseDatos.Datos.operations.put("28", new PromCantB("28"));
 		
 		
 		BaseDatos.Datos.hashMulta.put("1", new Multa("1", "Se sobrepaso el limite de Velocidad", 50000));
@@ -78,6 +89,7 @@ public class Main {
 						add(BaseDatos.Datos.operations.get("9"));
 						add(BaseDatos.Datos.operations.get("10"));
 						add(BaseDatos.Datos.operations.get("14"));
+						add(BaseDatos.Datos.operations.get("18"));
 						add(BaseDatos.Datos.operations.get("3"));						
 			}
 		};

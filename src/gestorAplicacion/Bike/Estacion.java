@@ -2,11 +2,11 @@ package gestorAplicacion.Bike;
 import gestorAplicacion.User.*;
 //import java.util.ArrayList;
 
-public class Estacion {
+public class Estacion implements red {
 	private String id;
 	private String tipo;
 	private boolean estado = true;
-	private static boolean estadogeneral= true;
+	public static boolean estadogeneral= true;
 	private int cap_max;
 	private Bicicleta[] bicicletas;
 	private Moderador moderador;
@@ -144,10 +144,10 @@ public class Estacion {
 		return cantBicis;
 	}
 
-	public static void cerrar_estaciones() {
+	public void cerrar_estaciones() {
 		estadogeneral = false;
 	}
-	public static void abrir_estaciones() {
+	public void abrir_estaciones() {
 		estadogeneral = true;
 	}
 	

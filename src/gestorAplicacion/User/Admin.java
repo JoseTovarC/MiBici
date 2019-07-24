@@ -47,6 +47,9 @@ public class Admin extends Persona{
 		// TODO Auto-generated method stub
 		
 	}
+	public String toString() {
+		return "Nombre: "+this.getNombre() + ". \nId: "+this.getId();
+	}
 
 	
 	

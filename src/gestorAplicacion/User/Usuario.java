@@ -150,15 +150,12 @@ public class Usuario extends Persona {
 			deuda = false;
 		} else {
 			deuda = true;
+			BaseDatos.Datos.hashCantM.put(this.getId(),multas.size());
+			
 		}
 	}
 	public void addMulta(Multa multa) {//agregar una multa
-		if (BaseDatos.Datos.hashCantM.containsKey(this.getId())) {
-			BaseDatos.Datos.hashCantM.put(this.getId(),BaseDatos.Datos.hashCantM.get(this.getId())+1);
-		}
-		else {
-			BaseDatos.Datos.hashCantM.put(this.getId(), 1);
-		}
+		BaseDatos.Datos.hashCantM.put(this.getId(),BaseDatos.Datos.hashCantM.get(this.getId())+1);
 		this.multas.add(multa);
 		if (multas == null) {
 			deuda = false;

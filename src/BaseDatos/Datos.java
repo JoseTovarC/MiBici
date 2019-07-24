@@ -427,14 +427,23 @@ public class Datos {
 		}
 		if (cola.isEmpty()) {
 			r = new StringBuffer("No se han registrado usos");
+			return r;
 		} else if (cola.size() == 1) {
-			if (max == 1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
+			else if (max == 1) {
 				r = new StringBuffer("El usuario que mas usos realizo (1 uso), fue: ");
 			} else {
 				r = new StringBuffer("El usuario que mas usos realizo (" + max + " usos), fue: ");
 			}
 		} else {
-			if (max == 1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
+			else if (max == 1) {
 				r = new StringBuffer("Los usuarios que mas usos realizaron (1 uso), fueron: ");
 			} else {
 				r = new StringBuffer("Los usuarios que mas usos realizaron (" + max + " usos), fueron: ");
@@ -465,14 +474,23 @@ public class Datos {
 		}
 		if (cola.isEmpty()) {
 			r = new StringBuffer("No se han registrado usos");
+			return r;
 		} else if (cola.size() == 1) {
-			if (max == 1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
+			else if (max == 1) {
 				r = new StringBuffer("La bicicleta mas usada (1 uso), fue: ");
 			} else {
 				r = new StringBuffer("La bicicleta mas usada (" + max + " usos), fue: ");
 			}
 		} else {
-			if (max == 1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
+			else if (max == 1) {
 				r = new StringBuffer("Las bicicletas mas usada (1 uso), fueron: ");
 			} else {
 				r = new StringBuffer("Las bicicletas mas usada (" + max + " usos), fueron: ");
@@ -504,9 +522,14 @@ public class Datos {
 		}
 		if(cola.isEmpty()) {
 			r = new StringBuffer("No se han registrado usos");
+			return r;
 		}
 		else if (cola.size()==1) {
-			if (max==1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
+			else if (max==1) {
 				r = new StringBuffer("La estacion mas usada (1 uso), fue: ");
 			}
 			else {
@@ -514,7 +537,11 @@ public class Datos {
 			}
 		}
 		else {
-			if (max==1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
+			else if (max==1) {
 				r = new StringBuffer("Las estaciones mas usada (1 uso), fueron: ");
 			}
 			else {
@@ -547,14 +574,23 @@ public class Datos {
 		}
 		if (cola.isEmpty()) {
 			r = new StringBuffer("No se han registrado multas");
+			return r;
 		} else if (cola.size() == 1) {
-			if (max == 1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado multas");
+				return r;
+			}
+			else if (max == 1) {
 				r = new StringBuffer("El usuario con mayor cantidad de multas (fue multado 1 vez), fue: ");
 			} else {
 				r = new StringBuffer("El usuario con mayor cantidad de multas (fue multado " + max + " veces), fue: ");
 			}
 		} else {
-			if (max == 1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado multas");
+				return r;
+			}
+			else if (max == 1) {
 				r = new StringBuffer("Los usuarios con mayor cantidad de multas (fueron multados 1 vez), fueron: ");
 			} else {
 				r = new StringBuffer(
@@ -587,8 +623,16 @@ public class Datos {
 		if (cola.isEmpty()) {
 			r = new StringBuffer("No se han registrado datos");
 		} else if (cola.size() == 1) {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
 			r = new StringBuffer("El usuario de mayor edad (" + max + " años), fue: ");
 		} else {
+			if (max==0) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
 			r = new StringBuffer("Los usuarios de mayor edad (" + max + " años), fueron: ");
 		}
 		while (true) {
@@ -617,8 +661,16 @@ public class Datos {
 		if (cola.isEmpty()) {
 			r = new StringBuffer("No se han registrado datos");
 		} else if (cola.size() == 1) {
+			if (min==200) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
 			r = new StringBuffer("El usuario de menor edad (" + min + " años), fue: ");
 		} else {
+			if (min==200) {
+				r = new StringBuffer("No se han registrado usos");
+				return r;
+			}
 			r = new StringBuffer("Los usuarios de menor edad (" + min + " años), fueron: ");
 		}
 		while (true) {
@@ -639,6 +691,10 @@ public class Datos {
 			prom += entry.getValue().getEdad();
 			q += 1;
 		}
+		if (q==0 || prom==0) {
+			r = new StringBuffer("No se han registrado usos");
+			return r;
+		}
 		prom /= q;
 		r = new StringBuffer("El promedio de edad de todos los usuarios registrados es de: " + prom + " años");
 		return r;
@@ -651,6 +707,10 @@ public class Datos {
 		for (Map.Entry<String, Estacion> entry : hashEstacion.entrySet()) {
 			prom+= entry.getValue().getCantBicis();
 			q+=1;
+		}
+		if (q==0 || prom==0) {
+			r = new StringBuffer("No se han registrado usos");
+			return r;
 		}
 		prom/=q;
 		r= new StringBuffer("El promedio de la cantidad bicicletas en todas las estaciones es de: "+ prom +" bicicletas");
@@ -666,6 +726,10 @@ public class Datos {
 				qh+= 1;
 			}
 		}
+		if (q==0 || qh==0) {
+			r = new StringBuffer("No se han registrado usos");
+			return r;
+		}
 		r=new StringBuffer("El porcentaje de hombres es de: "+(qh*100/q)+"%.");
 		r.append("El porcentaje de mujeres es de: "+(100-(qh*100/q))+"%.");
 		return r;
@@ -679,6 +743,10 @@ public class Datos {
 			if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
 				qh+= entry.getValue();
 			}
+		}
+		if (q==0 || qh==0) {
+			r = new StringBuffer("No se han registrado usos");
+			return r;
 		}
 		r=new StringBuffer("El porcentaje de uso realizado por hombres es de: "+(qh*100/q)+"%.");
 		r.append("El porcentaje de uso realizado por mujeres es de: "+(100-(qh*100/q))+"%.");
