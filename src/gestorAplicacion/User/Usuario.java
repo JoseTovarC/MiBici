@@ -113,6 +113,8 @@ public class Usuario extends Persona {
 	public boolean isDeuda() { //se chequea si hay una deuda (si es que hay multas), cambia el atributo "deuda" y ademas retorna true si se tienen multas o false en caso contrario
 		if(multas.size() == 0) {
 			this.deuda = false;
+		}else if(multas == null) {
+			this.deuda = false;
 		}else {
 			this.deuda = true;
 		}
@@ -178,13 +180,13 @@ public class Usuario extends Persona {
 	}
 	
 	//FUNCIONALIDADES/METODOS DEL USUARIO
-	public StringBuffer prestar(Estacion estacion) {
+	public void prestar(Estacion estacion) {
 //Se le presta una bicicleta al usuario, primero se ingresa una estacion y se chequea todo (que no tenga un prestamo ni deudas actualmente, que la estacion tenga bicicletas y esté abierta, que el usuario tenga saldo suficiente para prestar una bicicleta)
 //Luego se imprime por pantalla las bicicletas que se encuentran en dicha estacion y se le pide al usuario que ingrese un numero para elegir la bicicleta
 //Despues, se confirma que este numero sea un valor valido para prestar una bicicleta.
 //Al final, se llama a la estacion para que haga el prestamo de la bicicleta, se anexa la bicicleta al usuario, se le disminuye el saldo a su tarjeta por el prestamo y se devuelve un mensaje diciendo los datos de la persona que ha prestado la bicicleta y los datos de la bicicleta
 		StringBuffer r = new StringBuffer("Prestamo no aceptado. ");
-		if ((this.bicicleta == null) && !deuda) {
+		if ((this.bicicleta == null) && !this.isDeuda()) {
 			if (estacion.getCantBicis() > 0 && tarjeta.getSaldo() >= 500 && estacion.isEstado()) {
 				for (int i = 0; i < estacion.getCap_max(); i++) {
 					System.out.print((i + 1) + ". " + estacion.getBicicletas()[i]);
@@ -226,7 +228,7 @@ public class Usuario extends Persona {
 		} else {
 			r.append("\n Tiene una deuda pendiente");
 		}
-		return r;
+		System.out.println(r);
 	}
 
 	public StringBuffer devolver(Estacion estacion/* , Date initialtime */) {
