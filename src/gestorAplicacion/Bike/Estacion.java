@@ -2,7 +2,6 @@ package gestorAplicacion.Bike;
 import gestorAplicacion.User.*;
 //import java.util.ArrayList;
 
-
 public class Estacion {
 	private String id;
 	private String tipo;
@@ -107,15 +106,18 @@ public class Estacion {
 	}
 	public void addBicicleta(Bicicleta bicicleta) {
 		int i=0;
-		System.out.println(bicicletas);
-		while(i<cap_max-1) {
-			if (bicicletas[i]==null) {
-				bicicletas[i]=bicicleta;
-				cantBicis++;
-				System.out.println("Bicicleta agregada");
-				break;
+		
+			while(i<cap_max) {
+				if (bicicletas[i]==null) {
+					bicicletas[i]=bicicleta;
+					cantBicis++;
+					System.out.println("Bicicleta agregada");
+					break;
+				}
+				i++;
 			}
-		}
+		
+		
 	}
 
 
@@ -129,6 +131,16 @@ public class Estacion {
 	}
 	
 	public byte getCantBicis() {
+		int i=0;
+		
+		for(int y=0;y<bicicletas.length;y++) {
+			if (bicicletas[i]!=null) {
+				i++;
+			}
+	
+		}
+		this.cantBicis=(byte)i;
+	
 		return cantBicis;
 	}
 

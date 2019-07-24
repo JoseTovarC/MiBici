@@ -38,7 +38,7 @@ public class Datos {
 
 	public static void cargarDatos() {
 		crearFilesYDirecciones();
-		String ruta = System.getProperty("user.dir") + "\\src\\BaseDatos\\";
+		String ruta = System.getProperty("user.dir") + "\\src\\temp\\";
 		CargarEstaciones(ruta);
 		cargarUsuarios(ruta);
 		cargarModeradores(ruta);
@@ -354,9 +354,24 @@ public class Datos {
 
 				String line = bicicleta.getId() + ";";
 				line += bicicleta.isDanio() + ";";
-				line += bicicleta.getUsuario().getId() + ";";
-				line += bicicleta.getDistribuidor().getId() + ";";
-				line += bicicleta.getEstacion().getIde();
+				if(bicicleta.getUsuario()==null) {
+					line += "0;";
+				}else {
+					line += bicicleta.getUsuario().getId() + ";";
+				}
+				
+				if(bicicleta.getDistribuidor()==null) {
+					line += "0;";
+				}else {
+					line += bicicleta.getDistribuidor().getId() + ";";
+				}
+				
+				if(bicicleta.getEstacion()==null) {
+					line += "0";
+				}else {
+					line += bicicleta.getEstacion().getIde();
+				}
+
 				pw.println(line);
 
 			}
@@ -627,45 +642,44 @@ public class Datos {
 		return r;
 	}
 
-}
-
-static public StringBuffer getPromCantB() {
-	StringBuffer r;
-	int prom=0;
-	int q=0;
-	for (Map.Entry<String, Estacion> entry : hashEstacion.entrySet()) {
-		prom+= entry.getValue().getCantBicis();
-		q+=1;
-	}
-	prom/=q;
-	r= new StringBuffer("El promedio de la cantidad bicicletas en todas las estaciones es de: "+ prom +" bicicletas");
-	return r;
-}
-static public StringBuffer getPorcGen() {
-	StringBuffer r;
-	int q=0;
-	int qh=0;
-	for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
-		q+= 1;
-		if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
-			qh+= 1;
+	static public StringBuffer getPromCantB() {
+		StringBuffer r;
+		int prom=0;
+		int q=0;
+		for (Map.Entry<String, Estacion> entry : hashEstacion.entrySet()) {
+			prom+= entry.getValue().getCantBicis();
+			q+=1;
 		}
+		prom/=q;
+		r= new StringBuffer("El promedio de la cantidad bicicletas en todas las estaciones es de: "+ prom +" bicicletas");
+		return r;
 	}
-	r=new StringBuffer("El porcentaje de hombres es de: "+(qh*100/q)+"%.");
-	r.append("El porcentaje de mujeres es de: "+(100-(qh*100/q))+"%.");
-	return r;
-}
-static public StringBuffer getPorcUsoGen() {
-	StringBuffer r;
-	int q=0;
-	int qh=0;
-	for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
-		q+= entry.getValue();
-		if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
-			qh+= entry.getValue();
+	static public StringBuffer getPorcGen() {
+		StringBuffer r;
+		int q=0;
+		int qh=0;
+		for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
+			q+= 1;
+			if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
+				qh+= 1;
+			}
 		}
+		r=new StringBuffer("El porcentaje de hombres es de: "+(qh*100/q)+"%.");
+		r.append("El porcentaje de mujeres es de: "+(100-(qh*100/q))+"%.");
+		return r;
 	}
-	r=new StringBuffer("El porcentaje de uso realizado por hombres es de: "+(qh*100/q)+"%.");
-	r.append("El porcentaje de uso realizado por mujeres es de: "+(100-(qh*100/q))+"%.");
-	return r;
+	static public StringBuffer getPorcUsoGen() {
+		StringBuffer r;
+		int q=0;
+		int qh=0;
+		for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
+			q+= entry.getValue();
+			if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
+				qh+= entry.getValue();
+			}
+		}
+		r=new StringBuffer("El porcentaje de uso realizado por hombres es de: "+(qh*100/q)+"%.");
+		r.append("El porcentaje de uso realizado por mujeres es de: "+(100-(qh*100/q))+"%.");
+		return r;
+	}
 }

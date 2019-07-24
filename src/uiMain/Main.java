@@ -60,17 +60,17 @@ public class Main {
 		/*;0;;0;;0
 		Jos;18;M;1193;1193;50000;3;1*/
 		//estacion(por defecto)
-		new Estacion("0", "Libre", true, 0);
-		new Distribuidor("Default", "0");
+	
 		Main.user = Usuario.nuevoUsuarioInvitado();
 		
 		BaseDatos.Datos.cargarDatos();
 		//Usuario invitado(por defecto)
 		
-		new Estacion("1", "Automatica", true,4, (Moderador) Usuario.getUsuarioPorUsername((long) 1193126480));
-		new Bicicleta(1, BaseDatos.Datos.hashEstacion.get("1"), BaseDatos.Datos.hashDistribuidor.get("0"));
-		new Bicicleta(2, BaseDatos.Datos.hashEstacion.get("1"), BaseDatos.Datos.hashDistribuidor.get("0"));
-		/*ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
+		/*new Estacion("1", "Automatica", true,4, (Moderador) Usuario.getUsuarioPorUsername((long) 1193126480));
+		new Bicicleta(1, BaseDatos.Datos.hashEstacion.get("1"));
+		new Bicicleta(2, BaseDatos.Datos.hashEstacion.get("1"));
+		
+		ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
 			{
 						add(BaseDatos.Datos.operations.get("13"));
 						add(BaseDatos.Datos.operations.get("9"));

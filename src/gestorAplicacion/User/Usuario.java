@@ -95,9 +95,9 @@ public class Usuario extends Persona {
 
 	public static Usuario nuevoUsuarioInvitado() {
 		ArrayList<OpcionDeMenu> OpcionesInvitado = new ArrayList<OpcionDeMenu>();
-		OpcionesInvitado.add(BaseDatos.Datos.operations.get("1"));
-		OpcionesInvitado.add(BaseDatos.Datos.operations.get("2"));
-		OpcionesInvitado.add(BaseDatos.Datos.operations.get("4"));
+		OpcionesInvitado.add(BaseDatos.Datos.operations.get("1")); //Iniciar Sesion
+		OpcionesInvitado.add(BaseDatos.Datos.operations.get("2")); //Registrarse
+		OpcionesInvitado.add(BaseDatos.Datos.operations.get("4")); //Salir
 
 		MenuDeConsola InvitadoMenu = new MenuDeConsola(OpcionesInvitado);
 		return new Usuario(InvitadoMenu);
@@ -113,6 +113,8 @@ public class Usuario extends Persona {
 
 	public boolean isDeuda() {
 		if(multas.size() == 0) {
+			this.deuda = false;
+		}else if(multas==null) {
 			this.deuda = false;
 		}else {
 			this.deuda = true;
@@ -187,7 +189,7 @@ public class Usuario extends Persona {
 
 	public void prestar(Estacion estacion) {
 		StringBuffer r;
-		if ((this.bicicleta == null) && !deuda) {
+		if ((this.bicicleta == null) && !this.isDeuda()) {
 			if (estacion.getCantBicis() > 0 && tarjeta.getSaldo() >= 500 && estacion.isEstado()) {
 				for (int i = 0; i < estacion.getCap_max(); i++) {
 					System.out.print((i + 1) + ". " + estacion.getBicicletas()[i]);
@@ -258,7 +260,7 @@ public class Usuario extends Persona {
 	}
 
 	public String pagarM() {
-		if (deuda) {
+		if (this.isDeuda()) {
 			if (tarjeta.pagarM()) {
 				return "Pago realizado.";
 			} else {

@@ -21,11 +21,12 @@ public class Pedir_bicicleta extends OpcionDeMenu {
 	@Override
 	public void ejecutar() {
 		Scanner esc = new Scanner(System.in);
+		ArrayList<Estacion> estaciones = new ArrayList<>();
 		while (true) {
 
 			System.out.println("Estaciones:");
-			ArrayList<Estacion> estaciones = new ArrayList<>();
-			int i = 0;
+			
+			int i = 1;
 			for (Entry<String, Estacion> estacion : BaseDatos.Datos.hashEstacion.entrySet()) {
 				Estacion est = estacion.getValue();
 				estaciones.add(est);

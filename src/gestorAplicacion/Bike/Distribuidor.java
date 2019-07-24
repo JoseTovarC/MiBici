@@ -1,6 +1,8 @@
 package gestorAplicacion.Bike;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Map.Entry;
+import BaseDatos.Datos;
 
 //import User.Usuario;
 
@@ -28,6 +30,7 @@ public class Distribuidor {
 	}
 	
 	public void addBicicleta(Bicicleta bici) {
+		this.numero_bicis++;
 		this.bicicletas.add(bici);
 	}
 	
@@ -61,16 +64,32 @@ public class Distribuidor {
 	public void transportar(int id, int q) {
 		
 	}
-	public void arreglar(String id) {
-		
-	}
-	/*public ArrayList<Bicicleta> crearB(int q) { 
-		ArrayList<Bicicleta> lote = new ArrayList<Bicicleta>();
-		for(int x=1;x<=q;x++) {
-			System.out.println("Ingrese el ID de bicicleta "+x);
-			int id = entrada.nextInt();
-			
+	public void arreglar(int id) {
+		for (Entry<Integer, Bicicleta> bici: Datos.hashBicicleta.entrySet()) {
+			Bicicleta bicicleta = bici.getValue();
+			if(bicicleta.getId()==id) {
+				Estacion estacion = bicicleta.getEstacion();
+				for(int x=0;x<estacion.getBicicletas().length;x++) {
+					if(estacion.getBicicletas()[x].getId()==bicicleta.getId()) {
+						estacion.getBicicletas()[x].setDanio(false);
+					}
+				}
+				break;
+			}
 		}
-	}*/
+	}
+	public String crearB(int q) {
+		if (Datos.hashEstacion.get("0").getCantBicis()+q>Datos.hashEstacion.get("0").getCap_max()) {
+			return "Fabrica llena, no se pueden crear "+ q +" bicicletas. Actualmente hay "+Datos.hashEstacion.get("0").getCantBicis()+" y se pueden crear hasta "+ (Datos.hashEstacion.get("0").getCap_max()-Datos.hashEstacion.get("0").getCantBicis())+" bicicletas mas.";
+		}
+		else {
+		for(int x=1;x<=q;x++) {
+			int id= numero_bicis +1;
+			numero_bicis++;
+			new Bicicleta(id, Datos.hashEstacion.get("0"), this);
+		}
+		return "Se han creado " + q +" bicicletas";
+		}
+	}
 	
 }
