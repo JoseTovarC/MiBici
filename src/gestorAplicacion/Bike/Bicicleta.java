@@ -28,6 +28,7 @@ public class Bicicleta {
 		//this.setUsuario(usuario);
 		this.setDistribuidor(distribuidor);
 		this.estacion = estacion;
+		this.estacion.addBicicleta(this);
 		BaseDatos.Datos.hashUsoB.put(id, 0);
 		BaseDatos.Datos.hashBicicleta.put(id,this);
 	}

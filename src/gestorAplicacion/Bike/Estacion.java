@@ -164,6 +164,9 @@ public class Estacion implements red{
 			bicicletas[idb].setEstacion(null);
 			bicicletas[idb] = null;
 			
+			if(this.getCantBicis()==0) {
+				Distribuidor.transportar(this);
+			}
 			cantBicis--;
             return true;
 		}
@@ -180,6 +183,18 @@ public class Estacion implements red{
         	return true;
         }
 		
+	}
+	
+	public Bicicleta sacarBicicletas() {
+		int i=0;
+		for(int y=0;y<bicicletas.length;y++) {
+			if (bicicletas[i]!=null) {
+				bicicletas[i].setEstacion(null);
+				return bicicletas[i];
+			}
+			i++;
+		}
+		return null;
 	}
 	
 	public String toString() {

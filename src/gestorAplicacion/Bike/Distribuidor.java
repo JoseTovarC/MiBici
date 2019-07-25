@@ -1,5 +1,6 @@
 package gestorAplicacion.Bike;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
 import BaseDatos.Datos;
@@ -74,8 +75,24 @@ public class Distribuidor {
 		this.bicicletas.add(bicicleta); 
 	}
 	
-	public void transportar(int id, int q) {
-		
+	public static void transportar(Estacion estacion) {
+		Estacion quitar=null;
+		for(Entry<String, Estacion> est: Datos.hashEstacion.entrySet()) {
+			Estacion esta = est.getValue();
+			int max=0;
+			if(esta.getCantBicis()>max) {
+				quitar = esta;
+				max = esta.getCantBicis();
+			}
+		}
+		if(quitar.getCantBicis()!=0) {
+				int max = (int) (quitar.getCantBicis()*0.5);
+				for(int i = 0;i<max;i++) {
+					Bicicleta b = quitar.sacarBicicletas();
+					estacion.addBicicleta(b);
+					b.setEstacion(estacion);
+				}
+		}
 	}
 	public void arreglar(int id) {
 		for (Entry<Integer, Bicicleta> bici: Datos.hashBicicleta.entrySet()) {
@@ -91,18 +108,8 @@ public class Distribuidor {
 			}
 		}
 	}
-	public String crearB(int q) {
-		if (Datos.hashEstacion.get("0").getCantBicis()+q>Datos.hashEstacion.get("0").getCap_max()) {
-			return "Fabrica llena, no se pueden crear "+ q +" bicicletas. Actualmente hay "+Datos.hashEstacion.get("0").getCantBicis()+" y se pueden crear hasta "+ (Datos.hashEstacion.get("0").getCap_max()-Datos.hashEstacion.get("0").getCantBicis())+" bicicletas mas.";
-		}
-		else {
-		for(int x=1;x<=q;x++) {
-			int id= numero_bicis +1;
-			numero_bicis++;
-			new Bicicleta(id, Datos.hashEstacion.get("0"), this);
-		}
-		return "Se han creado " + q +" bicicletas";
-		}
+	public String crearB(Estacion estacion) {
+		return "Se ha creado la bicicleta: "+new Bicicleta(BaseDatos.Datos.hashBicicleta.size()+1, estacion, this).toString();
 	}
 	
 }

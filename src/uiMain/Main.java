@@ -46,7 +46,7 @@ public class Main {
 		BaseDatos.Datos.operations.put("5", new ConsultasU("5"));
 		BaseDatos.Datos.operations.put("6", new PerfilTarjeta("6"));
 		BaseDatos.Datos.operations.put("7", new Deuda("7"));
-		BaseDatos.Datos.operations.put("8", new cant_biciclitas_esta("8"));	
+		BaseDatos.Datos.operations.put("8", new cant_bicicletas_esta("8"));	
 		BaseDatos.Datos.operations.put("9", new Pedir_bicicleta("9"));	
 		BaseDatos.Datos.operations.put("10", new Devolver_bicicleta("10"));
 		BaseDatos.Datos.operations.put("11", new Recargar_tarjeta("11"));
@@ -54,6 +54,7 @@ public class Main {
 		BaseDatos.Datos.operations.put("13", new ConsultasM("13"));
 		BaseDatos.Datos.operations.put("14", new CreacionM("14"));
 		BaseDatos.Datos.operations.put("15", new CrearBicicleta("15"));
+		BaseDatos.Datos.operations.put("16", new crearDistribuidor("16"));
 		BaseDatos.Datos.operations.put("18", new Funcionalidades("18"));
 		BaseDatos.Datos.operations.put("19", new MayorUsoP("19"));
 		BaseDatos.Datos.operations.put("20", new MayorEdad("20"));

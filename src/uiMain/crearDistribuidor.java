@@ -12,7 +12,7 @@ public class crearDistribuidor extends OpcionDeMenu {
 	@Override
 	public void ejecutar() {
 		Scanner ent= new Scanner(System.in);
-		System.out.println("Desea crear un nuevo distribuidor? (S/N");
+		System.out.println("¿Desea crear un nuevo distribuidor? (S/N)");
 		if (ent.next().contentEquals("N")) {
 			return;
 		}
@@ -21,13 +21,13 @@ public class crearDistribuidor extends OpcionDeMenu {
 		Distribuidor e=BaseDatos.Datos.hashDistribuidor.get(id);
 		if (e!=null) {
 			System.out.println("Ya existe un distribuidor con ese id: "+ e.toString());
-			System.out.println("Desea sobreescribirlo? (S/N");
+			System.out.println("Desea sobreescribirlo? (S/N)");
 			if (ent.next().equals("N")) {
 				System.out.println("No se sobreescribira el distribuidor.");
 				return;
 			}
 		}
-		System.out.println("Ingrese el nombre del distribuidor (Cadena String): ");
+		System.out.println("Ingrese el nombre del distribuidor (Cadena String sin espacios): ");
 		String name= ent.next();
 		if (e!=null) {
 			System.out.println("Se ha sobreescrito el distribuidor: ");
@@ -45,7 +45,7 @@ public class crearDistribuidor extends OpcionDeMenu {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Crear Distribuidor.";
+		return "Agregar Distribuidor.";
 	}
 
 }
