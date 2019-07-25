@@ -68,8 +68,8 @@ public class Main {
 		BaseDatos.Datos.operations.put("31", new Multar("31"));
 		
 		BaseDatos.Datos.operations.put("32", null); // LLENAR EL VACÍO CON ALGO, PUEDE SER CON PEDIR TRANSPORTE O ALGUN OTRO METODO
+		BaseDatos.Datos.operations.put("33", null);
 		
-		BaseDatos.Datos.operations.put("33", new Creaciones("33"));
 		BaseDatos.Datos.operations.put("34", new crearEstacion("34"));
 		BaseDatos.Datos.operations.put("35", new crearBicicleta("35"));
 		BaseDatos.Datos.operations.put("36", new crearDistribuidor("36"));

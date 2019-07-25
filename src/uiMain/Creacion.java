@@ -1,16 +1,27 @@
 package uiMain;
 
-public class Creacion extends OpcionDeMenu {
+import java.util.ArrayList;
 
-	
-	public Creacion(String key){
+import gestorAplicacion.User.Admin;
+
+public class Creacion extends OpcionDeMenu {
+	public Creacion(String key) {
 		super(key);
 	}
-	
 	@Override
 	public void ejecutar() {
-		// TODO Auto-generated method stub
+		ArrayList<OpcionDeMenu> crearOptions = new ArrayList<OpcionDeMenu>();
+		if (Main.user instanceof Admin) {
+			crearOptions.add(BaseDatos.Datos.operations.get("30"));
+			
+		}
+		crearOptions.add(BaseDatos.Datos.operations.get("36"));
+		crearOptions.add(BaseDatos.Datos.operations.get("35"));
+		crearOptions.add(BaseDatos.Datos.operations.get("34"));
+		
+		MenuDeConsola funcionsMenu = new MenuDeConsola(crearOptions);
 
+		funcionsMenu.lanzarMenu();
 	}
 
 	@Override
