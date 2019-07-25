@@ -150,12 +150,15 @@ public class Usuario extends Persona {
 			deuda = false;
 		} else {
 			deuda = true;
-			BaseDatos.Datos.hashCantM.put(this.getId(),multas.size());
-			
 		}
 	}
 	public void addMulta(Multa multa) {//agregar una multa
-		BaseDatos.Datos.hashCantM.put(this.getId(),BaseDatos.Datos.hashCantM.get(this.getId())+1);
+		if (BaseDatos.Datos.hashCantM.containsKey(this.getId())) {
+			BaseDatos.Datos.hashCantM.put(this.getId(),BaseDatos.Datos.hashCantM.get(this.getId())+1);
+		}
+		else {
+			BaseDatos.Datos.hashCantM.put(this.getId(), 1);
+		}
 		this.multas.add(multa);
 		if (multas == null) {
 			deuda = false;
@@ -273,20 +276,14 @@ public class Usuario extends Persona {
 		}
 	}
 	
-	public String pagarM(int id){ //El usuario paga una multa, se revisa si tiene saldo suficiente en su tarjeta y se devuelve el correspondiente mensaje
+	public String pagarM(String id){ //El usuario paga una multa, se revisa si tiene saldo suficiente en su tarjeta y se devuelve el correspondiente mensaje
 		if (this.isDeuda()) {
-			try {
-					Multa a=this.getMulta(id);
-			}catch(IndexOutOfBoundsException e) {
-				return "Ha escogido una posicion erronea.";
-			}
 			if (tarjeta.pagarM(id)) {
 				return "Pago realizado.";
 			} else {
 				return "Pago no realizado. \n Saldo insuficiente";
 			}
-		} 
-		else {
+		} else {
 			return "Pago no realizado. \n Usted no tiene multas o deudas actualmente.";
 		}
 	}

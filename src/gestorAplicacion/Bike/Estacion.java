@@ -2,11 +2,11 @@ package gestorAplicacion.Bike;
 import gestorAplicacion.User.*;
 //import java.util.ArrayList;
 
-public class Estacion implements red {
+public class Estacion implements red{
 	private String id;
 	private String tipo;
 	private boolean estado = true;
-	public static boolean estadogeneral= true;
+	private static boolean estadogeneral= true;
 	private int cap_max;
 	private Bicicleta[] bicicletas;
 	private Moderador moderador;

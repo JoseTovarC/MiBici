@@ -47,11 +47,12 @@ public class Tarjeta {
 		return false;
 	}
 
-	public boolean pagarM(int id) { //se paga una multa
+	public boolean pagarM(String id) { //se pagan todas las multas
 		if(usuario.isDeuda()) {
-			if(usuario.getMulta(id).getPrecio() <= saldo) {
+			if(usuario.getDeuda() <= saldo) {
 				saldo -= usuario.getDeuda();
-				usuario.delMulta(id);
+				usuario.delMultas();
+				usuario.setDeuda(false);
 				return true;
 			}
 		}

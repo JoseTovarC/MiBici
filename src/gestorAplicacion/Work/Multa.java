@@ -1,4 +1,5 @@
 package gestorAplicacion.Work;
+
 import gestorAplicacion.Bike.*;
 import gestorAplicacion.User.*;
 
@@ -25,8 +26,5 @@ public class Multa {
 
 	public String getDescripcion() {
 		return descripcion;
-	}
-	public String toString() {
-		return "Id: "+id+". Precio: "+precio+". Descripcion: "+descripcion;
 	}
 }

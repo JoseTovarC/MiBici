@@ -88,7 +88,8 @@ public class Datos {
 					String saldoTarjeta = user[5];
 					ArrayList<Multa> multass = new ArrayList<>();
 					for (byte i = 6; i < user.length; i++) {
-						String mul = user[i];
+						String multa = user[i];
+						byte mul = (byte) Integer.parseInt(multa);
 						multass.add(hashMulta.get(mul));
 					}
 					Usuario aux = new Usuario(nombre, edad, id, genero, clave, saldoTarjeta);
@@ -274,7 +275,7 @@ public class Datos {
 					if (((Moderador) userObj).getEstacion() != null) {
 						line += ((Moderador) userObj).getEstacion().getIde();
 					}else {
-						line+= "0";
+						line += "0";
 					}
 
 					pwModerador.println(line);
@@ -410,7 +411,6 @@ public class Datos {
 			// Ocurrio algo al crear las carpetas y los archivos
 		}
 	}
-
 	// METODOS FUNCIONALES //
 	public static StringBuffer getMayorUsoP() {
 		StringBuffer r;

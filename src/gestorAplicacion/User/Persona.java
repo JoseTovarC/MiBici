@@ -77,7 +77,6 @@ public abstract class Persona {
 	public void setClave(String clave) { //cambiar contraseña
 		this.clave = clave;
 	}
-	public abstract String toString();
 	public abstract void finalize();
 	// Abstract, obliga a Usuario y moderador definir destructor
 	public void setMenu(MenuDeConsola menu){
@@ -93,17 +92,14 @@ public abstract class Persona {
 				// Seteo el usuario
 				Main.user = u;
 				if(u instanceof Moderador) {
-					return "Bienvenido \nModerador: " + u.getNombre();
+					return "Bienvenido,\nModerador: " + u.getNombre();
 				}else if(u instanceof Admin) {
-					return "Bienvenido \nAdministrador: " + u.getNombre();
+					return "Bienvenido,\nAdministrador: " + u.getNombre();
 				}else {
-					return "Bienvenido \nUsuario: " + u.getNombre();
+					return "Bienvenido,\nUsuario: " + u.getNombre();
 				}
 				
 				
-			}
-			else {
-				return "Contrasenia erronea";
 			}
 		}
 		return "Usuario no encontrado";
