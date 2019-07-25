@@ -22,41 +22,31 @@ public class Pedir_bicicleta extends OpcionDeMenu {
 	public void ejecutar() {
 		Scanner esc = new Scanner(System.in);
 		ArrayList<Estacion> estaciones = new ArrayList<>();
-		while (true) {
-
-			System.out.println("Estaciones:");
-			
-			int i = 1;
-			for (Entry<String, Estacion> estacion : BaseDatos.Datos.hashEstacion.entrySet()) {
-				Estacion est = estacion.getValue();
-				estaciones.add(est);
-				System.out.println((i++) + ". " + est.getIde());
-
-			}
-			
-			if(estaciones.isEmpty()){
-				System.out.println("No hay todavia estaciones creadas, lo cual no se pueden hacer prestamos todavia");
-				break;
-			}
-			System.out.print("Elija la estaciòn en la que va a pedir su bicicleta: ");
-			i = esc.nextInt();
-			if(i >= 1 && i<= estaciones.size() ) {
-				Usuario aux = (Usuario) Datos.hashPersona.get(Main.user.getId());
-				estaciones.get(i-1).getCantBicis();
-				aux.prestar(estaciones.get(i-1));
-				break;
-			}else {
-				System.out.println("Elige una Opcion Valida!");
-			}
-			
+		for (Entry<String, Estacion> estacion : BaseDatos.Datos.hashEstacion.entrySet()) {
+			Estacion est = estacion.getValue();
+			estaciones.add(est);
 		}
+		int i;
+		while (true) {
+			System.out.print("Elija una estacion: \n");
+			BaseDatos.Datos.operations.get("32").ejecutar(); // getEstaciones
+			i = esc.nextInt();
 
+			if (i >= 1 && i <= estaciones.size()) {
+				Usuario aux = (Usuario) Datos.hashPersona.get(Main.user.getId());
+				estaciones.get(i - 1).getCantBicis();
+				aux.prestar(estaciones.get(i - 1));
+				break;
+			} else {
+				System.out.println("Ingrese un valor valido entre 1 y " + estaciones.size());
+			}
+		}
 	}
 
 	@Override
 	public String toString() {
 
-		return "Pedir Bicicleta";
+		return "Pedir Bicicleta.";
 	}
 
 }

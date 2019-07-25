@@ -32,9 +32,9 @@ public class Admin extends Persona{
 		user.setClave(clave);
 		
 		//Menu por defecto al crear un nuevo usuario administrador
-		String [] operations = {"1","2","3","4","5"};
+		String [] operations = {"0","33","37","3"};
 		MenuDeConsola.newMenu(user, operations);
-		if(true){
+		if(user!=null){
 			Datos.hashPersona.put(id,user);
 			return "Ha sido creado";
 		}else{

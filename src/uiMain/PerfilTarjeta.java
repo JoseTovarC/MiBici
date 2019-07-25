@@ -1,5 +1,7 @@
 package uiMain;
 
+import java.util.ArrayList;
+
 import BaseDatos.Datos;
 import gestorAplicacion.User.Usuario;
 
@@ -8,11 +10,25 @@ public class PerfilTarjeta extends OpcionDeMenu {
 	public PerfilTarjeta(String key){
 		super(key);
 	}
+	
+	private static ArrayList<OpcionDeMenu> tarjetaOptionsDefault = new ArrayList<OpcionDeMenu>() {
+		{
+			add(BaseDatos.Datos.operations.get("11"));
+			add(BaseDatos.Datos.operations.get("29"));
+		}
+	};
 	@Override
 	public void ejecutar() {
-		Usuario aux = (Usuario) Datos.hashPersona.get(Main.user.getId());
-		System.out.println(aux.getTarjeta());
+		ArrayList<OpcionDeMenu> tarjetaOptions = new ArrayList<OpcionDeMenu>() {
+			{
+				add(BaseDatos.Datos.operations.get("11"));
+				add(BaseDatos.Datos.operations.get("29"));
+			}
+		};
 
+		MenuDeConsola tarjetaMenu = new MenuDeConsola(tarjetaOptions);
+
+		tarjetaMenu.lanzarMenu();
 	}
 
 	@Override

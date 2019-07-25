@@ -9,28 +9,28 @@ import BaseDatos.Datos;
 public class Distribuidor {
 	private String nombre;
 	private String id;
-	private int numero_bicis;
+	static private int numero_bicis;
 	private ArrayList<Bicicleta> bicicletas = new ArrayList<>();
 	Scanner entrada = new Scanner(System.in);
 	
 	public Distribuidor(String nombre, String id){
 		this.nombre = nombre;
 		this.id = id;
-		numero_bicis = bicicletas.size();
+		//numero_bicis = bicicletas.size();
 		BaseDatos.Datos.hashDistribuidor.put(id,this);
 	}
-	public Distribuidor(String nombre, String id, int num_bicis){
+	/*public Distribuidor(String nombre, String id, int num_bicis){
 		this.nombre = nombre;
 		this.id = id;
 		this.numero_bicis = num_bicis;
 		BaseDatos.Datos.hashDistribuidor.put(id,this);
-	}
+	}*/
 	public void finalize() {
 		
 	}
 	
 	public void addBicicleta(Bicicleta bici) {
-		this.numero_bicis++;
+		//this.numero_bicis++;
 		this.bicicletas.add(bici);
 	}
 	
@@ -47,12 +47,12 @@ public class Distribuidor {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getNumero_bicis() {
+	public static int getNumero_bicis() {
 		return numero_bicis;
 	}
-	public void setNumero_bicis(int numero_bicis) {
+	/*public void setNumero_bicis(int numero_bicis) {
 		this.numero_bicis = numero_bicis;
-	}
+	}*/
 	
 	public ArrayList<Bicicleta> getBicicletas() {
 		return bicicletas;
@@ -84,8 +84,7 @@ public class Distribuidor {
 		}
 		else {
 		for(int x=1;x<=q;x++) {
-			int id= numero_bicis +1;
-			numero_bicis++;
+			int id= numero_bicis++;
 			new Bicicleta(id, Datos.hashEstacion.get("0"), this);
 		}
 		return "Se han creado " + q +" bicicletas";

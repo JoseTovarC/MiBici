@@ -25,7 +25,7 @@ public class Datos {
 	public static HashMap<Long, Moderador> hashModerador = new HashMap<>();
 	public static HashMap<Long, Usuario> hashUsuario = new HashMap<>();
 	public static HashMap<String, Distribuidor> hashDistribuidor = new HashMap<>();
-	public static HashMap<String, Multa> hashMulta = new HashMap<>();
+	public static HashMap<Byte, Multa> hashMulta = new HashMap<>();
 	public static HashMap<String, Estacion> hashEstacion = new HashMap<>();
 	public static HashMap<Integer, Bicicleta> hashBicicleta = new HashMap<>();
 	public static HashMap<Long, MenuDeConsola> menus = new HashMap<>();

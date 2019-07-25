@@ -1,24 +1,24 @@
 package uiMain;
 import java.util.*;
 import BaseDatos.Datos;
+import gestorAplicacion.User.Admin;
 import gestorAplicacion.User.Usuario;
 
-public class SignUp extends OpcionDeMenu {
+public class SignUpU extends OpcionDeMenu {
 
-	public SignUp(String key){
+	public SignUpU(String key){
 		super(key);
 	}
 	@Override
 	public void ejecutar() {
 		Scanner esc = new Scanner(System.in);
-		System.out.println("Estas en La opcion de registro de un nuevo ususario, si desea continuar con el registro envie la opcion (1)");
-		System.out.println("Si por casualidades de la vida o aleatoriedad llegaste hasta aqui, puedes retroceder con la opcion (2)");
+		System.out.println("1. Registrar un nuevo usuario.");
+		System.out.println("2. Retroceder.");
 		byte a=0;
 		while(a<1 || a>2) {
 			a= esc.nextByte();
 			if(a==1) {
-				
-				System.out.println("Ingresa el nombre completo y al final' *'(ESPACIO + *): ");				
+				System.out.println("Ingrese su nombre y luego ' *' (ESPACIO + *): ");				
 				String aux = esc.next();
 				String nombre = "";
 				while(!(aux.equals("*"))) {
@@ -26,18 +26,18 @@ public class SignUp extends OpcionDeMenu {
 					aux = esc.next();
 				}
 				nombre = nombre.substring(0,nombre.length()-1);
-				System.out.println("Ingrese su edad:");
+				System.out.println("Ingrese su edad: ");
 				byte edad = esc.nextByte();
 				if(edad<18) {
-					System.out.println("Eres Menor de edad, no puedes hacer uso del sistema:");
+					System.out.println("Es Menor de edad, no puede hacer uso del sistema.");
 					Main.user = Usuario.getUsuarioPorUsername((long)0);
 					break;
 				}
-				System.out.print("Genero (M/F):");
+				System.out.print("Ingrese su genero (M/F): ");
 				String genero = esc.next();
-				System.out.print("Ingrese el No. de la cedula(Este sera tu repectivo usuario):");
+				System.out.print("Ingrese el No. de su cedula (Este sera su usuario): ");
 				long id= esc.nextLong();
-				System.out.print("Inserte la contraseña que desee:");
+				System.out.print("Inserte una contraseña: ");
 				String contra = esc.next();
 				if(Usuario.getUsuarioPorUsername(id) == null) {
 					ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>(){
@@ -45,7 +45,6 @@ public class SignUp extends OpcionDeMenu {
 							add(BaseDatos.Datos.operations.get("5"));		
 							add(BaseDatos.Datos.operations.get("9"));	
 							add(BaseDatos.Datos.operations.get("10"));
-							add(BaseDatos.Datos.operations.get("11"));
 							add(BaseDatos.Datos.operations.get("12"));
 							add(BaseDatos.Datos.operations.get("3"));
 
@@ -54,24 +53,27 @@ public class SignUp extends OpcionDeMenu {
 							
 					MenuDeConsola userMenu = new MenuDeConsola(userOptions);
 					new Usuario(nombre, edad, id, genero, contra, 0, userMenu);
-					System.out.println("Registro realizado exitosamente");					
+					System.out.println("Registro realizado exitosamente.");					
 				}else {
-					System.out.println("No se pudo realizar el registro, el usuario ya existe");
+					System.out.println("No se pudo realizar el registro, el usuario ya existe.");
 				}
 				
 				Main.user = Usuario.getUsuarioPorUsername((long)0);
 			}else if(a==2){
 				Main.user = Usuario.getUsuarioPorUsername((long)0);
 			}else {
-				System.out.println("Inserte un valor valido");
+				System.out.println("Inserte un valor valido.");
 			}
 		}
-		
+		esc.close();
 	}
 
 	@Override
 	public String toString() {
-		return "Registrarse";
+		if (Main.user instanceof Admin) {
+			return "Crear Usuario.";
+		}
+		return "Registrarse.";
 	}
 
 }

@@ -10,14 +10,14 @@ public class SignOut  extends OpcionDeMenu{
 	
 	@Override
 	public void ejecutar() {
-		System.out.println("Adios");
+		System.out.println("Cerrando Sesion.");
 		Main.user = Usuario.getUsuarioPorUsername((long)0);
 		
 	}
 
 	@Override
 	public String toString() {
-		return "Cerrar Sesión";
+		return "Cerrar Sesion";
 	}
 
 }

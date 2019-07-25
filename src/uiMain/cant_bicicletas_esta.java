@@ -3,9 +3,9 @@ import gestorAplicacion.Bike.*;
 import java.util.Map.Entry;
 import BaseDatos.Datos.*;
 
-public class cant_biciclitas_esta extends OpcionDeMenu {
+public class cant_bicicletas_esta extends OpcionDeMenu {
 
-	public cant_biciclitas_esta(String key){
+	public cant_bicicletas_esta(String key){
 		super(key);
 	}
 	@Override
@@ -22,7 +22,7 @@ public class cant_biciclitas_esta extends OpcionDeMenu {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Cantidad de bicicletas por estación";
+		return "Cantidad de bicicletas por estacion";
 	}
 
 }

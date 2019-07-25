@@ -14,7 +14,7 @@ public class Login extends OpcionDeMenu{
 		Scanner esc = new Scanner(System.in);
 		System.out.print("Ingrese su usuario: ");
 		long id = esc.nextLong();
-		System.out.print("Ingrese su contraseña: ");
+		System.out.print("Ingrese su contrasenia: ");
 		String password = esc.next();
 		
 		System.out.println(Usuario.login(id, password));
@@ -23,7 +23,7 @@ public class Login extends OpcionDeMenu{
 
 	@Override
 	public String toString() {
-		return "Iniciar sesión";
+		return "Iniciar sesion";
 	}
 
 }

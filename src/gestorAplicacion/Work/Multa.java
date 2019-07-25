@@ -1,22 +1,21 @@
 package gestorAplicacion.Work;
-
 import gestorAplicacion.Bike.*;
 import gestorAplicacion.User.*;
 
 public class Multa {
 
-	private final String id;
+	private final byte id;
 	private final String descripcion;
 	private int precio;
 
-	public Multa(String id, String descripcion, int precio) {
+	public Multa(byte id, String descripcion, int precio) {
 		this.id = id;
 		this.precio = precio;
 		this.descripcion = descripcion;
 
 	}
 
-	public String getId() {
+	public byte getId() {
 		return id;
 	}
 
@@ -26,5 +25,8 @@ public class Multa {
 
 	public String getDescripcion() {
 		return descripcion;
+	}
+	public String toString() {
+		return "Id: "+id+". Precio: "+precio+". Descripcion: "+descripcion;
 	}
 }

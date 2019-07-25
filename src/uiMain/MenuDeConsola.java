@@ -63,7 +63,6 @@ public class MenuDeConsola {
 		System.out.print("Ingrese la opcion: ");
 		int opt = esc.nextInt();
 		options.get((opt-1)).ejecutar();
-		
 	}
 	
 	public static void newMenu(Persona user, String [] operations) {
