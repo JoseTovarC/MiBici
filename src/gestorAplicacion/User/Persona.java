@@ -79,12 +79,13 @@ public abstract class Persona {
 	// Abstract, obliga a Usuario y moderador definir destructor
 	public void setMenu(MenuDeConsola menu){
 		this.menu = menu;
+		menu.setUser(this);
 	}
 	public MenuDeConsola getMenu(){
 		return menu;
 	}
 	public static String login(long id, String password) {
-	Persona u = Usuario.getUsuarioPorUsername(id);
+	Persona u = Persona.getUsuarioPorUsername(id);
 		if (u != null) {
 			if (u.getId() == id && u.getClave().equals(password)) {
 				// Seteo el usuario

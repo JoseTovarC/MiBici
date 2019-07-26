@@ -1,6 +1,7 @@
 package gestorAplicacion.User;
 //import java.util.ArrayList;
 
+import BaseDatos.Datos;
 //import Work.*;
 import gestorAplicacion.Bike.*;
 import uiMain.MenuDeConsola;
@@ -15,7 +16,13 @@ public class Moderador extends Usuario{
 		BaseDatos.Datos.hashModerador.put(id,this);
 		
 	}
-	
+
+	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo, Estacion estacion) {
+		super(nombre, edad, id, genero, clave, saldo, null, "No Agregar a la hash de Usuarios");
+		this.estacionM = estacion;
+		BaseDatos.Datos.hashModerador.put(id,this);
+		
+	}
 	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
 		super(nombre, edad, id, genero, clave, saldo, menu, "No Agregar a la hash de Usuarios");
 		BaseDatos.Datos.hashModerador.put(id,this);
@@ -26,6 +33,8 @@ public class Moderador extends Usuario{
 		long id = (long)Integer.parseInt(iden);
 		BaseDatos.Datos.hashModerador.put(id,this);
 	}
+	
+	
 	
 
 	public void multar(Usuario usuario, String tipo) {

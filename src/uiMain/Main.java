@@ -15,6 +15,9 @@ import BaseDatos.*;
 public class Main {
 	static boolean aux= true;	
 	public static Persona user;
+	public static void setUser(Persona user){
+		Main.user = user;
+	}
 	public static void main(String[] args) throws IOException {
 
 		Main.config_inicio();
@@ -37,7 +40,7 @@ public class Main {
 
 	public static void config_inicio() {
 
-		BaseDatos.Datos.cargarDatos();
+
 		// Cargar las opciones del programa primero
 		BaseDatos.Datos.operations.put("0", new Modificar("0"));
 		BaseDatos.Datos.operations.put("1", new Login("1"));
@@ -72,6 +75,11 @@ public class Main {
 		BaseDatos.Datos.operations.put("30", new SignUpM("30"));
 		BaseDatos.Datos.operations.put("31", new SignUpA("31"));
 		BaseDatos.Datos.operations.put("32", new Multar("32"));
+		BaseDatos.Datos.operations.put("33", new SeeOpt("33"));
+		BaseDatos.Datos.operations.put("34", new AddOpt("34"));
+		BaseDatos.Datos.operations.put("35", new RemoveOpt("35"));
+		
+		
 		
 		
 		BaseDatos.Datos.hashMulta.put((byte)1, new Multa((byte)1, "Tiempo maximo excedido.", 30000));
@@ -81,17 +89,17 @@ public class Main {
 		BaseDatos.Datos.hashMulta.put((byte)5, new Multa((byte)5, "Carga maxima excedida", 25000));
 		BaseDatos.Datos.hashMulta.put((byte)6, new Multa((byte)6, "Estado Embriaguez", 80000));
 		
-		
+		BaseDatos.Datos.cargarDatos();
 		
 		Main.user = Usuario.nuevoUsuarioInvitado();
+		//Admin;18;null;1;666
+		//IT;19;F;2;777
 		
-		BaseDatos.Datos.cargarDatos();
 		Admin.newAdminUser("Admin", (byte)18, (long)1, "null", "666");
+		Admin.newAdminUser("IT", (byte)19, (long)2, "F", "777");
 		//Usuario invitado(por defecto)
 		
-		/*new Estacion("1", "Automatica", true,4, (Moderador) Usuario.getUsuarioPorUsername((long) 1193126480));
-		new Bicicleta(1, BaseDatos.Datos.hashEstacion.get("1"));
-		new Bicicleta(2, BaseDatos.Datos.hashEstacion.get("1"));*/
+	
 		
 		ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
 			{
@@ -105,12 +113,44 @@ public class Main {
 						add(BaseDatos.Datos.operations.get("3"));						
 			}
 		};
-				
+		//Freddy;20;M;10021;5132;2500;0
+		//Luis;19;M;10030;0561;10000;0
+		//Catalina;18;F;10031;0505;1500;0
 		MenuDeConsola ModeradorMenu = new MenuDeConsola(ModeradorOptions);
-		new Moderador("Jose Orlando Tovar Cano", (byte) 18, (long)1193126480, "M", "1193",0,ModeradorMenu,Estacion.getEstacionporId("0"));
 		
+		new Moderador("Freddy", (byte) 20, (long)10021, "M", "5132",2500,ModeradorMenu);
+		new Moderador("Luis", (byte) 19, (long)10030, "M", "0561",10000,ModeradorMenu);
+		new Moderador("Catalina", (byte) 18, (long)10031, "F", "0505",1500,ModeradorMenu);
 		
+		//Hernán Darío;23;M;10018;1890;0
+		//Julian;19;M;10020;0202;0
+		//Yurleidi Maria;22;F;10007;1234;0
+		//Juan José;21;M;10009;4321;0
+		//Karen;18;F;10010;1278;0
+		//Fernanda;19;F;10011;1111;0
+		//Stefania;18;F;10027;2780;0
+		
+		ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>(){
+		{
+			add(BaseDatos.Datos.operations.get("5"));		
+			add(BaseDatos.Datos.operations.get("9"));	
+			add(BaseDatos.Datos.operations.get("10"));
+			add(BaseDatos.Datos.operations.get("11"));
+			add(BaseDatos.Datos.operations.get("12"));
+			add(BaseDatos.Datos.operations.get("3"));
 
+		}
+	};
+			
+	MenuDeConsola userMenu = new MenuDeConsola(userOptions);
+	new Usuario("Hernán Darío", (byte) 23, (long) 10018, "M","1890" , 0, userMenu);
+	new Usuario("Julian", (byte) 19, (long) 10020, "M","0202" , 0, userMenu);
+	new Usuario("Yurleidi Maria", (byte) 22, (long) 10007, "F","1234" , 0, userMenu);
+	new Usuario("Juan Jose", (byte) 21, (long) 10009, "M","4321" , 0, userMenu);
+	new Usuario("Karen", (byte) 18, (long) 10010, "F","1278" , 0, userMenu);
+	new Usuario("Fernanda", (byte) 19, (long) 10011, "F","1111" , 0, userMenu);
+	new Usuario("Estefania", (byte) 18, (long) 10027, "F","2780" , 0, userMenu);
+	
 	}
 
 }

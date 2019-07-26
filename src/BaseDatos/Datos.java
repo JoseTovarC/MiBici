@@ -46,6 +46,7 @@ public class Datos {
 		cargarMenus(ruta);
 		cargarDistribuidores(ruta);
 		cargarBicicletas(ruta);
+		cargarMenus(ruta);
 	}
 
 	
@@ -118,7 +119,7 @@ public class Datos {
 					String saldoTarjeta = user[5];
 					String EstacionId = user[6];
 					Moderador aux = new Moderador(nombre, edad, id, genero, clave, saldoTarjeta);
-					if (!EstacionId.equals("")) {
+					if (!EstacionId.equals("0")) {
 						aux.setEstacion(Estacion.getEstacionporId(EstacionId));
 					}
 
@@ -152,27 +153,29 @@ public class Datos {
 			// Error al leer
 		}
 	}
+	
 
 	private static void cargarMenus(String ruta) {
-		try {
-			FileReader fr = new FileReader(ruta + "menusUsuarios.txt");
-			BufferedReader br = new BufferedReader(fr);
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (!line.isEmpty()) {
-					String[] menu = line.split(";");
-					long aux = (long) Integer.parseInt(menu[0]);
-					Persona user = Usuario.getUsuarioPorUsername(aux);
-					// slice de arrays
-					String[] operations = Arrays.copyOfRange(menu, 1, menu.length);
-					MenuDeConsola.newMenu(user, operations);
-				}
-			}
-			br.close();
-		} catch (Exception e) {
-			// Error al leer
-		}
+		try{
+            FileReader fr = new FileReader(ruta+"menusUsuarios.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while((line = br.readLine()) != null){
+            	if (!line.isEmpty()) {
+            		String [] menu = line.split(";");
+            		long aux = (long) Integer.parseInt(menu[0]);
+            		Persona user = Persona.getUsuarioPorUsername(aux);
+            		//slice de arrays
+            		String[] operations = Arrays.copyOfRange(menu, 1, menu.length);
+            		MenuDeConsola.newMenu(user, operations);
+            	}
+            }
+            br.close();
+        }catch(Exception e){
+        	//Error al leer
+        }
 	}
+	
 
 	private static void cargarDistribuidores(String ruta) {
 		try {

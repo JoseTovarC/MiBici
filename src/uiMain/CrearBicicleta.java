@@ -90,7 +90,6 @@ public class CrearBicicleta extends OpcionDeMenu {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Solicitar creacion de bicicleta";
 	}
 

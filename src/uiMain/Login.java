@@ -20,6 +20,8 @@ public class Login extends OpcionDeMenu{
 		
 		System.out.println(Persona.login(id, password));
 		
+		
+		
 	}
 
 	@Override
