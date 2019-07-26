@@ -87,6 +87,9 @@ public class Distribuidor {
 		}
 		if(quitar.getCantBicis()!=0) {
 				int max = (int) (quitar.getCantBicis()*0.5);
+				if(max>estacion.getCap_max()) {
+					max = estacion.getCap_max();
+				}
 				for(int i = 0;i<max;i++) {
 					Bicicleta b = quitar.sacarBicicletas();
 					estacion.addBicicleta(b);

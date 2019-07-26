@@ -12,7 +12,7 @@ public class crearEstacion extends OpcionDeMenu {
 	@Override
 	public void ejecutar() {
 		Scanner ent= new Scanner(System.in);
-		System.out.println("Desea crear una nueva estacion? (S/N");
+		System.out.println("¿Desea crear una nueva estacion? (S/N)");
 		if (ent.next().contentEquals("N")) {
 			return;
 		}
@@ -21,7 +21,7 @@ public class crearEstacion extends OpcionDeMenu {
 		Estacion e=BaseDatos.Datos.hashEstacion.get(id);
 		if (e!=null) {
 			System.out.println("Ya existe una estacion con ese id: "+ e.toString());
-			System.out.println("Desea sobreescribirla? (S/N");
+			System.out.println("Desea sobreescribirla? (S/N)");
 			if (ent.next().equals("N")) {
 				System.out.println("No se sobreescribira la estacion.");
 				return;

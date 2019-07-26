@@ -39,6 +39,7 @@ public class Main {
 
 		BaseDatos.Datos.cargarDatos();
 		// Cargar las opciones del programa primero
+		BaseDatos.Datos.operations.put("0", new Modificar("0"));
 		BaseDatos.Datos.operations.put("1", new Login("1"));
 		BaseDatos.Datos.operations.put("2", new SignUp("2"));
 		BaseDatos.Datos.operations.put("3", new SignOut("3"));
@@ -55,6 +56,7 @@ public class Main {
 		BaseDatos.Datos.operations.put("14", new CreacionM("14"));
 		BaseDatos.Datos.operations.put("15", new CrearBicicleta("15"));
 		BaseDatos.Datos.operations.put("16", new crearDistribuidor("16"));
+		BaseDatos.Datos.operations.put("17", new crearEstacion("17"));
 		BaseDatos.Datos.operations.put("18", new Funcionalidades("18"));
 		BaseDatos.Datos.operations.put("19", new MayorUsoP("19"));
 		BaseDatos.Datos.operations.put("20", new MayorEdad("20"));
@@ -66,6 +68,11 @@ public class Main {
 		BaseDatos.Datos.operations.put("26", new MayorUsoB("26"));
 		BaseDatos.Datos.operations.put("27", new MayorUsoE("27"));
 		BaseDatos.Datos.operations.put("28", new PromCantB("28"));
+		BaseDatos.Datos.operations.put("29", new CreacionA("29"));
+		BaseDatos.Datos.operations.put("30", new SignUpM("30"));
+		BaseDatos.Datos.operations.put("31", new SignUpA("31"));
+		BaseDatos.Datos.operations.put("32", new Multar("32"));
+		
 		
 		BaseDatos.Datos.hashMulta.put((byte)1, new Multa((byte)1, "Tiempo maximo excedido.", 30000));
 		BaseDatos.Datos.hashMulta.put((byte)2, new Multa((byte)2, "Danio intencional.", 75000));
@@ -75,15 +82,17 @@ public class Main {
 		BaseDatos.Datos.hashMulta.put((byte)6, new Multa((byte)6, "Estado Embriaguez", 80000));
 		
 		
+		
 		Main.user = Usuario.nuevoUsuarioInvitado();
 		
 		BaseDatos.Datos.cargarDatos();
+		Admin.newAdminUser("Admin", (byte)18, (long)1, "null", "666");
 		//Usuario invitado(por defecto)
 		
 		/*new Estacion("1", "Automatica", true,4, (Moderador) Usuario.getUsuarioPorUsername((long) 1193126480));
 		new Bicicleta(1, BaseDatos.Datos.hashEstacion.get("1"));
 		new Bicicleta(2, BaseDatos.Datos.hashEstacion.get("1"));*/
-		/*
+		
 		ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
 			{
 						add(BaseDatos.Datos.operations.get("13"));
@@ -92,13 +101,14 @@ public class Main {
 						add(BaseDatos.Datos.operations.get("11"));
 						add(BaseDatos.Datos.operations.get("14"));
 						add(BaseDatos.Datos.operations.get("18"));
+						add(BaseDatos.Datos.operations.get("32"));
 						add(BaseDatos.Datos.operations.get("3"));						
 			}
 		};
 				
 		MenuDeConsola ModeradorMenu = new MenuDeConsola(ModeradorOptions);
 		new Moderador("Jose Orlando Tovar Cano", (byte) 18, (long)1193126480, "M", "1193",0,ModeradorMenu,Estacion.getEstacionporId("0"));
-		*/
+		
 		
 
 	}

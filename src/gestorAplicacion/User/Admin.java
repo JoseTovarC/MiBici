@@ -9,10 +9,6 @@ public class Admin extends Persona{
 	
 	
 
-	Admin(){
-		super();
-	}
-	
 	public Admin(String nombre, byte edad, long id, String genero, String clave) {
 		super(nombre, edad, id, genero, clave);	
 	
@@ -23,20 +19,15 @@ public class Admin extends Persona{
 	}
 
 	public static String newAdminUser(String nombre, byte edad, long id, String genero, String clave){
-		Admin user = new Admin();
-		//Validaciones de cada parametro
-		user.setNombre(nombre);
-		user.setEdad(edad);
-		user.setId(id);
-		user.setGenero(genero);
-		user.setClave(clave);
+		Admin user = new Admin(nombre,edad,id,genero,clave);
 		
 		//Menu por defecto al crear un nuevo usuario administrador
-		String [] operations = {"1","2","3","4","5"};
+		String [] operations = {"0","29","3"};
 		MenuDeConsola.newMenu(user, operations);
+		Datos.hashPersona.put(id,user);
 		if(true){
-			Datos.hashPersona.put(id,user);
-			return "Ha sido creado";
+			
+			return "Ha sido creado: "+Datos.hashPersona.get(id).toString();
 		}else{
 			return "No ha sido creado...";
 		}
@@ -46,6 +37,9 @@ public class Admin extends Persona{
 	public void finalize() {
 		// TODO Auto-generated method stub
 		
+	}
+	public String toString() {
+		return "Administrador: "+this.getNombre()+".";
 	}
 
 	

@@ -11,9 +11,7 @@ public abstract class Persona {
 	private String genero;
 	private String clave;
 	private MenuDeConsola menu;
-	public Persona() {
-		
-	}
+
 	
 	public Persona(String nombre, byte edad, long id, String genero, String clave, MenuDeConsola menu) {
 		this.nombre = nombre;

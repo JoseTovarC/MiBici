@@ -610,7 +610,7 @@ public class Datos {
 	public static StringBuffer getMayorEdad() {
 		StringBuffer r;
 		Deque<Long> cola = new LinkedList<>();
-		int max = 0;
+		int max = 17;
 		for (Map.Entry<Long, Persona> entry : hashPersona.entrySet()) {
 			if (entry.getValue().getEdad() > max) {
 				cola.clear();
@@ -620,7 +620,7 @@ public class Datos {
 				cola.add(entry.getKey());
 			}
 		}
-		if (cola.isEmpty()) {
+		if (cola.isEmpty() || max==17) {
 			r = new StringBuffer("No se han registrado datos");
 		} else if (cola.size() == 1) {
 			if (max==0) {
@@ -658,7 +658,7 @@ public class Datos {
 				cola.add(entry.getKey());
 			}
 		}
-		if (cola.isEmpty()) {
+		if (cola.isEmpty() || min==200) {
 			r = new StringBuffer("No se han registrado datos");
 		} else if (cola.size() == 1) {
 			if (min==200) {

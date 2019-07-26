@@ -1,6 +1,5 @@
 package uiMain;
 import java.util.*;
-import BaseDatos.Datos;
 import gestorAplicacion.User.Usuario;
 
 public class SignUp extends OpcionDeMenu {
@@ -11,8 +10,8 @@ public class SignUp extends OpcionDeMenu {
 	@Override
 	public void ejecutar() {
 		Scanner esc = new Scanner(System.in);
-		System.out.println("Estas en La opcion de registro de un nuevo ususario, si desea continuar con el registro envie la opcion (1)");
-		System.out.println("Si por casualidades de la vida o aleatoriedad llegaste hasta aqui, puedes retroceder con la opcion (2)");
+		System.out.println("1. Registrar un nuevo Usuario.");
+		System.out.println("2. Retroceder.");
 		byte a=0;
 		while(a<1 || a>2) {
 			a= esc.nextByte();

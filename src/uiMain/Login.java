@@ -1,6 +1,7 @@
 package uiMain;
 import java.util.Scanner;
 
+import gestorAplicacion.User.Persona;
 import gestorAplicacion.User.Usuario;
 
 
@@ -17,7 +18,7 @@ public class Login extends OpcionDeMenu{
 		System.out.print("Ingrese su contraseña: ");
 		String password = esc.next();
 		
-		System.out.println(Usuario.login(id, password));
+		System.out.println(Persona.login(id, password));
 		
 	}
 

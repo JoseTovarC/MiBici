@@ -3,7 +3,6 @@ package gestorAplicacion.User;
 import gestorAplicacion.Bike.*;
 import uiMain.*;
 import gestorAplicacion.Work.*;
-import BaseDatos.*;
 
 import java.util.*;
 
@@ -16,9 +15,6 @@ public class Usuario extends Persona {
 	private ArrayList<Multa> multas = new ArrayList<>();
 
 	// Constructores
-	public Usuario() {
-		super();
-	}
 	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo) {
 		super(nombre, edad, id, genero, clave);
 		this.tarjeta= new Tarjeta(saldo, this);

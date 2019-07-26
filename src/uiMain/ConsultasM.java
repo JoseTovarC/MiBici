@@ -1,7 +1,6 @@
 package uiMain;
 
 import java.util.ArrayList;
-import BaseDatos.Datos;
 
 public class ConsultasM extends OpcionDeMenu {
 
