@@ -99,7 +99,7 @@ public class Main {
 		Admin.newAdminUser("IT", (byte)19, (long)2, "F", "777");
 		//Usuario invitado(por defecto)
 		
-	
+	/*
 		
 		ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
 			{
@@ -150,7 +150,7 @@ public class Main {
 	new Usuario("Karen", (byte) 18, (long) 10010, "F","1278" , 0, userMenu);
 	new Usuario("Fernanda", (byte) 19, (long) 10011, "F","1111" , 0, userMenu);
 	new Usuario("Estefania", (byte) 18, (long) 10027, "F","2780" , 0, userMenu);
-	
-	}
+	*/
 
+	}
 }
