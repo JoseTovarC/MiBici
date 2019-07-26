@@ -40,7 +40,7 @@ public class Main {
 
 	public static void config_inicio() {
 
-
+		BaseDatos.Datos.cargarDatos();
 		// Cargar las opciones del programa primero
 		BaseDatos.Datos.operations.put("0", new Modificar("0"));
 		BaseDatos.Datos.operations.put("1", new Login("1"));

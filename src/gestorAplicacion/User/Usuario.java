@@ -62,6 +62,7 @@ public class Usuario extends Persona {
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
 		long id = (long)Integer.parseInt(iden);
+		
 		BaseDatos.Datos.hashPersona.put(id, this);
 		BaseDatos.Datos.hashUsoP.put(id, 0);
 	}

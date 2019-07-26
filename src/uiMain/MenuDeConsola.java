@@ -61,8 +61,6 @@ public class MenuDeConsola {
 			System.out.println(i+" "+option);
 			i++;
 		}
-		//Opcion para terminar el programa, hecho con un try catch.
-		System.out.println(i+" Terminar programa");
 		
 		System.out.print("Ingrese la opcion: ");
 		int opt = leer.nextInt();
@@ -71,6 +69,7 @@ public class MenuDeConsola {
 	}
 	
 	public static void newMenu(Persona user, String [] operations) {
+		
 		// Cargar las opciones del programa primero
 				BaseDatos.Datos.operations.put("0", new Modificar("0"));
 				BaseDatos.Datos.operations.put("1", new Login("1"));

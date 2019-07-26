@@ -15,8 +15,44 @@ import java.util.Map;
 import java.util.Map.Entry;
 import gestorAplicacion.User.*;
 import gestorAplicacion.Work.Multa;
+import uiMain.AddOpt;
+import uiMain.ConsultasM;
+import uiMain.ConsultasU;
+import uiMain.CreacionA;
+import uiMain.CreacionM;
+import uiMain.CrearBicicleta;
+import uiMain.Deuda;
+import uiMain.Devolver_bicicleta;
+import uiMain.Funcionalidades;
+import uiMain.Login;
+import uiMain.MayorCantM;
+import uiMain.MayorEdad;
+import uiMain.MayorUsoB;
+import uiMain.MayorUsoE;
+import uiMain.MayorUsoP;
+import uiMain.MenorEdad;
 import uiMain.MenuDeConsola;
+import uiMain.Modificar;
+import uiMain.Multar;
 import uiMain.OpcionDeMenu;
+import uiMain.Pagar_multas;
+import uiMain.Pedir_bicicleta;
+import uiMain.PerfilTarjeta;
+import uiMain.PorcGen;
+import uiMain.PorcUsoGen;
+import uiMain.PromCantB;
+import uiMain.PromEdad;
+import uiMain.Recargar_tarjeta;
+import uiMain.RemoveOpt;
+import uiMain.SeeOpt;
+import uiMain.SignOut;
+import uiMain.SignUp;
+import uiMain.SignUpA;
+import uiMain.SignUpM;
+import uiMain.cant_bicicletas_esta;
+import uiMain.crearDistribuidor;
+import uiMain.crearEstacion;
+import uiMain.salir;
 import gestorAplicacion.Bike.*;
 
 public class Datos {
@@ -37,7 +73,45 @@ public class Datos {
 	public static HashMap<Long, Integer> hashCantM = new HashMap<>();
 
 	public static void cargarDatos() {
+		// Cargar las opciones del programa primero
+		BaseDatos.Datos.operations.put("0", new Modificar("0"));
+		BaseDatos.Datos.operations.put("1", new Login("1"));
+		BaseDatos.Datos.operations.put("2", new SignUp("2"));
+		BaseDatos.Datos.operations.put("3", new SignOut("3"));
+		BaseDatos.Datos.operations.put("4", new salir("4"));
+		BaseDatos.Datos.operations.put("5", new ConsultasU("5"));
+		BaseDatos.Datos.operations.put("6", new PerfilTarjeta("6"));
+		BaseDatos.Datos.operations.put("7", new Deuda("7"));
+		BaseDatos.Datos.operations.put("8", new cant_bicicletas_esta("8"));	
+		BaseDatos.Datos.operations.put("9", new Pedir_bicicleta("9"));	
+		BaseDatos.Datos.operations.put("10", new Devolver_bicicleta("10"));
+		BaseDatos.Datos.operations.put("11", new Recargar_tarjeta("11"));
+		BaseDatos.Datos.operations.put("12", new Pagar_multas("12"));
+		BaseDatos.Datos.operations.put("13", new ConsultasM("13"));
+	    BaseDatos.Datos.operations.put("14", new CreacionM("14"));
+		BaseDatos.Datos.operations.put("15", new CrearBicicleta("15"));
+		BaseDatos.Datos.operations.put("16", new crearDistribuidor("16"));
+		BaseDatos.Datos.operations.put("17", new crearEstacion("17"));
+		BaseDatos.Datos.operations.put("18", new Funcionalidades("18"));
+		BaseDatos.Datos.operations.put("19", new MayorUsoP("19"));
+		BaseDatos.Datos.operations.put("20", new MayorEdad("20"));
+		BaseDatos.Datos.operations.put("21", new MenorEdad("21"));
+		BaseDatos.Datos.operations.put("22", new PromEdad("22"));
+		BaseDatos.Datos.operations.put("23", new PorcGen("23"));
+		BaseDatos.Datos.operations.put("24", new PorcUsoGen("24"));
+		BaseDatos.Datos.operations.put("25", new MayorCantM("25"));
+		BaseDatos.Datos.operations.put("26", new MayorUsoB("26"));
+		BaseDatos.Datos.operations.put("27", new MayorUsoE("27"));
+		BaseDatos.Datos.operations.put("28", new PromCantB("28"));
+		BaseDatos.Datos.operations.put("29", new CreacionA("29"));
+		BaseDatos.Datos.operations.put("30", new SignUpM("30"));
+		BaseDatos.Datos.operations.put("31", new SignUpA("31"));
+		BaseDatos.Datos.operations.put("32", new Multar("32"));
+		BaseDatos.Datos.operations.put("33", new SeeOpt("33"));
+		BaseDatos.Datos.operations.put("34", new AddOpt("34"));
+		BaseDatos.Datos.operations.put("35", new RemoveOpt("35"));
 		crearFilesYDirecciones();
+		
 		String ruta = System.getProperty("user.dir") + "\\src\\temp\\";
 		CargarEstaciones(ruta);
 		cargarUsuarios(ruta);
@@ -156,6 +230,45 @@ public class Datos {
 	
 
 	private static void cargarMenus(String ruta) {
+		
+		// Cargar las opciones del programa primero
+		BaseDatos.Datos.operations.put("0", new Modificar("0"));
+		BaseDatos.Datos.operations.put("1", new Login("1"));
+		BaseDatos.Datos.operations.put("2", new SignUp("2"));
+		BaseDatos.Datos.operations.put("3", new SignOut("3"));
+		BaseDatos.Datos.operations.put("4", new salir("4"));
+		BaseDatos.Datos.operations.put("5", new ConsultasU("5"));
+		BaseDatos.Datos.operations.put("6", new PerfilTarjeta("6"));
+		BaseDatos.Datos.operations.put("7", new Deuda("7"));
+		BaseDatos.Datos.operations.put("8", new cant_bicicletas_esta("8"));	
+		BaseDatos.Datos.operations.put("9", new Pedir_bicicleta("9"));	
+		BaseDatos.Datos.operations.put("10", new Devolver_bicicleta("10"));
+		BaseDatos.Datos.operations.put("11", new Recargar_tarjeta("11"));
+		BaseDatos.Datos.operations.put("12", new Pagar_multas("12"));
+		BaseDatos.Datos.operations.put("13", new ConsultasM("13"));
+	    BaseDatos.Datos.operations.put("14", new CreacionM("14"));
+		BaseDatos.Datos.operations.put("15", new CrearBicicleta("15"));
+		BaseDatos.Datos.operations.put("16", new crearDistribuidor("16"));
+		BaseDatos.Datos.operations.put("17", new crearEstacion("17"));
+		BaseDatos.Datos.operations.put("18", new Funcionalidades("18"));
+		BaseDatos.Datos.operations.put("19", new MayorUsoP("19"));
+		BaseDatos.Datos.operations.put("20", new MayorEdad("20"));
+		BaseDatos.Datos.operations.put("21", new MenorEdad("21"));
+		BaseDatos.Datos.operations.put("22", new PromEdad("22"));
+		BaseDatos.Datos.operations.put("23", new PorcGen("23"));
+		BaseDatos.Datos.operations.put("24", new PorcUsoGen("24"));
+		BaseDatos.Datos.operations.put("25", new MayorCantM("25"));
+		BaseDatos.Datos.operations.put("26", new MayorUsoB("26"));
+		BaseDatos.Datos.operations.put("27", new MayorUsoE("27"));
+		BaseDatos.Datos.operations.put("28", new PromCantB("28"));
+		BaseDatos.Datos.operations.put("29", new CreacionA("29"));
+		BaseDatos.Datos.operations.put("30", new SignUpM("30"));
+		BaseDatos.Datos.operations.put("31", new SignUpA("31"));
+		BaseDatos.Datos.operations.put("32", new Multar("32"));
+		BaseDatos.Datos.operations.put("33", new SeeOpt("33"));
+		BaseDatos.Datos.operations.put("34", new AddOpt("34"));
+		BaseDatos.Datos.operations.put("35", new RemoveOpt("35"));
+		
 		try{
             FileReader fr = new FileReader(ruta+"menusUsuarios.txt");
             BufferedReader br = new BufferedReader(fr);

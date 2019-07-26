@@ -20,6 +20,8 @@ public abstract class Persona {
 		this.setGenero(genero);
 		this.setClave(clave);
 		this.menu = menu;
+		menu.setUser(this);
+		BaseDatos.Datos.menus.put(id, menu);
 
 	}
 	
@@ -29,7 +31,7 @@ public abstract class Persona {
 		this.setId(id);
 		this.setGenero(genero);
 		this.setClave(clave);
-
+		
 	}
 	
 	public Persona(String nombre, String ed, String iden, String genero, String clave) {
@@ -80,6 +82,7 @@ public abstract class Persona {
 	public void setMenu(MenuDeConsola menu){
 		this.menu = menu;
 		menu.setUser(this);
+ 	    BaseDatos.Datos.menus.put(id, menu);
 	}
 	public MenuDeConsola getMenu(){
 		return menu;
