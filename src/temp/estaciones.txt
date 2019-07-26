@@ -1,2 +1,0 @@
-1;Automatica;true;4
-Villa_Olimpica;Manual;true;15

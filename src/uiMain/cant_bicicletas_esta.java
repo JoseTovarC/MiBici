@@ -26,6 +26,7 @@ public class cant_bicicletas_esta extends OpcionDeMenu {
 			r.append("\n"+ i +". Id: "+entry.getValue().getIde() + " ["+entry.getValue().getCantBicis()+"]");
 			i++;
 		}
+		r.append("/n");
 		return r;
 	}
 
