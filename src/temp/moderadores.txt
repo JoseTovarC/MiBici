@@ -1,1 +1,2 @@
 Jose Orlando Tovar Cano;18;M;1193126480;1193;0;0
+Luis;19;M;911;611;50000;0
