@@ -29,7 +29,7 @@ public class SignUp extends OpcionDeMenu {
 				byte edad = esc.nextByte();
 				if(edad<18) {
 					System.out.println("Eres Menor de edad, no puedes hacer uso del sistema:");
-					Main.user = Usuario.getUsuarioPorUsername((long)0);
+					Main.user = Usuario.getUsuarioPorUsername((long)123);
 					break;
 				}
 				System.out.print("Genero (M/F):");
@@ -58,9 +58,9 @@ public class SignUp extends OpcionDeMenu {
 					System.out.println("No se pudo realizar el registro, el usuario ya existe");
 				}
 				
-				Main.user = Usuario.getUsuarioPorUsername((long)0);
+				Main.user = Usuario.getUsuarioPorUsername((long)123);
 			}else if(a==2){
-				Main.user = Usuario.getUsuarioPorUsername((long)0);
+				Main.user = Usuario.getUsuarioPorUsername((long)123);
 			}else {
 				System.out.println("Inserte un valor valido");
 			}

@@ -79,13 +79,13 @@ public class Usuario extends Persona {
 
 	
 	public Usuario(MenuDeConsola menu) {
-		super("Invitado", (byte) 0, (long) 0, "", "", menu);
+		super("Invitado", (byte) 0, (long) 123, "0", "0", menu);
 		this.nombre = "";
 		this.tarjeta= new Tarjeta(this);
 		menu.setUser(this);
-		BaseDatos.Datos.menus.put((long)0, menu);
-		BaseDatos.Datos.hashPersona.put((long) 0, this);
-		BaseDatos.Datos.hashUsuario.put((long)0, this);
+		BaseDatos.Datos.menus.put((long)123, menu);
+		BaseDatos.Datos.hashPersona.put((long) 123, this);
+		BaseDatos.Datos.hashUsuario.put((long)123, this);
 		BaseDatos.Datos.hashUsoP.put(this.getId(), 0);
 	}	
 

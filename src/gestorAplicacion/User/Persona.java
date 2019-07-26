@@ -22,6 +22,7 @@ public abstract class Persona {
 		this.menu = menu;
 		menu.setUser(this);
 		BaseDatos.Datos.menus.put(id, menu);
+		BaseDatos.Datos.hashPersona.put(id,this);
 
 	}
 	

@@ -106,9 +106,12 @@ public class MenuDeConsola {
 				BaseDatos.Datos.operations.put("32", new Multar("32"));
 				
 				
+				
 		ArrayList<OpcionDeMenu> operationsMenu = new ArrayList<OpcionDeMenu>();
 		for (String opt : operations) {
-			operationsMenu.add(Datos.operations.get(opt));
+			System.out.println(BaseDatos.Datos.operations.get(opt));
+			System.out.println("hey");
+			operationsMenu.add(BaseDatos.Datos.operations.get(opt));
 		}
 		MenuDeConsola menu = new MenuDeConsola(user, operationsMenu);
 		user.setMenu(menu);

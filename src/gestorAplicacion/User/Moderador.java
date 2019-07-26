@@ -28,8 +28,6 @@ public class Moderador extends Usuario{
 	public Moderador(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu) {
 		super(nombre, edad, id, genero, clave, saldo, menu, "No Agregar a la hash de Usuarios");
 		BaseDatos.Datos.hashModerador.put(id,this);
-		menu.setUser(this);
-		BaseDatos.Datos.menus.put(id, menu);
 		
 	}
 	public Moderador(String nombre, String edad, String iden, String genero, String clave, String saldo) {

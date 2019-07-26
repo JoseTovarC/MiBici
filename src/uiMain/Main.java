@@ -40,7 +40,6 @@ public class Main {
 
 	public static void config_inicio() {
 
-		BaseDatos.Datos.cargarDatos();
 		// Cargar las opciones del programa primero
 		BaseDatos.Datos.operations.put("0", new Modificar("0"));
 		BaseDatos.Datos.operations.put("1", new Login("1"));
@@ -82,13 +81,62 @@ public class Main {
 		
 		
 		
+		
+		
+		
 		BaseDatos.Datos.hashMulta.put((byte)1, new Multa((byte)1, "Tiempo maximo excedido.", 30000));
 		BaseDatos.Datos.hashMulta.put((byte)2, new Multa((byte)2, "Danio intencional.", 75000));
 		BaseDatos.Datos.hashMulta.put((byte)3, new Multa((byte)3, "Numero de pasajeros excedido.", 30000));
 		BaseDatos.Datos.hashMulta.put((byte)4, new Multa((byte)4, "Fines comerciales", 80000));
 		BaseDatos.Datos.hashMulta.put((byte)5, new Multa((byte)5, "Carga maxima excedida", 25000));
 		BaseDatos.Datos.hashMulta.put((byte)6, new Multa((byte)6, "Estado Embriaguez", 80000));
+		/*
+		ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>(){
+			{
+				add(BaseDatos.Datos.operations.get("0"));		
+				add(BaseDatos.Datos.operations.get("1"));	
+				add(BaseDatos.Datos.operations.get("2"));
+				add(BaseDatos.Datos.operations.get("3"));
+				add(BaseDatos.Datos.operations.get("4"));
+				add(BaseDatos.Datos.operations.get("5"));
+				add(BaseDatos.Datos.operations.get("6"));		
+				add(BaseDatos.Datos.operations.get("7"));	
+				add(BaseDatos.Datos.operations.get("8"));
+				add(BaseDatos.Datos.operations.get("9"));
+				add(BaseDatos.Datos.operations.get("10"));
+				add(BaseDatos.Datos.operations.get("11"));
+				add(BaseDatos.Datos.operations.get("12"));		
+				add(BaseDatos.Datos.operations.get("13"));	
+				add(BaseDatos.Datos.operations.get("14"));
+				add(BaseDatos.Datos.operations.get("15"));
+				add(BaseDatos.Datos.operations.get("16"));
+				add(BaseDatos.Datos.operations.get("17"));
+				add(BaseDatos.Datos.operations.get("18"));		
+				add(BaseDatos.Datos.operations.get("19"));	
+				add(BaseDatos.Datos.operations.get("20"));
+				add(BaseDatos.Datos.operations.get("21"));
+				add(BaseDatos.Datos.operations.get("22"));
+				add(BaseDatos.Datos.operations.get("23"));
+				add(BaseDatos.Datos.operations.get("24"));
+				add(BaseDatos.Datos.operations.get("25"));
+				add(BaseDatos.Datos.operations.get("26"));
+				add(BaseDatos.Datos.operations.get("27"));
+				add(BaseDatos.Datos.operations.get("28"));		
+				add(BaseDatos.Datos.operations.get("29"));	
+				add(BaseDatos.Datos.operations.get("30"));
+				add(BaseDatos.Datos.operations.get("31"));
+				add(BaseDatos.Datos.operations.get("32"));
+				add(BaseDatos.Datos.operations.get("33"));
+				add(BaseDatos.Datos.operations.get("34"));
+				add(BaseDatos.Datos.operations.get("35"));
+
+			}
+		};
+				
+		MenuDeConsola userMenu = new MenuDeConsola(userOptions);
 		
+		userMenu.lanzarMenu();
+		*/
 		BaseDatos.Datos.cargarDatos();
 		
 		Main.user = Usuario.nuevoUsuarioInvitado();
@@ -97,6 +145,22 @@ public class Main {
 		
 		Admin.newAdminUser("Admin", (byte)18, (long)1, "null", "666");
 		Admin.newAdminUser("IT", (byte)19, (long)2, "F", "777");
+		ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
+			{
+						add(BaseDatos.Datos.operations.get("13"));
+						add(BaseDatos.Datos.operations.get("9"));
+						add(BaseDatos.Datos.operations.get("10"));
+						add(BaseDatos.Datos.operations.get("11"));
+						add(BaseDatos.Datos.operations.get("14"));
+						add(BaseDatos.Datos.operations.get("18"));
+						add(BaseDatos.Datos.operations.get("32"));
+						add(BaseDatos.Datos.operations.get("3"));						
+			}
+		};
+
+		MenuDeConsola ModeradorMenu = new MenuDeConsola(ModeradorOptions);
+		
+		new Moderador("Freddy", (byte) 20, (long)10021, "M", "5132",2500,ModeradorMenu);
 		//Usuario invitado(por defecto)
 		
 	/*
@@ -118,7 +182,7 @@ public class Main {
 		//Catalina;18;F;10031;0505;1500;0
 		MenuDeConsola ModeradorMenu = new MenuDeConsola(ModeradorOptions);
 		
-		new Moderador("Freddy", (byte) 20, (long)10021, "M", "5132",2500,ModeradorMenu);
+		
 		new Moderador("Luis", (byte) 19, (long)10030, "M", "0561",10000,ModeradorMenu);
 		new Moderador("Catalina", (byte) 18, (long)10031, "F", "0505",1500,ModeradorMenu);
 		
