@@ -1480,7 +1480,6 @@ public class ControlVentanaAdmin implements Control {
 			((VentanaAdmin) vista).setPanelPrincipal(j);
 			((PanelNuevoAdmin) j).setControlador(new ControlVentanaAdmin(vista));
 		} else if (evento.getActionCommand().equals("crearAdmin")) {
-			System.out.println(" ");
 			try {
 				String nombre = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto1.getText();
 				int id = Integer.parseInt(((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto2.getText());
@@ -1503,11 +1502,11 @@ public class ControlVentanaAdmin implements Control {
 
 						JOptionPane.showMessageDialog(null, "Registro realizado exitosamente",
 								"Registro Administrador.", JOptionPane.OK_OPTION, ImageIconocheck);
-						((VentanaAdmin) vista).inicio();
 						Datos.guardarDatos();
+						((VentanaAdmin) vista).inicio();
 					} else {
 						JOptionPane.showMessageDialog(null, "No se pudo realizar el registro, el usuario ya existe",
-								"Registro Usuario", JOptionPane.ERROR_MESSAGE, ImageIconoerror);
+								"Registro Administrador", JOptionPane.ERROR_MESSAGE, ImageIconoerror);
 					}
 				}
 			} catch (NumberFormatException e) {
@@ -1518,9 +1517,77 @@ public class ControlVentanaAdmin implements Control {
 				JOptionPane.showMessageDialog(null, "Ha ingresado un tipo de dato erróneo", "Tipo de dato incorecto",
 						JOptionPane.ERROR_MESSAGE, ImageIconowarning);
 			}
-		} else if (evento.getActionCommand().equals("Inicio.")) {
+		} 
+		else if (evento.getActionCommand().equals("Registrar un moderador.")) {
+			((VentanaAdmin) vista).panelPrincipal.removeAll();
+			JPanel j = new PanelNuevoModerador();
+			((VentanaAdmin) vista).setPanelPrincipal(j);
+			((PanelNuevoAdmin) j).setControlador(new ControlVentanaAdmin(vista));
+		}
+		else if (evento.getActionCommand().equals("crearModerador")) {
+			try {
+				String nombre = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto1.getText();
+				int id = Integer.parseInt(((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto2.getText());
+				String contra = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto3.getText();
+				int edad = Integer.parseInt(((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto4.getText());
+				String genero = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto5.getText();
+				if (nombre.isEmpty() || contra.isEmpty() || genero.isEmpty()) {
+					// error dato vacio
+					JOptionPane.showMessageDialog(null, "Se han dejado las casillas vacias.", "Registro Moderador.",
+							JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+				} else if (edad < 18) {
+					JOptionPane.showMessageDialog(null, "Debe ser mayor de edad.", "Registro Moderador.",
+							JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+				} else if ((!genero.equals("F")) && (!genero.equals("M"))) {
+					JOptionPane.showMessageDialog(null, "Ingrese un género válido (M/F).", "Registro Moderador.",
+							JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+				} else {
+					if (Moderador.getUsuarioPorUsername(id) == null) {
+						ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>() {
+							{
+								add(BaseDatos.Datos.operations.get("13"));
+								add(BaseDatos.Datos.operations.get("9"));
+								add(BaseDatos.Datos.operations.get("10"));
+								add(BaseDatos.Datos.operations.get("11"));
+								add(BaseDatos.Datos.operations.get("14"));
+								add(BaseDatos.Datos.operations.get("18"));
+								add(BaseDatos.Datos.operations.get("32"));								
+							}
+						};
+
+						MenuDeConsola userMenu = new MenuDeConsola(userOptions);
+						new Moderador(nombre,(byte) edad, (long)id, genero, contra, (int)0, userMenu);
+						//BaseDatos.Datos.hashModerador.get(id).setEstacion(e);
+						JOptionPane.showMessageDialog(null, "Registro realizado exitosamente",
+								"Registro Moderador.", JOptionPane.OK_OPTION, ImageIconocheck);
+						Datos.guardarDatos();
+						((VentanaAdmin) vista).inicio();
+					} else {
+						JOptionPane.showMessageDialog(null, "No se pudo realizar el registro, el usuario ya existe",
+								"Registro Moderador.", JOptionPane.ERROR_MESSAGE, ImageIconoerror);
+					}
+					if (!BaseDatos.Datos.hashPersona.containsKey((long) id)) {
+						Admin.newAdminUser(nombre, (byte) edad, (long) id, genero, contra);
+
+						
+					} else {
+						
+					}
+				}
+			} catch (NumberFormatException e) {
+
+				JOptionPane.showMessageDialog(null, "Ha ingresado un tipo de dato erróneo", "Tipo de dato incorecto",
+						JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Ha ingresado un tipo de dato erróneo", "Tipo de dato incorecto",
+						JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+			}
+		} 
+		else if (evento.getActionCommand().equals("Inicio.")) {
+			Datos.guardarDatos();
 			((VentanaAdmin) vista).inicio();
 		} else if (evento.getActionCommand().equals("Cerrar sesión.")) {
+			Datos.guardarDatos();
 			// la vista:
 			InterfazVista vistainicio = new VentanaLogin();
 			// y el control:

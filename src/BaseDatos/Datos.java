@@ -140,8 +140,8 @@ public class Datos {
 					String[] user = line.split(";");
 					String nombre = user[0];
 					String edad = user[1];
-					String id = user[2];
-					String genero = user[3];
+					String id = user[3];
+					String genero = user[2];
 					String clave = user[4];
 					new Admin(nombre, edad, id, genero, clave);
 				}
