@@ -49,8 +49,6 @@ public class Datos {
 		cargarMenus(ruta);
 	}
 
-	
-
 	private static void CargarEstaciones(String ruta) {
 
 		try {
@@ -153,32 +151,30 @@ public class Datos {
 			// Error al leer
 		}
 	}
-	
 
 	private static void cargarMenus(String ruta) {
-		try{
-            FileReader fr = new FileReader(ruta+"menusUsuarios.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            while((line = br.readLine()) != null){
-            	if (!line.isEmpty()) {
-            		String [] menu = line.split(";");
-            		long aux = (long) Integer.parseInt(menu[0]);
-            		Persona user = Persona.getUsuarioPorUsername(aux);
-            		//slice de arrays
-            		String[] operations = Arrays.copyOfRange(menu, 1, menu.length);
-            		if(user!=null) {
-            			MenuDeConsola.newMenu(user, operations);
-            		}
-            		
-            	}
-            }
-            br.close();
-        }catch(Exception e){
-        	System.out.println(e);
-        }
+		try {
+			FileReader fr = new FileReader(ruta + "menusUsuarios.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.isEmpty()) {
+					String[] menu = line.split(";");
+					long aux = (long) Integer.parseInt(menu[0]);
+					Persona user = Persona.getUsuarioPorUsername(aux);
+					// slice de arrays
+					String[] operations = Arrays.copyOfRange(menu, 1, menu.length);
+					if (user != null) {
+						MenuDeConsola.newMenu(user, operations);
+					}
+
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
-	
 
 	private static void cargarDistribuidores(String ruta) {
 		try {
@@ -199,7 +195,7 @@ public class Datos {
 		}
 
 	}
-	
+
 	private static void cargarBicicletas(String ruta) {
 		try {
 			FileReader fr = new FileReader(ruta + "bicicletas.txt");
@@ -213,15 +209,15 @@ public class Datos {
 					String IdUsuario = bici[2];
 					String IdDistribuidor = bici[3];
 					String IdEstacion = bici[4];
-					
-					new Bicicleta(id, danio,IdUsuario, IdDistribuidor,IdEstacion);
+
+					new Bicicleta(id, danio, IdUsuario, IdDistribuidor, IdEstacion);
 				}
 			}
 			br.close();
 		} catch (Exception e) {
 			// Error al leer
 		}
-		
+
 	}
 
 	public static void guardarDatos() {
@@ -280,7 +276,7 @@ public class Datos {
 					line += ((Usuario) userObj).getTarjeta().getSaldo() + ";";
 					if (((Moderador) userObj).getEstacion() != null) {
 						line += ((Moderador) userObj).getEstacion().getIde();
-					}else {
+					} else {
 						line += "0";
 					}
 
@@ -338,7 +334,7 @@ public class Datos {
 
 				String line = dis.getId() + ";";
 				line += dis.getNombre();
-				
+
 				pw.println(line);
 
 			}
@@ -352,32 +348,32 @@ public class Datos {
 	}
 
 	private static void guardarBicicletas(String ruta) {
-	
+
 		try {
 
 			FileWriter fw = new FileWriter(ruta + "bicicletas.txt");
 			PrintWriter pw = new PrintWriter(fw);
 
-			for (Entry<Integer, Bicicleta> bici: hashBicicleta.entrySet()) {
+			for (Entry<Integer, Bicicleta> bici : hashBicicleta.entrySet()) {
 				Bicicleta bicicleta = bici.getValue();
 
 				String line = bicicleta.getId() + ";";
 				line += bicicleta.isDanio() + ";";
-				if(bicicleta.getUsuario()==null) {
+				if (bicicleta.getUsuario() == null) {
 					line += "0;";
-				}else {
+				} else {
 					line += bicicleta.getUsuario().getId() + ";";
 				}
-				
-				if(bicicleta.getDistribuidor()==null) {
+
+				if (bicicleta.getDistribuidor() == null) {
 					line += "0;";
-				}else {
+				} else {
 					line += bicicleta.getDistribuidor().getId() + ";";
 				}
-				
-				if(bicicleta.getEstacion()==null) {
+
+				if (bicicleta.getEstacion() == null) {
 					line += "0";
-				}else {
+				} else {
 					line += bicicleta.getEstacion().getIde();
 				}
 
@@ -417,6 +413,7 @@ public class Datos {
 			// Ocurrio algo al crear las carpetas y los archivos
 		}
 	}
+
 	// METODOS FUNCIONALES //
 	public static StringBuffer getMayorUsoP() {
 		StringBuffer r;
@@ -435,21 +432,19 @@ public class Datos {
 			r = new StringBuffer("No se han registrado usos");
 			return r;
 		} else if (cola.size() == 1) {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
-			}
-			else if (max == 1) {
+			} else if (max == 1) {
 				r = new StringBuffer("El usuario que mas usos realizo (1 uso), fue: ");
 			} else {
 				r = new StringBuffer("El usuario que mas usos realizo (" + max + " usos), fue: ");
 			}
 		} else {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
-			}
-			else if (max == 1) {
+			} else if (max == 1) {
 				r = new StringBuffer("Los usuarios que mas usos realizaron (1 uso), fueron: ");
 			} else {
 				r = new StringBuffer("Los usuarios que mas usos realizaron (" + max + " usos), fueron: ");
@@ -482,21 +477,19 @@ public class Datos {
 			r = new StringBuffer("No se han registrado usos");
 			return r;
 		} else if (cola.size() == 1) {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
-			}
-			else if (max == 1) {
+			} else if (max == 1) {
 				r = new StringBuffer("La bicicleta mas usada (1 uso), fue: ");
 			} else {
 				r = new StringBuffer("La bicicleta mas usada (" + max + " usos), fue: ");
 			}
 		} else {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
-			}
-			else if (max == 1) {
+			} else if (max == 1) {
 				r = new StringBuffer("Las bicicletas mas usada (1 uso), fueron: ");
 			} else {
 				r = new StringBuffer("Las bicicletas mas usada (" + max + " usos), fueron: ");
@@ -514,57 +507,49 @@ public class Datos {
 
 	public static StringBuffer getMayorUsoE() {
 		StringBuffer r;
-		Deque<String> cola=new LinkedList<>();
-		int max=0;
+		Deque<String> cola = new LinkedList<>();
+		int max = 0;
 		for (Map.Entry<String, Integer> entry : hashUsoE.entrySet()) {
-			if (entry.getValue()>max) {
+			if (entry.getValue() > max) {
 				cola.clear();
 				cola.add(entry.getKey());
-				max=entry.getValue();
-			}
-			else if (entry.getValue()==max) {
+				max = entry.getValue();
+			} else if (entry.getValue() == max) {
 				cola.add(entry.getKey());
 			}
 		}
-		if(cola.isEmpty()) {
+		if (cola.isEmpty()) {
 			r = new StringBuffer("No se han registrado usos");
 			return r;
-		}
-		else if (cola.size()==1) {
-			if (max==0) {
+		} else if (cola.size() == 1) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
-			}
-			else if (max==1) {
+			} else if (max == 1) {
 				r = new StringBuffer("La estacion mas usada (1 uso), fue: ");
+			} else {
+				r = new StringBuffer("La estacion mas usada (" + max + " usos), fue: ");
 			}
-			else {
-				r = new StringBuffer("La estacion mas usada ("+ max +" usos), fue: ");
-			}
-		}
-		else {
-			if (max==0) {
+		} else {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
-			}
-			else if (max==1) {
+			} else if (max == 1) {
 				r = new StringBuffer("Las estaciones mas usada (1 uso), fueron: ");
-			}
-			else {
-				r = new StringBuffer("Las estaciones mas usada ("+ max +" usos), fueron: ");
+			} else {
+				r = new StringBuffer("Las estaciones mas usada (" + max + " usos), fueron: ");
 			}
 		}
-		while (true){
-			if (cola.size()>0) {
-				r.append(cola.poll()+" ");
-			}
-			else {
+		while (true) {
+			if (cola.size() > 0) {
+				r.append(cola.poll() + " ");
+			} else {
 				break;
 			}
 		}
 		return r;
 	}
-	
+
 	public static StringBuffer getMayorCantM() {
 		StringBuffer r;
 		Deque<Long> cola = new LinkedList<>();
@@ -582,21 +567,19 @@ public class Datos {
 			r = new StringBuffer("No se han registrado multas");
 			return r;
 		} else if (cola.size() == 1) {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado multas");
 				return r;
-			}
-			else if (max == 1) {
+			} else if (max == 1) {
 				r = new StringBuffer("El usuario con mayor cantidad de multas (fue multado 1 vez), fue: ");
 			} else {
 				r = new StringBuffer("El usuario con mayor cantidad de multas (fue multado " + max + " veces), fue: ");
 			}
 		} else {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado multas");
 				return r;
-			}
-			else if (max == 1) {
+			} else if (max == 1) {
 				r = new StringBuffer("Los usuarios con mayor cantidad de multas (fueron multados 1 vez), fueron: ");
 			} else {
 				r = new StringBuffer(
@@ -626,16 +609,16 @@ public class Datos {
 				cola.add(entry.getKey());
 			}
 		}
-		if (cola.isEmpty() || max==17) {
+		if (cola.isEmpty() || max == 17) {
 			r = new StringBuffer("No se han registrado datos");
 		} else if (cola.size() == 1) {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
 			}
 			r = new StringBuffer("El usuario de mayor edad (" + max + " años), fue: ");
 		} else {
-			if (max==0) {
+			if (max == 0) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
 			}
@@ -664,16 +647,16 @@ public class Datos {
 				cola.add(entry.getKey());
 			}
 		}
-		if (cola.isEmpty() || min==200) {
+		if (cola.isEmpty() || min == 200) {
 			r = new StringBuffer("No se han registrado datos");
 		} else if (cola.size() == 1) {
-			if (min==200) {
+			if (min == 200) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
 			}
 			r = new StringBuffer("El usuario de menor edad (" + min + " años), fue: ");
 		} else {
-			if (min==200) {
+			if (min == 200) {
 				r = new StringBuffer("No se han registrado usos");
 				return r;
 			}
@@ -697,7 +680,7 @@ public class Datos {
 			prom += entry.getValue().getEdad();
 			q += 1;
 		}
-		if (q==0 || prom==0) {
+		if (q == 0 || prom == 0) {
 			r = new StringBuffer("No se han registrado usos");
 			return r;
 		}
@@ -708,54 +691,61 @@ public class Datos {
 
 	static public StringBuffer getPromCantB() {
 		StringBuffer r;
-		int prom=0;
-		int q=0;
+		int prom = 0;
+		int q = 0;
 		for (Map.Entry<String, Estacion> entry : hashEstacion.entrySet()) {
-			prom+= entry.getValue().getCantBicis();
-			q+=1;
+			prom += entry.getValue().getCantBicis();
+			q += 1;
 		}
-		if (q==0 || prom==0) {
+		if (q == 0 || prom == 0) {
 			r = new StringBuffer("No se han registrado usos");
 			return r;
 		}
-		prom/=q;
-		r= new StringBuffer("El promedio de la cantidad bicicletas en todas las estaciones es de: "+ prom +" bicicletas");
+		prom /= q;
+		r = new StringBuffer(
+				"El promedio de la cantidad bicicletas en todas las estaciones es de: " + prom + " bicicletas");
 		return r;
 	}
+
 	static public StringBuffer getPorcGen() {
 		StringBuffer r;
-		int q=0;
-		int qh=0;
+		int q = 0;
+		int qh = 0;
 		for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
-			q+= 1;
+			q += 1;
 			if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
-				qh+= 1;
+				qh += 1;
 			}
 		}
-		if (q==0 || qh==0) {
+		if (q == 0 || qh == 0) {
 			r = new StringBuffer("No se han registrado usos");
 			return r;
 		}
-		r=new StringBuffer("El porcentaje de hombres es de: "+(qh*100/q)+"%.");
-		r.append("El porcentaje de mujeres es de: "+(100-(qh*100/q))+"%.");
+		r = new StringBuffer("El porcentaje de hombres es de: " + (qh * 100 / q) + "%.");
+		r.append("El porcentaje de mujeres es de: " + (100 - (qh * 100 / q)) + "%.");
 		return r;
 	}
+
 	static public StringBuffer getPorcUsoGen() {
 		StringBuffer r;
-		int q=0;
-		int qh=0;
+		int q = 0;
+		int qh = 0;
 		for (Map.Entry<Long, Integer> entry : hashUsoP.entrySet()) {
-			q+= entry.getValue();
+			q += entry.getValue();
 			if (hashPersona.get(entry.getKey()).getGenero().contentEquals("M")) {
-				qh+= entry.getValue();
+				qh += entry.getValue();
 			}
 		}
-		if (q==0 || qh==0) {
+		if (q == 0 && qh == 0) {
 			r = new StringBuffer("No se han registrado usos");
-			return r;
+		} else if (qh == 0) {
+			r = new StringBuffer("El porcentaje de uso realizado por mujeres es del 100%.");
+		} else if (qh == q) {
+			r = new StringBuffer("El porcentaje de uso realizado por hombres es del 100%.");
+		} else {
+			r = new StringBuffer("El porcentaje de uso realizado por hombres es de: " + (qh * 100 / q) + "%.");
+			r.append("El porcentaje de uso realizado por mujeres es de: " + (100 - (qh * 100 / q)) + "%.");
 		}
-		r=new StringBuffer("El porcentaje de uso realizado por hombres es de: "+(qh*100/q)+"%.");
-		r.append("El porcentaje de uso realizado por mujeres es de: "+(100-(qh*100/q))+"%.");
 		return r;
 	}
 }

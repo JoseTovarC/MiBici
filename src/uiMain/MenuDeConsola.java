@@ -138,6 +138,23 @@ public class MenuDeConsola {
 	public void añadirOpcion(String opt) {
 		options.add(Datos.operations.get(opt));
 	}
+	public void quitarOpcion(String opt) {
+		for(byte i=0;i<options.size();i++) {
+			if(options.get((int)i).getKey().equals(opt)) {
+				options.remove((int) i);
+				return;
+			}
+		}
+	}
+	
+	public boolean contieneOpcion(String opt) {
+		for(byte i=0;i<options.size();i++) {
+			if(options.get((int)i).getKey().equals(opt)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
     
 }

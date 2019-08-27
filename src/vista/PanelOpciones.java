@@ -1,27 +1,21 @@
 package vista;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.TextArea;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import control.Control;
 
 public class PanelOpciones extends JPanel {
-	
-	package vista;
-
-	import java.awt.BorderLayout;
-	import java.awt.Color;
-	import java.awt.FlowLayout;
-	import java.awt.Font;
-	import java.awt.GridLayout;
-	import java.awt.TextArea;
-
-	import javax.swing.JButton;
-	import javax.swing.JLabel;
-	import javax.swing.JPanel;
-	import javax.swing.JTextField;
-	import javax.swing.SwingConstants;
-
-	import control.Control;
-
-	public class PanelModificar extends JPanel {
 		public JPanel panel1; //titulo norte
 		public JPanel panel2; //Centro
 		public JPanel panel3; //Sur
@@ -35,12 +29,9 @@ public class PanelOpciones extends JPanel {
 		JButton boton1;
 		JButton boton2;
 		
-		TextArea texto1;
+		public JTextField texto1;
 		
-		public JTextField texto2;
-		public JTextField texto3;//para obtener ie
-		
-		public PanelModificar(String r) {
+		public PanelOpciones(String id) {
 			this.setLayout(new BorderLayout());
 			label1 = new JLabel("Quitar/Añadir Opciones del Usuario", SwingConstants.CENTER);
 			Font auxFont=label1.getFont(); 
@@ -52,7 +43,7 @@ public class PanelOpciones extends JPanel {
 			panel1.add(label2);
 			this.add(panel1, BorderLayout.NORTH);
 			
-			
+			texto1 = new JTextField(id,10);
 			
 			
 			
@@ -77,15 +68,10 @@ public class PanelOpciones extends JPanel {
 			this.add(panel1, BorderLayout.NORTH);
 			
 			
-			texto1 = new TextArea(r, 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
-			texto1.setEditable(false);
-			texto1.setBackground(Color.white);
-			panel2.add(texto1);
-			this.add(panel2, BorderLayout.CENTER);
 			
 			
 			this.setVisible(true);
 			
 		}
 	}
-}
+

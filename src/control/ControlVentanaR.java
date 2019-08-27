@@ -139,7 +139,7 @@ public class ControlVentanaR implements Control {
 						Datos.guardarDatos();
 					}
 				} else if (Persona.currentUser instanceof Usuario) {
-					if (cant_bicicletas_esta.getEstacion(ie).prestar(idb, ((Usuario) Persona.currentUser))) {
+					if(((Usuario) Persona.currentUser).prestarPanel(cant_bicicletas_esta.getEstacion(ie), idb)) {
 						JOptionPane.showMessageDialog(null, "Prestamo realizado exitosamente", "Prestamo Bicicleta",
 								JOptionPane.OK_OPTION, ImageIconocheck);
 						Datos.guardarDatos();
@@ -466,7 +466,6 @@ public class ControlVentanaR implements Control {
 			((VentanaUsuarioR) vista).panelPrincipal.removeAll();
 			String a="El usuario que más usos ha hecho.";
 			StringBuffer b=BaseDatos.Datos.getMayorUsoP();
-			//TODO cuadrar esta vuelta
 			((VentanaUsuarioR) vista).setPanelPrincipal(new PanelFuncionalidades(a,b));
 		}
 		else if (evento.getActionCommand().equals("El usuario mas viejo.")) {
