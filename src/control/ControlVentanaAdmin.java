@@ -1480,7 +1480,6 @@ public class ControlVentanaAdmin implements Control {
 			((VentanaAdmin) vista).setPanelPrincipal(j);
 			((PanelNuevoAdmin) j).setControlador(new ControlVentanaAdmin(vista));
 		} else if (evento.getActionCommand().equals("crearAdmin")) {
-			System.out.println(" ");
 			try {
 				String nombre = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto1.getText();
 				int id = Integer.parseInt(((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto2.getText());
@@ -1503,8 +1502,9 @@ public class ControlVentanaAdmin implements Control {
 
 						JOptionPane.showMessageDialog(null, "Registro realizado exitosamente",
 								"Registro Administrador.", JOptionPane.OK_OPTION, ImageIconocheck);
-						((VentanaAdmin) vista).inicio();
 						Datos.guardarDatos();
+						((VentanaAdmin) vista).inicio();
+						
 					} else {
 						JOptionPane.showMessageDialog(null, "No se pudo realizar el registro, el usuario ya existe",
 								"Registro Usuario", JOptionPane.ERROR_MESSAGE, ImageIconoerror);
