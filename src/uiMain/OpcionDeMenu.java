@@ -4,14 +4,14 @@ import java.util.Map;
 
 import BaseDatos.Datos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public abstract class OpcionDeMenu {
-	
+	public ArrayList<OpcionDeMenu> Options;
 	private String key;
-	
 	protected OpcionDeMenu() {
 	}
 	

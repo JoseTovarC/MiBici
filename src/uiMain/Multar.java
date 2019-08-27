@@ -3,10 +3,14 @@ package uiMain;
 import java.util.*;
 
 import BaseDatos.*;
+import gestorAplicacion.Bike.Estacion;
 import gestorAplicacion.User.*;
 import gestorAplicacion.Work.Multa;
 
+
 public class Multar extends OpcionDeMenu {
+	
+	public static ArrayList<Multa> multas = new ArrayList<>();
 	public Multar(String key) {
 		super(key);
 	}
@@ -37,6 +41,44 @@ public class Multar extends OpcionDeMenu {
 		else {
 			System.out.println("Usuario no encontrado.");
 		}
+	}
+	
+	public static String getMultas() {
+		String r;
+		r=new String();
+		if(BaseDatos.Datos.hashMulta.isEmpty()){
+			r= new String("No hay multas creadas.");
+			return r;
+		}
+		int i=1;
+		multas.clear();
+		for (Map.Entry<Byte, Multa> entry : BaseDatos.Datos.hashMulta.entrySet()) {
+			r += ""+ i +". Id: "+entry.getValue().getId() + ", Descripcion: "+ entry.getValue().getDescripcion()+"\n";
+			multas.add(entry.getValue());
+			i++;
+		}
+		
+		return r;
+	}
+	public static  Multa getMulta( String r) {
+		int index = Integer.parseInt(r);
+		return multas.get(index - 1);
+	}
+	
+	public static String getUsuarios() {
+		String r;
+		r=new String();
+		if(BaseDatos.Datos.hashUsuario.isEmpty()){
+			r= new String("No hay usuarios registados.");
+			return r;
+		}
+		
+		for (Map.Entry<Long, Usuario> entry : BaseDatos.Datos.hashUsuario.entrySet()) {
+			r += "* "+". Documento: "+entry.getValue().getId() + ", Nombre: "+ entry.getValue().getNombre()+".\n";
+			
+		}
+		
+		return r;
 	}
 
 	@Override

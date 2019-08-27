@@ -62,6 +62,7 @@ public class MenuDeConsola {
 			i++;
 		}
 		
+		
 		System.out.print("Ingrese la opcion: ");
 		int opt = leer.nextInt();
 		options.get((opt-1)).ejecutar();
@@ -69,7 +70,6 @@ public class MenuDeConsola {
 	}
 	
 	public static void newMenu(Persona user, String [] operations) {
-		
 		// Cargar las opciones del programa primero
 				BaseDatos.Datos.operations.put("0", new Modificar("0"));
 				BaseDatos.Datos.operations.put("1", new Login("1"));
@@ -106,12 +106,9 @@ public class MenuDeConsola {
 				BaseDatos.Datos.operations.put("32", new Multar("32"));
 				
 				
-				
 		ArrayList<OpcionDeMenu> operationsMenu = new ArrayList<OpcionDeMenu>();
 		for (String opt : operations) {
-			System.out.println(BaseDatos.Datos.operations.get(opt));
-			System.out.println("hey");
-			operationsMenu.add(BaseDatos.Datos.operations.get(opt));
+			operationsMenu.add(Datos.operations.get(opt));
 		}
 		MenuDeConsola menu = new MenuDeConsola(user, operationsMenu);
 		user.setMenu(menu);

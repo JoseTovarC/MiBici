@@ -4,13 +4,20 @@ import java.util.ArrayList;
 
 public class CreacionM extends OpcionDeMenu {
 
-	public CreacionM(String key) {
+	public CreacionM(String key) {		
 		super(key);
+		Options = new ArrayList<OpcionDeMenu>() {
+			{
+				add(BaseDatos.Datos.operations.get("15"));
+				add(BaseDatos.Datos.operations.get("16"));
+				add(BaseDatos.Datos.operations.get("17"));
+			}
+		};
 	}
 	
 	@Override
 	public void ejecutar() {
-		ArrayList<OpcionDeMenu> consultOptions = new ArrayList<OpcionDeMenu>() {
+		ArrayList<OpcionDeMenu> Options = new ArrayList<OpcionDeMenu>() {
 			{
 				add(BaseDatos.Datos.operations.get("15"));
 				add(BaseDatos.Datos.operations.get("16"));
@@ -18,7 +25,7 @@ public class CreacionM extends OpcionDeMenu {
 			}
 		};
 
-		MenuDeConsola ConsultMenu = new MenuDeConsola(consultOptions);
+		MenuDeConsola ConsultMenu = new MenuDeConsola(Options);
 
 		ConsultMenu.lanzarMenu();
 	}

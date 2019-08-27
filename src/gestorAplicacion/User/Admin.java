@@ -25,7 +25,6 @@ public class Admin extends Persona{
 		String [] operations = {"0","29","3"};
 		MenuDeConsola.newMenu(user, operations);
 		Datos.hashPersona.put(id,user);
-		
 		if(true){
 			
 			return "Ha sido creado: "+Datos.hashPersona.get(id).toString();

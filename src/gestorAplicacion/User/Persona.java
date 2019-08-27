@@ -11,6 +11,7 @@ public abstract class Persona {
 	private String genero;
 	private String clave;
 	private MenuDeConsola menu;
+	public static Persona currentUser = null;
 
 	
 	public Persona(String nombre, byte edad, long id, String genero, String clave, MenuDeConsola menu) {
@@ -20,9 +21,6 @@ public abstract class Persona {
 		this.setGenero(genero);
 		this.setClave(clave);
 		this.menu = menu;
-		menu.setUser(this);
-		BaseDatos.Datos.menus.put(id, menu);
-		BaseDatos.Datos.hashPersona.put(id,this);
 
 	}
 	
@@ -32,7 +30,7 @@ public abstract class Persona {
 		this.setId(id);
 		this.setGenero(genero);
 		this.setClave(clave);
-		
+
 	}
 	
 	public Persona(String nombre, String ed, String iden, String genero, String clave) {
@@ -83,7 +81,7 @@ public abstract class Persona {
 	public void setMenu(MenuDeConsola menu){
 		this.menu = menu;
 		menu.setUser(this);
- 	    BaseDatos.Datos.menus.put(id, menu);
+		BaseDatos.Datos.menus.put(id, menu);
 	}
 	public MenuDeConsola getMenu(){
 		return menu;
@@ -93,13 +91,13 @@ public abstract class Persona {
 		if (u != null) {
 			if (u.getId() == id && u.getClave().equals(password)) {
 				// Seteo el usuario
-				Main.user = u;
+				Persona.currentUser = u;
 				if(u instanceof Moderador) {
-					return "Bienvenido,\nModerador: " + u.getNombre();
+					return "Moderador: " + u.getNombre();
 				}else if(u instanceof Admin) {
-					return "Bienvenido,\nAdministrador: " + u.getNombre();
+					return "Administrador: " + u.getNombre();
 				}else {
-					return "Bienvenido,\nUsuario: " + u.getNombre();
+					return "Usuario: " + u.getNombre();
 				}
 				
 				

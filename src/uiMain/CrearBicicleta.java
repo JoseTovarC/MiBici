@@ -11,8 +11,8 @@ import gestorAplicacion.Bike.Estacion;
 import gestorAplicacion.User.Usuario;
 
 public class CrearBicicleta extends OpcionDeMenu {
+	public static ArrayList<Distribuidor> distribuidores = new ArrayList<>();
 
-	
 	public CrearBicicleta(String key) {
 		super(key);
 	}
@@ -73,7 +73,7 @@ public class CrearBicicleta extends OpcionDeMenu {
 				System.out.println("No se creara la bicicleta.");
 				return;
 			}
-			else if (i >= 1 && i <= BaseDatos.Datos.hashBicicleta.size()) {
+			else if (i >= 1 && i <= BaseDatos.Datos.hashEstacion.size()) {
 				e= estaciones.get(i - 1);
 				if (e.getCantBicis()<e.getCap_max()) {
 					System.out.println(dis.crearB(e));
@@ -85,7 +85,26 @@ public class CrearBicicleta extends OpcionDeMenu {
 			}
 		}
 	}
-	
+	public static String getDistribuidores() {
+		String r;
+		r=new String();
+		if(BaseDatos.Datos.hashDistribuidor.isEmpty()){
+			r= new String("No hay distribuidores creados.");
+			return r;
+		}
+		int i=1;
+		distribuidores.clear();
+		for (Map.Entry<String, Distribuidor> entry : BaseDatos.Datos.hashDistribuidor.entrySet()) {
+			r += ""+ i +". Id: "+entry.getValue().getId()+ ", Nombre: "+ entry.getValue().getNombre()+".\n";
+			distribuidores.add(entry.getValue());
+			i++;
+		}
+		return r;
+	}
+	public static  Distribuidor getDistribuidor(String r) {
+		int index = Integer.parseInt(r);
+		return distribuidores.get(index - 1);
+	}
 
 
 	@Override

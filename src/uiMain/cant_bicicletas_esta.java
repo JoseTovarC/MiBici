@@ -1,11 +1,14 @@
 package uiMain;
 import gestorAplicacion.Bike.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class cant_bicicletas_esta extends OpcionDeMenu {
 
+	public static ArrayList<Estacion> estaciones = new ArrayList<>();
+	
 	public cant_bicicletas_esta(String key){
 		super(key);
 	}
@@ -14,21 +17,28 @@ public class cant_bicicletas_esta extends OpcionDeMenu {
 		System.out.println(this.getEstacioness());
 	}
 	
-	private StringBuffer getEstacioness() {
-		StringBuffer r;
-		r=new StringBuffer("Estaciones [CantBicis]:");
+	public static String getEstacioness() {
+		String r;
+		r=new String();
 		if(BaseDatos.Datos.hashEstacion.isEmpty()){
-			r= new StringBuffer("No hay estaciones creadas.");
+			r= new String("No hay estaciones creadas.");
 			return r;
 		}
 		int i=1;
+		estaciones.clear();
 		for (Map.Entry<String, Estacion> entry : BaseDatos.Datos.hashEstacion.entrySet()) {
-			r.append("\n"+ i +". Id: "+entry.getValue().getIde() + " ["+entry.getValue().getCantBicis()+"]");
+			r += ""+ i +". Id: "+entry.getValue().getIde() + " ["+ entry.getValue().getCantBicis()+" / " + entry.getValue().getCap_max() + " ]\n";
+			estaciones.add(entry.getValue());
 			i++;
 		}
-		r.append("/n");
+		
 		return r;
 	}
+	public static  Estacion getEstacion( String r) {
+		int index = Integer.parseInt(r);
+		return estaciones.get(index - 1);
+	}
+
 
 	@Override
 	public String toString() {

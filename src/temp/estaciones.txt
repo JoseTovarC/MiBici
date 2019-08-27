@@ -1,5 +1,5 @@
-1;Automatica;true;25
-
 2;Automatica;true;30
-
-3;Automatica;true;10	
+3;Automatica;true;10
+Estadio;Automatica;true;25
+Jorge Villamil Cordobez;Automatica;true;10
+Hospital Universitario;Automatica;true;15

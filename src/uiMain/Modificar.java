@@ -1,8 +1,14 @@
 package uiMain;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import gestorAplicacion.User.Admin;
+import gestorAplicacion.User.Persona;
 
 public class Modificar extends OpcionDeMenu {
+	
+	
 	public Modificar(String key) {
 		super(key);
 	}
@@ -21,6 +27,24 @@ public class Modificar extends OpcionDeMenu {
 
 		ConsultMenu.lanzarMenu();
 
+	}
+	public static String getUsuarios() {
+		String r;
+		r=new String();
+		if(BaseDatos.Datos.hashUsuario.isEmpty()){
+			r= new String("No hay usuarios registados.");
+			return r;
+		}
+		
+		for (Map.Entry<Long, Persona> entry : BaseDatos.Datos.hashPersona.entrySet()) {
+			if(!(entry.getValue() instanceof Admin)) {
+				r += "* "+". Documento: "+entry.getValue().getId() + ", Nombre: "+ entry.getValue().getNombre()+".\n";
+				
+			}
+					
+		}
+		
+		return r;
 	}
 
 	@Override

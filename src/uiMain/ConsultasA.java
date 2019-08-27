@@ -6,23 +6,23 @@ public class ConsultasA extends OpcionDeMenu {
 
 	public ConsultasA(String key){
 		super(key);
+		Options = new ArrayList<OpcionDeMenu>() {
+			{
+				add(BaseDatos.Datos.operations.get("8"));
+				add(BaseDatos.Datos.operations.get("18"));
+				add(BaseDatos.Datos.operations.get("38"));
+				add(BaseDatos.Datos.operations.get("4"));
+			}
+		};
 	}
 	
 	
-	private static ArrayList<OpcionDeMenu> consultaOptionsDefault = new ArrayList<OpcionDeMenu>() {
-		{
-			add(BaseDatos.Datos.operations.get("8"));
-			add(BaseDatos.Datos.operations.get("18"));
-			add(BaseDatos.Datos.operations.get("38"));
-			add(BaseDatos.Datos.operations.get("4"));
-			add(BaseDatos.Datos.operations.get("39"));
-		}
-	};
+	
 	
 
 	@Override
 	public void ejecutar() {
-		ArrayList<OpcionDeMenu> consultaOptions = new ArrayList<OpcionDeMenu>() {
+		ArrayList<OpcionDeMenu> Options = new ArrayList<OpcionDeMenu>() {
 			{
 				add(BaseDatos.Datos.operations.get("8"));
 				add(BaseDatos.Datos.operations.get("18"));
@@ -31,7 +31,7 @@ public class ConsultasA extends OpcionDeMenu {
 			}
 		};
 
-		MenuDeConsola ConsultMenu = new MenuDeConsola(consultaOptions);
+		MenuDeConsola ConsultMenu = new MenuDeConsola(Options);
 
 		ConsultMenu.lanzarMenu();
 	}

@@ -26,4 +26,17 @@ public class Multa {
 	public String getDescripcion() {
 		return descripcion;
 	}
+
+	public String descripm() {
+		return "[" + id + ", " + descripcion + "]";
+	}
+	
+	public String descrip() {
+		return "Id: " + id + ", Descripción:" +  descripcion + ", Precio: $ " + precio + "\n";
+	}
+	@Override
+	public String toString() {
+		return "[" + id + ", $ " + precio + "]";
+	}
+	
 }

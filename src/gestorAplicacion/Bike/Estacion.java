@@ -1,4 +1,7 @@
 package gestorAplicacion.Bike;
+import java.util.Map.Entry;
+
+import BaseDatos.Datos;
 import gestorAplicacion.User.*;
 //import java.util.ArrayList;
 
@@ -131,17 +134,17 @@ public class Estacion implements red{
 	}
 	
 	public byte getCantBicis() {
-		int i=0;
+		byte i=0;
 		
 		for(int y=0;y<bicicletas.length;y++) {
-			if (bicicletas[i]!=null) {
+			if (bicicletas[y]!=null) {
 				i++;
 			}
 	
 		}
-		this.cantBicis=(byte)i;
+		this.cantBicis= i;
 	
-		return cantBicis;
+		return i;
 	}
 
 	public void cerrar_estaciones() {
@@ -152,21 +155,39 @@ public class Estacion implements red{
 	}
 	
 	public boolean prestar(int idb, Usuario usuario){
-		if((idb) <0 || (idb-1)>= cap_max || cantBicis==0 || !this.isEstado()) {
+		if((idb-1) <0 || (idb-1)> cap_max || cantBicis==0 || !this.isEstado()) {
 			return false;
 		}
-		else if(bicicletas[idb] == null) {
+		else if(bicicletas[idb-1] == null) {
+			return false;
+		}		
+		else {
+			usuario.setBicicleta(bicicletas[idb-1]);
+			bicicletas[idb-1].setUsuario(usuario);
+			bicicletas[idb-1].setEstacion(null);
+			bicicletas[idb-1] = null;
+			int valor = usuario.getTarjeta().getSaldo() - 500;
+			usuario.getTarjeta().setSaldo(valor);
+			cantBicis--;
+			
+			
+            return true;
+		}
+	}
+	
+	public boolean prestar(int idb, Moderador moderador){
+		if((idb-1) <0 || (idb-1)> cap_max || cantBicis==0 || !this.isEstado()) {
+			return false;
+		}
+		else if(bicicletas[idb-1] == null) {
 			return false;
 		}
 		else {
-			usuario.setBicicleta(bicicletas[idb]);
-			bicicletas[idb].setUsuario(usuario);
-			bicicletas[idb].setEstacion(null);
-			bicicletas[idb] = null;
-			
-			if(this.getCantBicis()==0) {
-				Distribuidor.transportar(this);
-			}
+			moderador.setBicicleta(bicicletas[idb-1]);
+			bicicletas[idb-1].setUsuario(moderador);
+			bicicletas[idb-1].setEstacion(null);
+			bicicletas[idb-1] = null;
+
 			cantBicis--;
             return true;
 		}
@@ -178,23 +199,38 @@ public class Estacion implements red{
         }
         else {
         	this.addBicicleta(bicicleta);
-        	
-        	System.out.println("Bicicleta agregada");
         	return true;
         }
 		
 	}
 	
 	public Bicicleta sacarBicicletas() {
-		int i=0;
 		for(int y=0;y<bicicletas.length;y++) {
-			if (bicicletas[i]!=null) {
-				bicicletas[i].setEstacion(null);
-				return bicicletas[i];
+			if (bicicletas[y]!=null) {
+				Bicicleta aux = bicicletas[y]; 
+				bicicletas[y].setEstacion(null);
+				bicicletas[y] = null;
+				return aux;
 			}
-			i++;
+			
 		}
 		return null;
+	}
+	public static void nivelar() {
+		for(Entry<String, Estacion> est: Datos.hashEstacion.entrySet()) {
+			Estacion esta = est.getValue();
+			if(esta.getCantBicis()==0) {
+				Distribuidor.transportar(esta);
+			}
+		}
+		
+	}
+	
+	public boolean isFull() {
+		if (this.getCantBicis()==cap_max) {
+			return true;
+		}
+		return false;
 	}
 	
 	public String toString() {

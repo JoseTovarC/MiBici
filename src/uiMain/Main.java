@@ -5,11 +5,15 @@ import gestorAplicacion.Bike.Distribuidor;
 import gestorAplicacion.Bike.Estacion;
 import gestorAplicacion.User.*;
 import gestorAplicacion.Work.Multa;
+import vista.InterfazVista;
+import vista.VentanaLogin;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import BaseDatos.*;
+import control.Control;
+import control.ControlPFicticio;
 
 //import gestorAplicacion.Work.*;
 public class Main {
@@ -23,13 +27,20 @@ public class Main {
 		Main.config_inicio();
 		// TODO: condicion de break
         try {       
-        	while (aux) {	
-				Main.user.getMenu().lanzarMenu();											
-			}
+        	// el modelo:
+        	// la vista:
+        			InterfazVista vista = new VentanaLogin();
+        	// y el control:
+        			Control control = new ControlPFicticio(vista);
+        	// configura la vista
+        			vista.setControlador(control);
+        	// y arranca la interfaz (vista):
+        			vista.arranca();
         }
         catch(Exception e){
-        	Datos.guardarDatos();	
+        	Datos.guardarDatos();
     		System.out.println("Adios");
+    		
         }
         finally{
         	Datos.guardarDatos();
@@ -39,6 +50,7 @@ public class Main {
 	}
 
 	public static void config_inicio() {
+
 
 		// Cargar las opciones del programa primero
 		BaseDatos.Datos.operations.put("0", new Modificar("0"));
@@ -81,90 +93,26 @@ public class Main {
 		
 		
 		
-		
-		
-		
 		BaseDatos.Datos.hashMulta.put((byte)1, new Multa((byte)1, "Tiempo maximo excedido.", 30000));
 		BaseDatos.Datos.hashMulta.put((byte)2, new Multa((byte)2, "Danio intencional.", 75000));
 		BaseDatos.Datos.hashMulta.put((byte)3, new Multa((byte)3, "Numero de pasajeros excedido.", 30000));
 		BaseDatos.Datos.hashMulta.put((byte)4, new Multa((byte)4, "Fines comerciales", 80000));
 		BaseDatos.Datos.hashMulta.put((byte)5, new Multa((byte)5, "Carga maxima excedida", 25000));
 		BaseDatos.Datos.hashMulta.put((byte)6, new Multa((byte)6, "Estado Embriaguez", 80000));
-		/*
-		ArrayList<OpcionDeMenu> userOptions = new ArrayList<OpcionDeMenu>(){
-			{
-				add(BaseDatos.Datos.operations.get("0"));		
-				add(BaseDatos.Datos.operations.get("1"));	
-				add(BaseDatos.Datos.operations.get("2"));
-				add(BaseDatos.Datos.operations.get("3"));
-				add(BaseDatos.Datos.operations.get("4"));
-				add(BaseDatos.Datos.operations.get("5"));
-				add(BaseDatos.Datos.operations.get("6"));		
-				add(BaseDatos.Datos.operations.get("7"));	
-				add(BaseDatos.Datos.operations.get("8"));
-				add(BaseDatos.Datos.operations.get("9"));
-				add(BaseDatos.Datos.operations.get("10"));
-				add(BaseDatos.Datos.operations.get("11"));
-				add(BaseDatos.Datos.operations.get("12"));		
-				add(BaseDatos.Datos.operations.get("13"));	
-				add(BaseDatos.Datos.operations.get("14"));
-				add(BaseDatos.Datos.operations.get("15"));
-				add(BaseDatos.Datos.operations.get("16"));
-				add(BaseDatos.Datos.operations.get("17"));
-				add(BaseDatos.Datos.operations.get("18"));		
-				add(BaseDatos.Datos.operations.get("19"));	
-				add(BaseDatos.Datos.operations.get("20"));
-				add(BaseDatos.Datos.operations.get("21"));
-				add(BaseDatos.Datos.operations.get("22"));
-				add(BaseDatos.Datos.operations.get("23"));
-				add(BaseDatos.Datos.operations.get("24"));
-				add(BaseDatos.Datos.operations.get("25"));
-				add(BaseDatos.Datos.operations.get("26"));
-				add(BaseDatos.Datos.operations.get("27"));
-				add(BaseDatos.Datos.operations.get("28"));		
-				add(BaseDatos.Datos.operations.get("29"));	
-				add(BaseDatos.Datos.operations.get("30"));
-				add(BaseDatos.Datos.operations.get("31"));
-				add(BaseDatos.Datos.operations.get("32"));
-				add(BaseDatos.Datos.operations.get("33"));
-				add(BaseDatos.Datos.operations.get("34"));
-				add(BaseDatos.Datos.operations.get("35"));
-
-			}
-		};
-				
-		MenuDeConsola userMenu = new MenuDeConsola(userOptions);
 		
-		userMenu.lanzarMenu();
-		*/
+		
 		BaseDatos.Datos.cargarDatos();
 		
-		Main.user = Usuario.nuevoUsuarioInvitado();
+		
 		//Admin;18;null;1;666
 		//IT;19;F;2;777
 		
 		Admin.newAdminUser("Admin", (byte)18, (long)1, "null", "666");
 		Admin.newAdminUser("IT", (byte)19, (long)2, "F", "777");
-		ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
-			{
-						add(BaseDatos.Datos.operations.get("13"));
-						add(BaseDatos.Datos.operations.get("9"));
-						add(BaseDatos.Datos.operations.get("10"));
-						add(BaseDatos.Datos.operations.get("11"));
-						add(BaseDatos.Datos.operations.get("14"));
-						add(BaseDatos.Datos.operations.get("18"));
-						add(BaseDatos.Datos.operations.get("32"));
-						add(BaseDatos.Datos.operations.get("3"));						
-			}
-		};
-
-		MenuDeConsola ModeradorMenu = new MenuDeConsola(ModeradorOptions);
-		
-		new Moderador("Freddy", (byte) 20, (long)10021, "M", "5132",2500,ModeradorMenu);
 		//Usuario invitado(por defecto)
 		
-	/*
-		
+		/*
+	
 		ArrayList<OpcionDeMenu> ModeradorOptions = new ArrayList<OpcionDeMenu>(){
 			{
 						add(BaseDatos.Datos.operations.get("13"));
@@ -180,11 +128,12 @@ public class Main {
 		//Freddy;20;M;10021;5132;2500;0
 		//Luis;19;M;10030;0561;10000;0
 		//Catalina;18;F;10031;0505;1500;0
-		MenuDeConsola ModeradorMenu = new MenuDeConsola(ModeradorOptions);
-		
-		
-		new Moderador("Luis", (byte) 19, (long)10030, "M", "0561",10000,ModeradorMenu);
-		new Moderador("Catalina", (byte) 18, (long)10031, "F", "0505",1500,ModeradorMenu);
+		MenuDeConsola ModeradorMenu1 = new MenuDeConsola(ModeradorOptions);
+		MenuDeConsola ModeradorMenu2 = new MenuDeConsola(ModeradorOptions);
+		MenuDeConsola ModeradorMenu3 = new MenuDeConsola(ModeradorOptions);
+		new Moderador("Freddy", (byte) 20, (long)10021, "M", "5132",2500,ModeradorMenu1);
+		new Moderador("Luis", (byte) 19, (long)10030, "M", "0561",10000,ModeradorMenu2);
+		new Moderador("Catalina", (byte) 18, (long)10031, "F", "0505",1500,ModeradorMenu3);
 		
 		//Hernán Darío;23;M;10018;1890;0
 		//Julian;19;M;10020;0202;0
@@ -206,15 +155,23 @@ public class Main {
 		}
 	};
 			
-	MenuDeConsola userMenu = new MenuDeConsola(userOptions);
-	new Usuario("Hernán Darío", (byte) 23, (long) 10018, "M","1890" , 0, userMenu);
-	new Usuario("Julian", (byte) 19, (long) 10020, "M","0202" , 0, userMenu);
-	new Usuario("Yurleidi Maria", (byte) 22, (long) 10007, "F","1234" , 0, userMenu);
-	new Usuario("Juan Jose", (byte) 21, (long) 10009, "M","4321" , 0, userMenu);
-	new Usuario("Karen", (byte) 18, (long) 10010, "F","1278" , 0, userMenu);
-	new Usuario("Fernanda", (byte) 19, (long) 10011, "F","1111" , 0, userMenu);
-	new Usuario("Estefania", (byte) 18, (long) 10027, "F","2780" , 0, userMenu);
+	MenuDeConsola userMenu1 = new MenuDeConsola(userOptions);
+	MenuDeConsola userMenu2 = new MenuDeConsola(userOptions);
+	MenuDeConsola userMenu3 = new MenuDeConsola(userOptions);
+	MenuDeConsola userMenu4 = new MenuDeConsola(userOptions);
+	MenuDeConsola userMenu5 = new MenuDeConsola(userOptions);
+	MenuDeConsola userMenu6 = new MenuDeConsola(userOptions);
+	MenuDeConsola userMenu7 = new MenuDeConsola(userOptions);
+	
+	new Usuario("Hernán Darío", (byte) 23, (long) 10018, "M","1890" , 0, userMenu1);
+	new Usuario("Julian", (byte) 19, (long) 10020, "M","0202" , 0, userMenu2);
+	new Usuario("Yurleidi Maria", (byte) 22, (long) 10007, "F","1234" , 0, userMenu3);
+	new Usuario("Juan Jose", (byte) 21, (long) 10009, "M","4321" , 0, userMenu4);
+	new Usuario("Karen", (byte) 18, (long) 10010, "F","1278" , 0, userMenu5);
+	new Usuario("Fernanda", (byte) 19, (long) 10011, "F","1111" , 0, userMenu6);
+	new Usuario("Estefania", (byte) 18, (long) 10027, "F","2780" , 0, userMenu7);
 	*/
-
+	
 	}
+	
 }

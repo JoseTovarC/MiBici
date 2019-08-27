@@ -5,23 +5,25 @@ import BaseDatos.Datos;
 
 public class Consultas extends OpcionDeMenu {
 
+
+	public ArrayList<OpcionDeMenu> Options;
 	public Consultas(String key){
 		super(key);
+		Options = new ArrayList<OpcionDeMenu>() {
+			{
+				add(BaseDatos.Datos.operations.get("6"));
+				add(BaseDatos.Datos.operations.get("7"));
+				add(BaseDatos.Datos.operations.get("8"));
+			}
+		};
 	}
 	
 	
-	private static ArrayList<OpcionDeMenu> consultOptionsDefault = new ArrayList<OpcionDeMenu>() {
-		{
-			add(BaseDatos.Datos.operations.get("6"));
-			add(BaseDatos.Datos.operations.get("7"));
-			add(BaseDatos.Datos.operations.get("8"));
-		}
-	};
 	
 
 	@Override
 	public void ejecutar() {
-		ArrayList<OpcionDeMenu> consultOptions = new ArrayList<OpcionDeMenu>() {
+		Options = new ArrayList<OpcionDeMenu>() {
 			{
 				add(BaseDatos.Datos.operations.get("6"));
 				add(BaseDatos.Datos.operations.get("7"));
@@ -29,7 +31,7 @@ public class Consultas extends OpcionDeMenu {
 			}
 		};
 
-		MenuDeConsola ConsultMenu = new MenuDeConsola(consultOptions);
+		MenuDeConsola ConsultMenu = new MenuDeConsola(Options);
 
 		ConsultMenu.lanzarMenu();
 	}

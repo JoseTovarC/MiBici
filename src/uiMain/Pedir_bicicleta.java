@@ -43,7 +43,6 @@ public class Pedir_bicicleta extends OpcionDeMenu {
 			if(i >= 1 && i<= estaciones.size() ) {
 				Usuario aux = (Usuario) Datos.hashPersona.get(Main.user.getId());
 				estaciones.get(i-1).getCantBicis();
-				aux.prestar(estaciones.get(i-1));
 				break;
 			}else {
 				System.out.println("Elige una Opcion Valida!");
