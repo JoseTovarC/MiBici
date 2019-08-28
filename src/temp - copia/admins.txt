@@ -1,2 +1,3 @@
 Admin;18;null;1;666
 IT;19;F;2;777
+Funciona;54;M;8;8

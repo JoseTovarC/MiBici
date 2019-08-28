@@ -1,0 +1,5 @@
+2;2
+3;0
+Estadio;1
+Jorge Villamil Cordobez;0
+Hospital Universitario;0

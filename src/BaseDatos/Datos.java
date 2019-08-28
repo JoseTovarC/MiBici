@@ -47,6 +47,101 @@ public class Datos {
 		cargarDistribuidores(ruta);
 		cargarBicicletas(ruta);
 		cargarMenus(ruta);
+		cargarUsoP(ruta);
+		cargarUsoB(ruta);
+		cargarUsoE(ruta);
+		cargarCantM(ruta);
+		/*<Long, Integer>hashUsoP 
+		<Integer, Integer>hashUsoB
+		<String, Integer> hashUsoE
+		<Long, Integer>hashCantM */
+	}
+	
+	private static void cargarUsoE(String ruta) {
+
+		try {
+			FileReader fr = new FileReader(ruta + "UsoE.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.isEmpty()) {
+					String[] esta = line.split(";");
+					String key = esta[0];
+					String value = esta[1];
+					int v = Integer.parseInt(value);
+					hashUsoE.put(key, v);
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			// Error al leer
+		}
+	}
+	
+	private static void cargarUsoB(String ruta) {
+
+		try {
+			FileReader fr = new FileReader(ruta + "UsoB.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.isEmpty()) {
+					String[] esta = line.split(";");
+					String key = esta[0];
+					String value = esta[1];
+					int k = Integer.parseInt(key);
+					int v = Integer.parseInt(value);
+					hashUsoB.put(k, v);
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			// Error al leer
+		}
+	}
+	
+	private static void cargarCantM(String ruta) {
+
+		try {
+			FileReader fr = new FileReader(ruta + "CantM.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.isEmpty()) {
+					String[] esta = line.split(";");
+					String key = esta[0];
+					String value = esta[1];
+					long k = (long) Integer.parseInt(key);
+					int v = Integer.parseInt(value);
+					hashCantM.put(k, v);
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			// Error al leer
+		}
+	}
+	
+	private static void cargarUsoP(String ruta) {
+
+		try {
+			FileReader fr = new FileReader(ruta + "UsoP.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.isEmpty()) {
+					String[] esta = line.split(";");
+					String key = esta[0];
+					String value = esta[1];
+					long k = (long) Integer.parseInt(key);
+					int v = Integer.parseInt(value);
+					hashUsoP.put(k, v);
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			// Error al leer
+		}
 	}
 
 	private static void CargarEstaciones(String ruta) {
@@ -229,6 +324,90 @@ public class Datos {
 		guardarMenus(ruta);
 		guardarDistribuidores(ruta);
 		guardarBicicletas(ruta);
+		guardarUsoP(ruta);
+		guardarUsoB(ruta);
+		guardarUsoE(ruta);
+		guardarCantM(ruta);
+		/*<Long, Integer>hashUsoP 
+		<Integer, Integer>hashUsoB
+		<String, Integer> hashUsoE
+		<Long, Integer>hashCantM */
+	}
+	
+	private static void guardarCantM(String ruta) {
+		try {
+			FileWriter fw = new FileWriter(ruta + "CantM.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			for (Map.Entry<Long, Integer> uso : hashCantM.entrySet()) {
+				String line = uso.getKey() + ";";
+				line += uso.getValue();
+				// Correccion por el ; extra
+				pw.println(line);
+			}
+			pw.close();
+
+		} catch (IOException ioObj) {
+			// Ocurrio algo al guardar en txt los datos
+			System.out.println("Ocurrio algo al guardar en txt los datos de hash CantM");
+		}
+
+	}
+	
+	private static void guardarUsoE(String ruta) {
+		try {
+			FileWriter fw = new FileWriter(ruta + "UsoE.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			for (Map.Entry<String, Integer> uso : hashUsoE.entrySet()) {
+				String line = uso.getKey() + ";";
+				line += uso.getValue();
+				// Correccion por el ; extra
+				pw.println(line);
+			}
+			pw.close();
+
+		} catch (IOException ioObj) {
+			// Ocurrio algo al guardar en txt los datos
+			System.out.println("Ocurrio algo al guardar en txt los datos de hash UsoE");
+		}
+
+	}
+	
+	private static void guardarUsoB(String ruta) {
+		try {
+			FileWriter fw = new FileWriter(ruta + "UsoB.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			for (Map.Entry<Integer, Integer> uso : hashUsoB.entrySet()) {
+				String line = uso.getKey() + ";";
+				line += uso.getValue();
+				// Correccion por el ; extra
+				pw.println(line);
+			}
+			pw.close();
+
+		} catch (IOException ioObj) {
+			// Ocurrio algo al guardar en txt los datos
+			System.out.println("Ocurrio algo al guardar en txt los datos de hash UsoB");
+		}
+
+	}
+	
+	private static void guardarUsoP(String ruta) {
+		try {
+			FileWriter fw = new FileWriter(ruta + "UsoP.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			for (Map.Entry<Long, Integer> uso : hashUsoP.entrySet()) {
+				String line = uso.getKey() + ";";
+				line += uso.getValue();
+				// Correccion por el ; extra
+				pw.println(line);
+			}
+			pw.close();
+
+		} catch (IOException ioObj) {
+			// Ocurrio algo al guardar en txt los datos
+			System.out.println("Ocurrio algo al guardar en txt los datos de hash UsoP");
+		}
+
 	}
 
 	private static void guardarEstaciones(String ruta) {
@@ -403,6 +582,10 @@ public class Datos {
 			File adminUsersFile = new File(ruta + "admins.txt");
 			File usersMenus = new File(ruta + "menusUsuarios.txt");
 			File bicicletasRegisteredFile = new File(ruta + "bicicletas.txt");
+			File UsoP = new File(ruta + "UsoP.txt");
+			File UsoB = new File(ruta + "UsoB.txt");
+			File UsoE = new File(ruta + "UsoE.txt");
+			File CantM = new File(ruta + "CantM.txt");
 			estacionesRegisteredFile.createNewFile();
 			distribuidoresRegisteredFile.createNewFile();
 			moderadoresRegisteredFile.createNewFile();
@@ -410,6 +593,10 @@ public class Datos {
 			adminUsersFile.createNewFile();
 			usersMenus.createNewFile();
 			bicicletasRegisteredFile.createNewFile();
+			UsoP.createNewFile();
+			UsoB.createNewFile();
+			UsoE.createNewFile();
+			CantM.createNewFile();
 		} catch (IOException e) {
 			// Ocurrio algo al crear las carpetas y los archivos
 		}
