@@ -1522,15 +1522,15 @@ public class ControlVentanaAdmin implements Control {
 			((VentanaAdmin) vista).panelPrincipal.removeAll();
 			JPanel j = new PanelNuevoModerador();
 			((VentanaAdmin) vista).setPanelPrincipal(j);
-			((PanelNuevoAdmin) j).setControlador(new ControlVentanaAdmin(vista));
+			((PanelNuevoModerador) j).setControlador(new ControlVentanaAdmin(vista));
 		}
 		else if (evento.getActionCommand().equals("crearModerador")) {
 			try {
-				String nombre = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto1.getText();
-				int id = Integer.parseInt(((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto2.getText());
-				String contra = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto3.getText();
-				int edad = Integer.parseInt(((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto4.getText());
-				String genero = ((PanelNuevoAdmin) ((VentanaAdmin) vista).panelPrincipal).texto5.getText();
+				String nombre = ((PanelNuevoModerador) ((VentanaAdmin) vista).panelPrincipal).texto1.getText();
+				int id = Integer.parseInt(((PanelNuevoModerador) ((VentanaAdmin) vista).panelPrincipal).texto2.getText());
+				String contra = ((PanelNuevoModerador) ((VentanaAdmin) vista).panelPrincipal).texto3.getText();
+				int edad = Integer.parseInt(((PanelNuevoModerador) ((VentanaAdmin) vista).panelPrincipal).texto4.getText());
+				String genero = ((PanelNuevoModerador) ((VentanaAdmin) vista).panelPrincipal).texto5.getText();
 				if (nombre.isEmpty() || contra.isEmpty() || genero.isEmpty()) {
 					// error dato vacio
 					JOptionPane.showMessageDialog(null, "Se han dejado las casillas vacias.", "Registro Moderador.",
