@@ -27,7 +27,7 @@ public class Usuario extends Persona {
 
 	public Usuario(String nombre, byte edad, long id, String genero, String clave, int saldo, MenuDeConsola menu,
 			String def) {
-		super(nombre, edad, id, genero, clave);
+		super(nombre, edad, id, genero, clave, menu);
 		this.tarjeta = new Tarjeta(saldo, this);
 		// Main.addUsuarios(this);
 		// main.usuarioh.add(id, this);
