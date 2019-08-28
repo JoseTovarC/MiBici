@@ -40,10 +40,9 @@ public class VentanaUsuarioR extends JFrame implements InterfazVista {
 	Image imagen;
 	Imagen imagenpresentacion;
 
-	public VentanaUsuarioR(String tipo) {
+	public VentanaUsuarioR(String tipo, long id) {
 
 		super(tipo);
-		
 		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +64,7 @@ public class VentanaUsuarioR extends JFrame implements InterfazVista {
 		label1 = new JLabel("Bienvenido,", SwingConstants.CENTER);
 		Font auxFont=label1.getFont(); 
 		label1.setFont(new Font(auxFont.getFontName(), Font.BOLD, 18));
-		label2 = new JLabel("Hola esta es la ventana del " + tipo, SwingConstants.CENTER);
+		label2 = new JLabel("Hola esta es la ventana del " + tipo+". ID: "+id, SwingConstants.CENTER);
 		panel1 = new JPanel();
 		panel1.setLayout(new GridLayout(2,1,15, 15));
 		panel1.add(label1);

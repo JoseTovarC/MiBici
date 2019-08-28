@@ -67,7 +67,7 @@ public class ControlPFicticio implements Control {
 
 					if ((!r.equals("Usuario no encontrado")) && (Persona.currentUser instanceof Admin)) {
 						r = Persona.currentUser.getNombre();
-						InterfazVista vistaA = new VentanaAdmin(r);
+						InterfazVista vistaA = new VentanaAdmin(r,ide);
 						// y el control:
 						Control controlA = new ControlVentanaAdmin(vistaA);
 						// configura la vista
@@ -122,6 +122,7 @@ public class ControlPFicticio implements Control {
 				} else {
 					long ide = (Integer.parseInt(((VentanaLogin) vista).texto2.getText()));
 					String r = Persona.login(ide, ((VentanaLogin) vista).texto3.getText());
+					
 
 					if (r.equals("Usuario no encontrado")) {
 						JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Login fail",
@@ -131,8 +132,8 @@ public class ControlPFicticio implements Control {
 						JOptionPane.showMessageDialog(null, "Usuario Administrador", "Login fail",
 								JOptionPane.WARNING_MESSAGE, ImageIconoerrorsign);
 					} else {
-
-						InterfazVista vistaur = new VentanaUsuarioR(r);
+						long i= Persona.currentUser.getId();
+						InterfazVista vistaur = new VentanaUsuarioR(r,i);
 						// y el control:
 						Control controlU = new ControlVentanaR(vistaur);
 						// configura la vista
@@ -141,7 +142,7 @@ public class ControlPFicticio implements Control {
 						((VentanaLogin) vista).cerrarventana();
 
 						JMenuBar menuUsuario = new JMenuBar();
-						JMenu cuenta = new JMenu("Cuenta");
+						JMenu cuenta = new JMenu("Archivo");
 						JMenuItem inicio = new JMenuItem("Inicio");
 						inicio.addActionListener(controlU);
 						JMenuItem cerrarSesion = new JMenuItem("Cerrar sesión");

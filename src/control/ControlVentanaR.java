@@ -542,10 +542,10 @@ public class ControlVentanaR implements Control {
 		}
 		else if (evento.getActionCommand().equals("Ayuda")) {
 			if(Persona.currentUser instanceof Moderador) {
-				JOptionPane.showMessageDialog(null, "Ayuda Moderador registrado", "Ayuda.",
+				JOptionPane.showMessageDialog(null, "Ayuda Moderador registrado \n Creado por el grupo 8, conformado por Juan José Lopera Duque, Jhon Freddy Guerra Martinez, José Orlando Tovar Cano y Luis Felipe Moreno Chamorro. \n Para mayor información consulte el manual de usuario.", "Ayuda.",
 						JOptionPane.INFORMATION_MESSAGE, ImageIconohelp);
 			}else {
-				JOptionPane.showMessageDialog(null, "Ayuda Usuario registrado", "Ayuda.",
+				JOptionPane.showMessageDialog(null, "Ayuda Usuario registrado \n Creado por el grupo 8, conformado por Juan José Lopera Duque, Jhon Freddy Guerra Martinez, José Orlando Tovar Cano y Luis Felipe Moreno Chamorro. \n Para mayor información consulte el manual de usuario.", "Ayuda.",
 						JOptionPane.INFORMATION_MESSAGE, ImageIconohelp);
 			}
 			

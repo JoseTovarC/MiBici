@@ -163,6 +163,7 @@ public class VentanaUsuarioInvitado extends JFrame implements InterfazVista {
 
 
 	public void Usuariocomun() {
+		pack();
 		arri.removeAll();
 		arri.add(Consultas);
 		arri.add(help);

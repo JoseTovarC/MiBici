@@ -49,7 +49,7 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 	JMenu registros;
 	Imagen imagenpresentacion;
 
-	public VentanaAdmin(String nom) {
+	public VentanaAdmin(String nom, long id) {
 
 		super("Administrador: " + nom);
 
@@ -58,7 +58,7 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 
 		// MENU
 		arri = new JMenuBar();
-		cuenta = new JMenu("Cuenta");
+		cuenta = new JMenu("Archivo");
 		inicio = new JMenuItem("Inicio.");
 		cerrarSesion = new JMenuItem("Cerrar sesión.");
 		cuenta.add(inicio);
@@ -97,7 +97,7 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 		label1 = new JLabel("Bienvenido Administrador,", SwingConstants.CENTER);
 		Font auxFont = label1.getFont();
 		label1.setFont(new Font(auxFont.getFontName(), Font.BOLD, 18));
-		label2 = new JLabel("Estas en el nivel mas alto de supremacia del sistema, Bienvenido amo " + nom,
+		label2 = new JLabel("Esta es la ventana de Administrador, Bienvenido Admin " + nom +". ID: "+id,
 				SwingConstants.CENTER);
 		panel1 = new JPanel();
 		panel1.setLayout(new GridLayout(2, 1, 15, 15));

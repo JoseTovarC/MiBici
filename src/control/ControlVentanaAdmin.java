@@ -1607,7 +1607,7 @@ public class ControlVentanaAdmin implements Control {
 			vistainicio.arranca();
 			
 		}else if (evento.getActionCommand().equals("Ayuda")) {
-			JOptionPane.showMessageDialog(null, "Ayuda Admin", "Ayuda.",
+			JOptionPane.showMessageDialog(null, "Ayuda Administrador. \n Creado por el grupo 8, conformado por Juan José Lopera Duque, Jhon Freddy Guerra Martinez, José Orlando Tovar Cano y Luis Felipe Moreno Chamorro. \n Para mayor información consulte el manual de usuario.", "Ayuda.",
 					JOptionPane.INFORMATION_MESSAGE, ImageIconohelp);
 		}
 

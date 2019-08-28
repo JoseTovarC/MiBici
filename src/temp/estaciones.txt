@@ -1,5 +1,3 @@
-2;Automatica;true;30
-3;Automatica;true;10
-Estadio;Automatica;true;25
-Jorge Villamil Cordobez;Automatica;true;10
-Hospital Universitario;Automatica;true;15
+Estadio;Automatica;true;10
+Laureles;Automatica;true;15
+Parque de la musica;Automatica;true;30
