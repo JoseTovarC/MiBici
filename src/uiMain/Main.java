@@ -27,7 +27,6 @@ public class Main {
 		Main.config_inicio();
 		// TODO: condicion de break
         try {       
-        	// el modelo:
         	// la vista:
         			InterfazVista vista = new VentanaLogin();
         	// y el control:

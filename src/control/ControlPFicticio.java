@@ -45,7 +45,6 @@ public class ControlPFicticio implements Control {
 	}
 
 	public void actionPerformed(ActionEvent evento) {
-		double cantidad = vista.getCantidad();
 
 		if (evento.getActionCommand().equals("AdminDatos")) {
 			((VentanaLogin) vista).ingresardatosAdmin();
@@ -67,7 +66,7 @@ public class ControlPFicticio implements Control {
 
 					if ((!r.equals("Usuario no encontrado")) && (Persona.currentUser instanceof Admin)) {
 						r = Persona.currentUser.getNombre();
-						InterfazVista vistaA = new VentanaAdmin(r,ide);
+						InterfazVista vistaA = new VentanaAdmin(r, ide);
 						// y el control:
 						Control controlA = new ControlVentanaAdmin(vistaA);
 						// configura la vista
@@ -122,7 +121,6 @@ public class ControlPFicticio implements Control {
 				} else {
 					long ide = (Integer.parseInt(((VentanaLogin) vista).texto2.getText()));
 					String r = Persona.login(ide, ((VentanaLogin) vista).texto3.getText());
-					
 
 					if (r.equals("Usuario no encontrado")) {
 						JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Login fail",
@@ -132,8 +130,8 @@ public class ControlPFicticio implements Control {
 						JOptionPane.showMessageDialog(null, "Usuario Administrador", "Login fail",
 								JOptionPane.WARNING_MESSAGE, ImageIconoerrorsign);
 					} else {
-						long i= Persona.currentUser.getId();
-						InterfazVista vistaur = new VentanaUsuarioR(r,i);
+						long i = Persona.currentUser.getId();
+						InterfazVista vistaur = new VentanaUsuarioR(r, i);
 						// y el control:
 						Control controlU = new ControlVentanaR(vistaur);
 						// configura la vista
@@ -169,7 +167,7 @@ public class ControlPFicticio implements Control {
 
 						}
 						JMenuItem help = new JMenuItem("Ayuda");
-					    help.addActionListener(controlU);
+						help.addActionListener(controlU);
 						menuUsuario.add(opcionesm);
 						menuUsuario.add(help);
 						((VentanaUsuarioR) vistaur).setJMenuBar(menuUsuario);
@@ -186,10 +184,12 @@ public class ControlPFicticio implements Control {
 			}
 
 		} else if (evento.getActionCommand().equals("Salir.")) {
-			
-			Object [] textoDeOpciones = {"Si", "No"};
-			int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro que desea salir del programa?", "Salir del programa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, ImageIconocheck, textoDeOpciones, null);
-			if(opcion == 0) {
+
+			Object[] textoDeOpciones = { "Si", "No" };
+			int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro que desea salir del programa?",
+					"Salir del programa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, ImageIconocheck,
+					textoDeOpciones, null);
+			if (opcion == 0) {
 				Datos.guardarDatos();
 				System.exit(0);
 			}
@@ -202,8 +202,10 @@ public class ControlPFicticio implements Control {
 			// y arranca la interfaz (vista):
 			((VentanaLogin) vista).cerrarventana();
 			vistaInvitado.arranca();
-		} else
-			vista.escribeCambio("ERROR");
+		} else {
+			JOptionPane.showMessageDialog(null, "Error.", "Error.", JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+		}
+
 	}
 
 	@Override

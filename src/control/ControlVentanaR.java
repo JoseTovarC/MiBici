@@ -553,7 +553,7 @@ public class ControlVentanaR implements Control {
 		
 
 		else {
-			vista.escribeCambio("ERROR");
+			JOptionPane.showMessageDialog(null, "Error.", "Error.", JOptionPane.ERROR_MESSAGE, ImageIconowarning);
 		}
 	}
 

@@ -51,12 +51,13 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 
 	public VentanaAdmin(String nom, long id) {
 
+		//Set el titulo de la ventana
 		super("Administrador: " + nom);
-
+		//Configuracion
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// MENU
+		// MENU SUPERIOR
 		arri = new JMenuBar();
 		cuenta = new JMenu("Archivo");
 		inicio = new JMenuItem("Inicio.");
@@ -91,12 +92,14 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 
 		imagenpresentacion = new Imagen();
 
+		//Importar y poner la imagen de presentación de la ventana inicio
 		String ruta = System.getProperty("user.dir") + "\\src\\images\\";
 		imagenpresentacion.setImage(ruta + "presentacion.png");
 		panelPrincipal.add(imagenpresentacion, BorderLayout.CENTER);
 		label1 = new JLabel("Bienvenido Administrador,", SwingConstants.CENTER);
 		Font auxFont = label1.getFont();
 		label1.setFont(new Font(auxFont.getFontName(), Font.BOLD, 18));
+		//Texto de bienvenida del administrador
 		label2 = new JLabel("Esta es la ventana de Administrador, Bienvenido Admin " + nom +". ID: "+id,
 				SwingConstants.CENTER);
 		panel1 = new JPanel();
@@ -106,6 +109,7 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 		panelPrincipal.add(panel1, BorderLayout.NORTH);
 		panel2 = new JPanel();
 		panel2.setLayout(new GridLayout(2, 1, 50, 15));
+		//Botones
 		boton2 = new JButton("Inicio");
 		boton1 = new JButton("Iniciar Sesión");
 		boton1.setActionCommand("UsuarioDatos");
@@ -115,17 +119,6 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 
 //TODO BORRAR DESDE INTERFAZ
 //Métodos de la interfaz InterfazVista:
-	public void escribeCambio(String s) {
-		// resultado.setText(s);
-	}
-
-	public double getCantidad() {
-		try {
-			return 0.0;// Double.parseDouble(cantidad.getText())
-		} catch (NumberFormatException e) {
-			return 0.0;
-		}
-	}
 
 	public void setControlador(Control c) {
 		inicio.addActionListener(c);
@@ -138,7 +131,8 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 	}
 
 	public void arranca() {
-
+		//Visualizar la pantalla
+		
 		pack();// coloca los componentes
 		setSize(1000, 500);// Da el tamaño inicial de la ventana
 		Dimension d = new Dimension(910, 400);
@@ -152,6 +146,7 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 	}
 
 	public void ingresardatos() {
+		//Login
 
 		panelPrincipal.removeAll();
 		panel3.removeAll();

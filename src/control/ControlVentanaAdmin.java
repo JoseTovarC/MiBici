@@ -1611,8 +1611,9 @@ public class ControlVentanaAdmin implements Control {
 					JOptionPane.INFORMATION_MESSAGE, ImageIconohelp);
 		}
 
-		else
-			vista.escribeCambio("ERROR");
+		else {
+			JOptionPane.showMessageDialog(null, "Error.", "Error.", JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+		}
 	}
 
 	@Override

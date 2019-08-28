@@ -191,8 +191,9 @@ public class ControlVentanaUsuarioInvitado implements Control {
 		}
 		
 		
-		else
-			vista.escribeCambio("ERROR");
+		else {
+			JOptionPane.showMessageDialog(null, "Error.", "Error.", JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+		}
 	}
 
 	@Override
