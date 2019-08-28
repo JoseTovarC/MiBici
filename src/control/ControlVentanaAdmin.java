@@ -24,6 +24,7 @@ public class ControlVentanaAdmin implements Control {
 	ImageIcon ImageIconoerrorsign = new ImageIcon(ruta + "iconfinder_sign-error_299045.png");
 	ImageIcon ImageIconowarning = new ImageIcon(ruta + "iconfinder_101_Warning_183416.png");
 	ImageIcon ImageIconocheck = new ImageIcon(ruta + "iconfinder_sign-check_299110.png");
+	ImageIcon ImageIconohelp = new ImageIcon(ruta + "iconfinder_Help_1493288.png");
 
 	// private ConversorEurosPesos modelo;
 	public ControlVentanaAdmin(InterfazVista vista) {
@@ -1604,6 +1605,10 @@ public class ControlVentanaAdmin implements Control {
 			((VentanaAdmin) vista).cerrarventana();
 			Persona.currentUser = null;
 			vistainicio.arranca();
+			
+		}else if (evento.getActionCommand().equals("Ayuda")) {
+			JOptionPane.showMessageDialog(null, "Ayuda Admin", "Ayuda.",
+					JOptionPane.INFORMATION_MESSAGE, ImageIconohelp);
 		}
 
 		else

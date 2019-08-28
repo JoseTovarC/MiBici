@@ -48,6 +48,7 @@ public class ControlVentanaR implements Control {
 	ImageIcon ImageIconoerrorsign = new ImageIcon(ruta + "iconfinder_sign-error_299045.png");
 	ImageIcon ImageIconowarning = new ImageIcon(ruta + "iconfinder_101_Warning_183416.png");
 	ImageIcon ImageIconocheck = new ImageIcon(ruta + "iconfinder_sign-check_299110.png");
+	ImageIcon ImageIconohelp = new ImageIcon(ruta + "iconfinder_Help_1493288.png");
 
 	// private ConversorEurosPesos modelo;
 	public ControlVentanaR(InterfazVista vista) {
@@ -539,6 +540,17 @@ public class ControlVentanaR implements Control {
 			StringBuffer b=BaseDatos.Datos.getPromCantB();
 			((VentanaUsuarioR) vista).setPanelPrincipal(new PanelFuncionalidades(a,b));
 		}
+		else if (evento.getActionCommand().equals("Ayuda")) {
+			if(Persona.currentUser instanceof Moderador) {
+				JOptionPane.showMessageDialog(null, "Ayuda Moderador registrado", "Ayuda.",
+						JOptionPane.INFORMATION_MESSAGE, ImageIconohelp);
+			}else {
+				JOptionPane.showMessageDialog(null, "Ayuda Usuario registrado", "Ayuda.",
+						JOptionPane.INFORMATION_MESSAGE, ImageIconohelp);
+			}
+			
+		}
+		
 
 		else {
 			vista.escribeCambio("ERROR");

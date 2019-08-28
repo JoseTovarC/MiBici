@@ -44,6 +44,7 @@ public class VentanaUsuarioInvitado extends JFrame implements InterfazVista {
 	Image imagen;
 	JMenuBar arri;
 	JMenuItem UsuarioComun;
+	JMenuItem help;
 	JMenu Consultas;
 	JMenuItem Bicixestaciones;
 	Imagen imagenpresentacion;
@@ -60,8 +61,11 @@ public class VentanaUsuarioInvitado extends JFrame implements InterfazVista {
 		UsuarioComun = new JMenuItem("Usuario Comun");
 		Consultas = new JMenu("Consultas");
 		Bicixestaciones = new JMenuItem("Bicicletas por estacion");
+
+		help = new JMenuItem("Ayuda");
 		Consultas.add(Bicixestaciones);
 		arri.add(Consultas);
+		arri.add(help);
 		setJMenuBar(arri);
 
 		// CREACIONDE PANELES QUE USARE DESPUES
@@ -118,6 +122,7 @@ public class VentanaUsuarioInvitado extends JFrame implements InterfazVista {
 		label3.addMouseListener(c);
 		Bicixestaciones.addActionListener(c);
 		UsuarioComun.addActionListener(c);
+		help.addActionListener(c);
 
 	}
 
@@ -160,6 +165,7 @@ public class VentanaUsuarioInvitado extends JFrame implements InterfazVista {
 	public void Usuariocomun() {
 		arri.removeAll();
 		arri.add(Consultas);
+		arri.add(help);
 		setJMenuBar(arri);
 
 		panelPrincipal.removeAll();
@@ -202,6 +208,7 @@ public class VentanaUsuarioInvitado extends JFrame implements InterfazVista {
 		arri.removeAll();
 		arri.add(Consultas);
 		arri.add(UsuarioComun);
+		arri.add(help);
 		setJMenuBar(arri);
 
 		panelPrincipal.removeAll();
@@ -237,6 +244,7 @@ public class VentanaUsuarioInvitado extends JFrame implements InterfazVista {
 		arri.removeAll();
 		arri.add(Consultas);
 		arri.add(UsuarioComun);
+		arri.add(help);
 		setJMenuBar(arri);
 		
 		panelPrincipal.removeAll();

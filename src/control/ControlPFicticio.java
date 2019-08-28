@@ -167,7 +167,10 @@ public class ControlPFicticio implements Control {
 							}
 
 						}
+						JMenuItem help = new JMenuItem("Ayuda");
+					    help.addActionListener(controlU);
 						menuUsuario.add(opcionesm);
+						menuUsuario.add(help);
 						((VentanaUsuarioR) vistaur).setJMenuBar(menuUsuario);
 						((VentanaUsuarioR) vistaur).arranca();
 					}

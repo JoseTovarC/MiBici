@@ -43,6 +43,7 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 	JMenuItem nuevoAdmin;
 	JMenuItem nuevoModerador;
 	JMenuItem modificar;
+	JMenuItem help;
 
 	JMenu opcionesa;
 	JMenu registros;
@@ -74,8 +75,11 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 		registros.add(nuevoModerador);
 		opcionesa.add(registros);
 		opcionesa.add(modificar);
+		
+		help = new JMenuItem("Ayuda");
 		arri.add(cuenta);
 		arri.add(opcionesa);
+		arri.add(help);
 		setJMenuBar(arri);
 
 		// CREACIONDE PANELES QUE USARE DESPUES
@@ -126,7 +130,7 @@ public class VentanaAdmin extends JFrame implements InterfazVista {
 	public void setControlador(Control c) {
 		inicio.addActionListener(c);
 		cerrarSesion.addActionListener(c);
-		;
+		help.addActionListener(c);
 		nuevoAdmin.addActionListener(c);
 		nuevoModerador.addActionListener(c);
 		modificar.addActionListener(c);
