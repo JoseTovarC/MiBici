@@ -136,14 +136,15 @@ public class Datos {
 			String line;
 			while ((line = br.readLine()) != null) {
 				if (!line.isEmpty()) {
-
 					String[] user = line.split(";");
 					String nombre = user[0];
 					String edad = user[1];
-					String id = user[3];
 					String genero = user[2];
+					String id = user[3];
 					String clave = user[4];
-					new Admin(nombre, edad, id, genero, clave);
+					new Admin(nombre,edad,id,genero,clave);
+					//String nombre, String ed, String iden, String genero, String clave
+
 				}
 			}
 			br.close();

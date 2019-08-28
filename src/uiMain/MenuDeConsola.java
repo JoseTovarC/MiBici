@@ -3,6 +3,7 @@ package uiMain;
 import java.util.ArrayList;
 import java.util.Scanner;
 import BaseDatos.Datos;
+import control.opcionNoValidaException;
 import gestorAplicacion.User.Admin;
 import gestorAplicacion.User.Persona;
 import gestorAplicacion.User.Usuario;
@@ -147,7 +148,7 @@ public class MenuDeConsola {
 		}
 	}
 	
-	public boolean contieneOpcion(String opt) {
+	public boolean contieneOpcion(String opt) throws opcionNoValidaException{
 		for(byte i=0;i<options.size();i++) {
 			if(options.get((int)i).getKey().equals(opt)) {
 				return true;

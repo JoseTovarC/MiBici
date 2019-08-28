@@ -37,11 +37,12 @@ public abstract class Persona {
 		
 		long id = (long)Integer.parseInt(iden);
 		byte edad = (byte)Integer.parseInt(ed);
-		this.nombre = nombre;
+		this.setNombre(nombre);
 		this.setEdad(edad);
 		this.setId(id);
 		this.setGenero(genero);
 		this.setClave(clave);
+		
 	}
 	public String getNombre(){
 		return nombre;

@@ -2,6 +2,7 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -185,6 +186,9 @@ public class ControlVentanaR implements Control {
 
 		} else if (evento.getActionCommand().equals("Recargar Tarjeta")) {
 			try {
+				if (!((Usuario) Persona.currentUser).getMenu().contieneOpcion("11") ) {
+					throw new opcionNoValidaException();
+				}
 				((VentanaUsuarioR) vista).panelPrincipal.removeAll();
 				// ((VentanaUsuarioR) vista).recargarTarjeta();
 				JPanel j = new PanelRecargarTarjeta();
@@ -195,7 +199,11 @@ public class ControlVentanaR implements Control {
 
 				JOptionPane.showMessageDialog(null, "Ingresaste un dato incorrecto", "tipo de dato incorecto",
 						JOptionPane.ERROR_MESSAGE, ImageIconowarning);
-			} catch (Exception e) {
+			}catch (opcionNoValidaException e) {
+				JOptionPane.showMessageDialog(null, "El usuario tiene la opcion bloqueada", "Opcion no valida",
+						JOptionPane.ERROR_MESSAGE, ImageIconoerror);
+			} 
+			catch (Exception e) {
 
 			}
 
@@ -222,7 +230,8 @@ public class ControlVentanaR implements Control {
 			} catch (IndexOutOfBoundsException e) {
 				JOptionPane.showMessageDialog(null, "Ingreso un numero valido", "tipo de dato incorecto",
 						JOptionPane.ERROR_MESSAGE, ImageIconowarning);
-			} catch (Exception e) {
+			} 
+			catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Error en la recarga.", "Recarga Tarjeta",
 						JOptionPane.ERROR_MESSAGE, ImageIconoerror);
 			}
@@ -254,25 +263,33 @@ public class ControlVentanaR implements Control {
 		} else if (evento.getActionCommand().equals("Pagar Multas")) {
 
 			try {
-				String r = ((Usuario) Persona.currentUser).pagarM();
-				if (r.equals("Pago no realizado. \n Saldo insuficiente")) {
-					JOptionPane.showMessageDialog(null, "Pago no realizado. \n Saldo insuficiente", "Pagar Multas",
-							JOptionPane.ERROR_MESSAGE, ImageIconoerror);
-				} else if (r.equals("Pago no realizado. \n Usted no tiene multas o deudas actualmente.")) {
-					JOptionPane.showMessageDialog(null,
-							"Pago no realizado. \n Usted no tiene multas o deudas actualmente.", "Pagar Multas",
-							JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+				if (!((Usuario) Persona.currentUser).getMenu().contieneOpcion("12")) {
+					throw new opcionNoValidaException();
 				} else {
-					JOptionPane.showMessageDialog(null, "El valor de las multas o multa han sido pagadas",
-							"Pagar Multas", JOptionPane.OK_OPTION, ImageIconocheck);
+					String r = ((Usuario) Persona.currentUser).pagarM();
+					if (r.equals("Pago no realizado. \n Saldo insuficiente")) {
+						JOptionPane.showMessageDialog(null, "Pago no realizado. \n Saldo insuficiente", "Pagar Multas",
+								JOptionPane.ERROR_MESSAGE, ImageIconoerror);
+					} else if (r.equals("Pago no realizado. \n Usted no tiene multas o deudas actualmente.")) {
+						JOptionPane.showMessageDialog(null,
+								"Pago no realizado. \n Usted no tiene multas o deudas actualmente.", "Pagar Multas",
+								JOptionPane.ERROR_MESSAGE, ImageIconowarning);
+					} else {
+						JOptionPane.showMessageDialog(null, "El valor de las multas o multa han sido pagadas",
+								"Pagar Multas", JOptionPane.OK_OPTION, ImageIconocheck);
+					}
+					((VentanaUsuarioR) vista).inicio();
+					Datos.guardarDatos();
 				}
-				((VentanaUsuarioR) vista).inicio();
-				Datos.guardarDatos();
 			} catch (IndexOutOfBoundsException e) {
 
 				JOptionPane.showMessageDialog(null, "Ingresaste un dato incorrecto", "tipo de dato incorecto",
 						JOptionPane.ERROR_MESSAGE, ImageIconowarning);
-			} catch (Exception e) {
+			}catch (opcionNoValidaException e) {
+				JOptionPane.showMessageDialog(null, "El usuario tiene la opcion bloqueada", "Opcion no valida",
+						JOptionPane.ERROR_MESSAGE, ImageIconoerror);
+			}  
+			catch (Exception e) {
 
 			}
 

@@ -107,8 +107,8 @@ public class Main {
 		//Admin;18;null;1;666
 		//IT;19;F;2;777
 		
-		Admin.newAdminUser("Admin", (byte)18, (long)1, "null", "666");
-		Admin.newAdminUser("IT", (byte)19, (long)2, "F", "777");
+		//Admin.newAdminUser("Admin", (byte)18, (long)1, "M", "666");
+		//Admin.newAdminUser("IT", (byte)19, (long)2, "F", "777");
 		//Usuario invitado(por defecto)
 		
 		/*

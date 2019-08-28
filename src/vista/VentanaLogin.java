@@ -77,7 +77,23 @@ public class VentanaLogin extends JFrame implements InterfazVista {
 		// DERECHA ARRIBA
 		panel5 = new JPanel();
 		panel5.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
-		texto1 = new TextArea("Esta va a ser la guia. ",0 , 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
+		texto1 = new TextArea("Nuestro proyecto consiste en un sistema de transporte conocido como “Bike Sharing”. En nuestro sistema una persona puede crear una cuenta o ingresar directamente en el caso de poseerla, y una vez ingresado en la aplicación podrá alquilar bicicletas desde cualquier estación y devolverlas nuevamente en cualquier otra.\r\n" + 
+				"\r\n" + 
+				"Para usar este sistema correctamente el usuario debe crearse una cuenta para de esta manera quedar registrado en nuestra red.\r\n" + 
+				"\r\n" + 
+				"Para recargar la tarjeta se debe dirigir a procesos y consultas/recargar tarjeta e ingresar el monto que desea recargar.\r\n" + 
+				"\r\n" + 
+				"Para pedir una bicicleta se debe dirigir a procesos y consultas/pedir bicicleta e ingresar la estación y bicicleta deseada.\r\n" + 
+				"\r\n" + 
+				"Para entregar la bicicleta se debe dirigir a procesos y consultas/devolver bicicleta e ingresar la estación en la que desea devolverla.\r\n" + 
+				"\r\n" + 
+				"Ingrese a procesos y consultas/consultas/perfil de tarjeta para consultar los detalles de su cuenta y realizar recargas y pago de multas\r\n" + 
+				"\r\n" + 
+				"También se puede pagar las multas desde procesos y consultas/pagar multas.\r\n" + 
+				"\r\n" + 
+				"Para mayor información y descripción de otras funciones se incluye una memoria escrita en la carpeta del trabajo.\r\n" + 
+				"\r\n" + 
+				"Este proyecto fue realizado por José Orlando Tovar Cano, Luis Felipe Moreno Chamorro, Jhon Freddy Guerra Martínez y Juan José Lopera Duque.",0 , 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
 		texto1.setEditable(false);
 		texto1.setBackground(Color.white);
 		panel5.add(texto1);
