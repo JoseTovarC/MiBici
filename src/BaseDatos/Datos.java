@@ -148,7 +148,6 @@ public class Datos {
 			}
 			br.close();
 		} catch (Exception e) {
-			// Error al leer
 			System.out.println(e);
 		}
 	}

@@ -1502,6 +1502,7 @@ public class ControlVentanaAdmin implements Control {
 
 						JOptionPane.showMessageDialog(null, "Registro realizado exitosamente",
 								"Registro Administrador.", JOptionPane.OK_OPTION, ImageIconocheck);
+
 						Datos.guardarDatos();
 						((VentanaAdmin) vista).inicio();
 					} else {
@@ -1562,6 +1563,11 @@ public class ControlVentanaAdmin implements Control {
 								"Registro Moderador.", JOptionPane.OK_OPTION, ImageIconocheck);
 						Datos.guardarDatos();
 						((VentanaAdmin) vista).inicio();
+
+						Datos.guardarDatos();
+						((VentanaAdmin) vista).inicio();
+						
+
 					} else {
 						JOptionPane.showMessageDialog(null, "No se pudo realizar el registro, el usuario ya existe",
 								"Registro Moderador.", JOptionPane.ERROR_MESSAGE, ImageIconoerror);
